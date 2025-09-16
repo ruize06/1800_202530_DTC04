@@ -59,6 +59,7 @@ elmo-hikes/
 
 
 ## Contributors
+- **Alex Lu** - BCIT CST Student who loves hiking, reading, and has a passion for game development. Fun fact: Has re-read the Artemis Fowl series 5 times
 - **Ruize Sun** - BCIT CST Student with a passion for outdoor adventures and user-friendly applications. Fun fact: Can't solve a Rubik's Cubes at all.
 - **Teammate Name** - BCIT CST Student, Frontend enthusiast with a knack for creative design. Fun fact: Has a collection of over 50 houseplants.
 
