@@ -56,7 +56,7 @@ elmo-hikes/
 
 ## Contributors
 
-- **Meiqi Zhao** - BCIT CST student who likes photography and baking. Fun fact: I like watermelon but do not like watermelon-flavored drinks.
+- **Meiqi Zhao** - BCIT CST student who likes baking and photography. Fun fact: I like watermelon but do not like watermelon-flavored drinks.
 - **Teammate Name** - BCIT CST Student, Frontend enthusiast with a knack for creative design. Fun fact: Has a collection of over 50 houseplants.
 -
 
