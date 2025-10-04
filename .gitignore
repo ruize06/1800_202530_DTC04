@@ -1,4 +1,5 @@
 .DS_Store
+tailwind.config.js
 *.logs
 node_modules/
 .vscode/
