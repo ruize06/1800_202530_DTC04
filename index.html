@@ -1,36 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
+<html lang="en" class="scroll-smooth">
+  <head>
     <title>Orbit</title>
-    <meta name="comp1800 template" content="My 1800 App">
+    <meta name="comp1800 template" content="My 1800 App" />
 
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Other libraries go here -->
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <!-- <link rel="stylesheet" href="./styles/style.css"> -->
+  </head>
 
-</head>
-
-<body class="bg-black">
-
+  <body class="bg-black">
     <nav class="text-white flex justify-between items-center py-4 px-10">
-        <!-- Logo and Home -->
-        <div class="flex flex-row">
-            <image src="./images/logo.jpg" class="h-10 pr-3"></image>
+      <!-- Logo and Home -->
+      <div class="flex flex-row">
+        <a href="#" class="p-2">Home</a>
+        <a href="#" class="p-2">About Us</a>
+      </div>
 
-            <a href="#" class="p-2">Home</a>
-        </div>
+      <a href="#">
+        <image
+          src="./images/logo.jpg"
+          alt="Orbit"
+          class="h-10 text-xl font-bold"
+        ></image>
+      </a>
 
-        <a href="#" class="text-xl font-bold">Orbit</a>
-
-        <!-- Sign up -->
-        <a href="#" class="p-2">SignUp/Login</a>
+      <!-- Sign up -->
+      <a href="#" class="p-2">SignUp/Login</a>
     </nav>
     <main class="py-16">
         <div class="bg-[#115268] text-white max-w-[80%] p-8 mx-auto rounded-lg text-center">
@@ -40,38 +42,27 @@
                 distinctio?</p>
             <button class="bg-[#4c3B71] text-white-200 p-2 rounded-lg mt-2">SignUp/Login</button>
         </div>
-
-        <div class="m-10 max-w-[850px] items-center flex flex-col items-center mx-auto">
-            <div class="mt-8 text-white bg-[#4c3B71] p-5 rounded-tr-4xl rounded-tl-4xl md:rounded-br-4xl">
-                <h1 class="text-3xl mb-5">Stay in each other's orbit</h1>
-                <p class="text-md">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, maxime aut ipsa voluptates perferendis exercitationem cum totam esse nihil molestias architecto, quo at fugit, consequatur temporibus libero. Illum laborum dolorum obcaecati deleniti molestias, aspernatur officiis dicta maxime sed velit facere itaque commodi qui quibusdam. Asperiores officiis sunt eum maxime ullam.
-                </p>
-            </div>
-            <div class="flex flex-col md:flex-row">
-                <div class="text-white bg-[#4c3B71] p-5 rounded-br-4xl rounded-bl-4xl md:max-w-[40%] rounded-br-4xl">
-                    <h1 class="text-3xl mb-5">Share and Sync</h1>
-                    <p class="text-md">
-                        Quo magnam voluptatibus necessitatibus. Aspernatur, nostrum, ea cupiditate sint itaque quo necessitatibus modi eligendi fugit illum magnam vero impedit deleniti quaerat incidunt maxime explicabo officia iste possimus adipisci voluptate, reiciendis nam quis? Maxime libero distinctio enim dolore, nihil eligendi consequuntur fuga non.
-                    </p>
-                </div>
-                <div class="flex flex-col max-w-fit mx-auto bg-[#115268] p-5 rounded-lg text-white mt-3">
-                    <h1 class="mb-2 font-bold">Watch our pitch!</h1>
-                    <iframe width="430" height="230" src="https://www.youtube.com/embed/ndMiZio55xQ"></iframe>
-                </div>
-            </div>
+        <div class="m-8 text-white">
+            <h1 class=" text-xl mb-5">Features</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad numquam placeat ab! Eos, laborum numquam
+                aperiam odit, facilis beatae officia quam accusamus asperiores, obcaecati error nostrum quidem eaque
+                quod? Facilis.
+            </p>
+        </div>
+        <div class=" flex flex-col max-w-fit mx-auto bg-[#FEE8D9] p-5 rounded-lg">
+            <h1 class="mb-2 font-bold">Watch our pitch!</h1>
+            <iframe width="420" height="315" src="https://www.youtube.com/embed/ndMiZio55xQ"></iframe>
         </div>
     </main>
 
     <footer class="bg-[#CADCAE] p-5">
-        <div>
-            <h1>About us</h1>
-        </div>
-        <div>
-            <h1>Contact</h1>
-        </div>
+      <div>
+        <h1>About us</h1>
+      </div>
+      <div>
+        <h1>Contact</h1>
+      </div>
     </footer>
-
 
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
@@ -79,7 +70,5 @@
 
     <!-- Link to scripts of your own -->
     <!-- <script type=" module" src="./src/main.js"></script> -->
-
-</body>
-
+  </body>
 </html>
