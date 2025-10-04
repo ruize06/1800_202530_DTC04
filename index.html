@@ -20,7 +20,7 @@
       <!-- Logo and Home -->
       <div class="flex flex-row">
         <a href="#" class="p-2">Home</a>
-        <a href="#" class="p-2">About Us</a>
+        <a href="#footer" class="p-2">About Us</a>
       </div>
 
       <a href="#">
@@ -34,7 +34,7 @@
       <!-- Sign up -->
       <a href="#" class="p-2">SignUp/Login</a>
     </nav>
-    <main class="py-16">
+    <main class="py-16 mx-4">
         <div class="bg-[#115268] text-white max-w-[80%] p-8 mx-auto rounded-lg text-center">
             <h1 class="text-4xl font-bold">Welcome</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam eum, quidem nam esse enim inventore
@@ -45,19 +45,19 @@
 
         <div class="m-10 max-w-[850px] items-center flex flex-col items-center mx-auto">
             <div class="mt-8 text-white bg-[#4c3B71] p-5 rounded-tr-3xl rounded-tl-3xl md:rounded-br-3xl">
-                <h1 class="text-3xl mb-5">Stay in each other's orbit</h1>
+                <h1 class="text-3xl font-bold mb-5">Stay in each other's orbit</h1>
                 <p class="text-md">
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, maxime aut ipsa voluptates perferendis exercitationem cum totam esse nihil molestias architecto, quo at fugit, consequatur temporibus libero. Illum laborum dolorum obcaecati deleniti molestias, aspernatur officiis dicta maxime sed velit facere itaque commodi qui quibusdam. Asperiores officiis sunt eum maxime ullam.
                 </p>
             </div>
             <div class="flex flex-col md:flex-row">
                 <div class="text-white bg-[#4c3B71] p-5 rounded-br-3xl rounded-bl-3xl md:max-w-[40%] rounded-br-3xl">
-                    <h1 class="text-3xl mb-5">Share and Sync</h1>
+                    <h1 class="text-3xl font-bold mb-5">Share and Sync</h1>
                     <p class="text-md">
                         Quo magnam voluptatibus necessitatibus. Aspernatur, nostrum, ea cupiditate sint itaque quo necessitatibus modi eligendi fugit illum magnam vero impedit deleniti quaerat incidunt maxime explicabo officia iste possimus adipisci voluptate, reiciendis nam quis? Maxime libero distinctio enim dolore, nihil eligendi consequuntur fuga non.
                     </p>
                 </div>
-                <div class="flex flex-col max-w-fit mx-auto bg-[#115268] p-5 rounded-lg text-white mt-3">
+                <div class="flex flex-col max-w-fit mx-auto bg-[#115268] p-5 rounded-2xl text-white mt-3">
                     <h1 class="mb-2 font-bold">Watch our pitch!</h1>
                     <iframe width="430" height="230" src="https://www.youtube.com/embed/ndMiZio55xQ"></iframe>
                 </div>
@@ -65,11 +65,46 @@
         </div>
     </main>
 
-    <footer class="text-white p-5 m-8 gap-4">
-        <h1>About</h1>
-        <h1>Contact us</h1>
-        <h1>Help center</h1>
-        <h1>Status</h1>
+    <footer id="footer" class="text-white p-5 mb-[70px] flex justify-center">
+      <div>
+        <section class="relative z-10 space-y-5 mb-4">
+          <h1 class="text-5xl">Any Questions?</h1>
+          <h2 class="text-xs">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, reiciendis.</h2>
+        </section>
+          <div class="flex items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+            <path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2" />
+            </svg>
+            <h1>Contact us</h1>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="15"
+              height="15"
+              viewBox="0 -3 24 24"
+              fill="none"                stroke="white"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+            <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
+            <path d="M3 7l9 6l9 -6" />
+            </svg>
+              <h1>Email us for business inquiries</h1>
+          </div> 
+        </section>
+      </div>
     </footer>
 
     <!---------------------------------------------->
