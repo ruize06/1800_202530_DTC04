@@ -1,164 +1,128 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-  <head>
-    <title>Orbit</title>
-    <meta name="comp1800 template" content="My 1800 App" />
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+  <title>Orbit</title>
+  <meta name="comp1800 template" content="My 1800 App" />
 
-    <!-- Other libraries go here -->
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <!-- Other libraries go here -->
 
-    <!-- <link rel="stylesheet" href="./styles/style.css"> -->
-  </head>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-  <body
-    style="
+  <!-- <link rel="stylesheet" href="./styles/style.css"> -->
+</head>
+
+<body style="
       background-image: url(https://static.vecteezy.com/system/resources/previews/024/790/556/non_2x/seamless-night-sky-stars-pattern-sketch-moon-space-planets-and-hand-drawn-star-illustration-outer-space-symbols-decorative-texture-cosmic-wallpaper-wrapping-paper-textile-outline-design-vector.jpg);
-    "
-  >
-    <div class="bg-black w-[100%] h-[100%] block opacity-70 fixed z-0"></div>
-    <div class="relative z-1">
-      <nav
-        class="text-white flex justify-between items-center py-3 px-10 font-bold"
-      >
-        <!-- Logo and Home -->
-        <div class="flex flex-row">
-          <a href="#" class="p-2 hover:underline">Home</a>
-          <a href="#footer" class="p-2 hover:underline">About Us</a>
-        </div>
-        <a href="#" class="relative inline-block group">
-          <img
-            src="./images/logo.svg"
-            alt="Orbit Logo"
-            class="h-45 w-auto transition-opacity duration-300 group-hover:opacity-0"
-          />
+    ">
+  <div class="bg-black w-[100%] h-[100%] block opacity-70 fixed z-0"></div>
+  <div class="relative z-1">
+    <nav class="text-white flex justify-between items-center py-3 px-10 font-bold">
+      <!-- Logo and Home -->
+      <div class="flex flex-row">
+        <a href="#" class="p-2 hover:underline">Home</a>
+        <a href="#footer" class="p-2 hover:underline">About Us</a>
+      </div>
+      <a href="#" class="relative inline-block group">
+        <img src="./images/logo.svg" alt="Orbit Logo"
+          class="h-45 w-auto transition-opacity duration-300 group-hover:opacity-0" />
 
-          <img
-            src="./images/logohover.svg"
-            alt="Orbit Logo Hover"
-            class="h-45 w-auto absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          />
-        </a>
-        <!-- Sign up -->
-        <a href="#" class="p-2 hover:underline">SignUp/Login</a>
-      </nav>
-      <main class="py-16 px-2 max-w-[850px] mx-auto">
-        <div
-          class="bg-[#115268] text-white p-6 mx-auto rounded-3xl text-center bg-gradient-to-br from-[#115268] to to-indigo-950"
-        >
-          <h1 class="text-4xl font-bold mb-5">Welcome to Orbit</h1>
-          <p class="mb-4">
-            Orbit is your space to study smarter, together. Orbit keeps your
-            academic universe aligned. No more scattered schedules or missed
-            updates—just smooth collaboration and shared momentum. Step into
-            Orbit and discover how connected learning can truly feel.
-          </p>
+        <img src="./images/logohover.svg" alt="Orbit Logo Hover"
+          class="h-45 w-auto absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      </a>
+      <!-- Sign up -->
+      <a href="#" class="p-2 hover:underline">SignUp/Login</a>
+    </nav>
+    <main class="py-16 px-2 max-w-[850px] mx-auto">
+      <div
+        class="bg-[#115268] text-white p-6 mx-auto rounded-3xl text-center bg-gradient-to-br from-[#115268] to to-indigo-950">
+        <h1 class="text-4xl font-bold mb-5">Welcome to Orbit</h1>
+        <p class="mb-4">
+          Orbit is your space to study smarter, together. Orbit keeps your
+          academic universe aligned. No more scattered schedules or missed
+          updates—just smooth collaboration and shared momentum. Step into
+          Orbit and discover how connected learning can truly feel.
+        </p>
+        <a href="login.html">
           <button
-            class="bg-slate-200 text-black p-2 font-bold rounded-lg hover:scale-105 hover:shadow-2xl transition duration-300"
-          >
+            class="bg-slate-200 text-black p-2 font-bold rounded-lg hover:scale-105 hover:shadow-2xl transition duration-300">
             Get Started
           </button>
+        </a>
+      </div>
+      <div class="m-10 flex flex-col items-center mx-auto">
+        <div
+          class="mt-8 text-white bg-[#4c3B71] p-5 rounded-tr-3xl rounded-tl-3xl bg-gradient-to-br from-[#4c3B71] to to-black md:rounded-br-3xl">
+          <h1 class="text-3xl font-bold mb-5">Stay in each other's orbit</h1>
+          <p class="text-md">
+            Studying becomes a shared journey when using Orbit. Orbit connects
+            classmates through collaborative planning, task sharing, and
+            real-time updates. Whether you're tackling group projects or
+            syncing deadlines, Orbit keeps everyone aligned. No more
+            drifting—just focused momentum, together. Join the app that turns
+            study partners into study satellites.
+          </p>
         </div>
-        <div class="m-10 flex flex-col items-center mx-auto">
+        <div class="flex flex-col md:flex-row">
           <div
-            class="mt-8 text-white bg-[#4c3B71] p-5 rounded-tr-3xl rounded-tl-3xl bg-gradient-to-br from-[#4c3B71] to to-black md:rounded-br-3xl"
-          >
-            <h1 class="text-3xl font-bold mb-5">Stay in each other's orbit</h1>
+            class="text-white bg-[#4c3B71] p-5 rounded-br-3xl rounded-bl-3xl bg-gradient-to-tr from-[#4c3B71] to to-black md:max-w-[40%]">
+            <h1 class="text-3xl font-bold mb-5">Share and Sync</h1>
             <p class="text-md">
-              Studying becomes a shared journey when using Orbit. Orbit connects
-              classmates through collaborative planning, task sharing, and
-              real-time updates. Whether you're tackling group projects or
-              syncing deadlines, Orbit keeps everyone aligned. No more
-              drifting—just focused momentum, together. Join the app that turns
-              study partners into study satellites.
+              Share and sync with ease as Orbit keep your study group
+              connected and aligned. Instantly share notes, tasks, and
+              updates, so no one misses a beat. Whether you're planning a
+              project or reviewing for exams, Orbit ensures everyone stays in
+              the loop. Collaboration has never been this smooth or this
+              smart.
             </p>
           </div>
-          <div class="flex flex-col md:flex-row">
-            <div
-              class="text-white bg-[#4c3B71] p-5 rounded-br-3xl rounded-bl-3xl bg-gradient-to-tr from-[#4c3B71] to to-black md:max-w-[40%]"
-            >
-              <h1 class="text-3xl font-bold mb-5">Share and Sync</h1>
-              <p class="text-md">
-                Share and sync with ease as Orbit keep your study group
-                connected and aligned. Instantly share notes, tasks, and
-                updates, so no one misses a beat. Whether you're planning a
-                project or reviewing for exams, Orbit ensures everyone stays in
-                the loop. Collaboration has never been this smooth or this
-                smart.
-              </p>
-            </div>
-            <div
-              class="flex flex-col max-w-fit mx-auto bg-[#115268] p-5 rounded-2xl text-white mt-3 bg-gradient-to-tl from-[#115268] to to-black"
-            >
-              <h1 class="mb-2 font-bold">Watch our pitch!</h1>
-              <iframe
-                width="430"
-                height="230"
-                src="https://www.youtube.com/embed/ndMiZio55xQ"
-              ></iframe>
-            </div>
+          <div
+            class="flex flex-col max-w-fit mx-auto bg-[#115268] p-5 rounded-2xl text-white mt-3 bg-gradient-to-tl from-[#115268] to to-black">
+            <h1 class="mb-2 font-bold">Watch our pitch!</h1>
+            <iframe width="430" height="230" src="https://www.youtube.com/embed/ndMiZio55xQ"></iframe>
           </div>
         </div>
-      </main>
-      <footer id="footer" class="text-white p-5 mb-[70px] flex justify-center">
-        <div>
-          <section class="relative z-10 space-y-5 mb-4">
-            <h1 class="text-5xl font-bold">Any Questions?</h1>
-            <h2 class="text-xs">
-              Got questions? We've got answers. Reach out to our team of
-              professionals to help you on your journey.
-            </h2>
-          </section>
-          <div class="flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="15"
-              height="15"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="white"
-              stroke-width="1"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path
-                d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"
-              />
-            </svg>
-            <h1>Contact us</h1>
-          </div>
-          <div class="flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="15"
-              height="15"
-              viewBox="0 -3 24 24"
-              fill="none"
-              stroke="white"
-              stroke-width="1"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path
-                d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"
-              />
-              <path d="M3 7l9 6l9 -6" />
-            </svg>
-            <h1>Email us for business inquiries</h1>
-          </div>
+      </div>
+    </main>
+    <footer id="footer" class="text-white p-5 mb-[70px] flex justify-center">
+      <div>
+        <section class="relative z-10 space-y-5 mb-4">
+          <h1 class="text-5xl font-bold">Any Questions?</h1>
+          <h2 class="text-xs">
+            Got questions? We've got answers. Reach out to our team of
+            professionals to help you on your journey.
+          </h2>
+        </section>
+        <div class="flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white"
+            stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2" />
+          </svg>
+          <h1>Contact us</h1>
         </div>
-      </footer>
-    </div>
+        <div class="flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 -3 24 24" fill="none" stroke="white"
+            stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
+            <path d="M3 7l9 6l9 -6" />
+          </svg>
+          <h1>Email us for business inquiries</h1>
+        </div>
+      </div>
+    </footer>
+  </div>
 
-    <!---------------------------------------------->
-    <!-- Your own JavaScript functions go here    -->
-    <!---------------------------------------------->
+  <!---------------------------------------------->
+  <!-- Your own JavaScript functions go here    -->
+  <!---------------------------------------------->
 
-    <!-- Link to scripts of your own -->
-    <!-- <script type=" module" src="./src/main.js"></script> -->
-  </body>
+  <!-- Link to scripts of your own -->
+  <!-- <script type=" module" src="./src/main.js"></script> -->
+</body>
+
 </html>
