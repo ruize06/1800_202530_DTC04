@@ -12,7 +12,8 @@
   <!-- Other libraries go here -->
 
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
+  <script type="module" src="/src/components/site-footer.js"></script>
+  <script type="module" src="/src/components/site-navbar.js"></script>
   <!-- <link rel="stylesheet" href="./styles/style.css"> -->
 </head>
 
@@ -21,22 +22,10 @@
     ">
   <div class="bg-black w-[100%] h-[100%] block opacity-70 fixed z-0"></div>
   <div class="relative z-1">
-    <nav class="text-white flex justify-between items-center py-3 px-10 font-bold">
-      <!-- Logo and Home -->
-      <div class="flex flex-row">
-        <a href="#" class="p-2 hover:underline">Home</a>
-        <a href="#footer" class="p-2 hover:underline">About Us</a>
-      </div>
-      <a href="#" class="relative inline-block group">
-        <img src="./images/logo.svg" alt="Orbit Logo"
-          class="h-45 w-auto transition-opacity duration-300 group-hover:opacity-0" />
+    <site-navbar>
+      <script type="module" src="/src/components/site-navbar.js"></script>
+    </site-navbar>
 
-        <img src="./images/logohover.svg" alt="Orbit Logo Hover"
-          class="h-45 w-auto absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-      </a>
-      <!-- Sign up -->
-      <a href="#" class="p-2 hover:underline">SignUp/Login</a>
-    </nav>
     <main class="py-16 px-2 max-w-[850px] mx-auto">
       <div
         class="bg-[#115268] text-white p-6 mx-auto rounded-3xl text-center bg-gradient-to-br from-[#115268] to to-indigo-950">
@@ -88,33 +77,11 @@
         </div>
       </div>
     </main>
-    <footer id="footer" class="text-white p-5 mb-[70px] flex justify-center">
-      <div>
-        <section class="relative z-10 space-y-5 mb-4">
-          <h1 class="text-5xl font-bold">Any Questions?</h1>
-          <h2 class="text-xs">
-            Got questions? We've got answers. Reach out to our team of
-            professionals to help you on your journey.
-          </h2>
-        </section>
-        <div class="flex items-center gap-2">
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white"
-            stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-            <path
-              d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2" />
-          </svg>
-          <h1>Contact us</h1>
-        </div>
-        <div class="flex items-center gap-2">
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 -3 24 24" fill="none" stroke="white"
-            stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
-            <path d="M3 7l9 6l9 -6" />
-          </svg>
-          <h1>Email us for business inquiries</h1>
-        </div>
-      </div>
-    </footer>
+
+    <!-- our own footer goes here -->
+    <site-footer>
+      <script type="module" src="/src/components/site-footer.js"></script>
+    </site-footer>
   </div>
 
   <!---------------------------------------------->

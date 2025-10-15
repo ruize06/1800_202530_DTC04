@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <title>Orbit</title>
+    <meta name="comp1800 template" content="My 1800 App" />
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Other libraries go here -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script type="module" src="/src/components/site-footer.js"></script>
+</head>
+
+
+<body style="
+      background-image: url(https://static.vecteezy.com/system/resources/previews/024/790/556/non_2x/seamless-night-sky-stars-pattern-sketch-moon-space-planets-and-hand-drawn-star-illustration-outer-space-symbols-decorative-texture-cosmic-wallpaper-wrapping-paper-textile-outline-design-vector.jpg);
+    ">
+    <div class="bg-black w-[100%] h-[100%] block opacity-70 fixed z-0"></div>
+    <div class="relative z-1">
+        <!------------------------------>
+        <!-- Your HTML Layout go here -->
+        <!------------------------------>
+
+        <!-- our own navbar goes here -->
+        <site-navbar>
+            <script type="module" src="/src/components/site-navbar.js"></script>
+        </site-navbar>
+
+        <!-- Main content goes here -->
+        <div class="container py-5 text-white" style="max-width: 420px;">
+            <!-- Alerts -->
+            <div id="authAlert" class="alert alert-danger d-none" role="alert"></div>
+
+            <!-- Login -->
+            <div id="loginView">
+                <h3 class="mb-3 text-center">Login</h3>
+                <form id="loginForm" novalidate>
+                    <div class="mb-3">
+                        <input type="email" id="loginEmail" class="form-control" placeholder="Email" required />
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" id="loginPassword" class="form-control" placeholder="Password"
+                            required />
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                </form>
+                <small class="d-block mt-3 text-center">
+                    Don’t have an account?
+                    <a href="#" id="toSignup">Sign up</a>
+                </small>
+            </div>
+
+            <!-- Signup -->
+            <div id="signupView" class="d-none">
+                <h3 class="mb-3 text-center">Sign Up</h3>
+                <form id="signupForm" novalidate>
+                    <div class="mb-3">
+                        <input type="text" id="signupName" class="form-control" placeholder="First and Last Name"
+                            aria-label="Full name" required />
+                    </div>
+                    <div class="mb-3">
+                        <input type="email" id="signupEmail" class="form-control" placeholder="Email" required />
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" id="signupPassword" class="form-control" placeholder="Password"
+                            required />
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Create Account</button>
+                </form>
+                <small class="d-block mt-3 text-center">
+                    Already have an account?
+                    <a href="#" id="toLogin">Login</a>
+                </small>
+            </div>
+        </div>
+
+        <!-- our own footer goes here -->
+        <site-footer>
+            <script type="module" src="/src/components/site-footer.js"></script>
+        </site-footer>
+
+        <!---------------------------------------------->
+        <!-- Your own JavaScript functions go here    -->
+        <!---------------------------------------------->
+
+        <!-- Firebase and authentication related scripts -->
+        <!-- The order of loading matters -->
+        <script type="module" src="/src/firebaseConfig.js"></script>
+        <script type="module" src="/src/authentication.js"></script>
+        <script type="module" src="/src/loginSignup.js"></script>
+        <script type="module" src="/src/app.js"></script>
+</body>
+
+</html>
