@@ -12,7 +12,7 @@ class NavItem extends HTMLElement {
     }
     render() {
         this.innerHTML = `
-        <div class = "${this.active ? 'text-white' : 'text-gray-600'} hover:bg-gray-800/60 rounded-full p-4 w-fit h-[100%] transition-all duration-250 max-h-fit">
+        <div class = "${this.active ? 'text-gray-300' : 'text-gray-500'} hover:text-gray-400 rounded-full p-4 transition-all duration-200">
         ${this.content}
         </div>
         `;
