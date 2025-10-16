@@ -26,7 +26,36 @@
       <script type="module" src="/src/components/site-navbar.js"></script>
     </site-navbar>
 
-    <main class="py-16 px-2 max-w-[850px] mx-auto">
+    <!-- Main Page mobile -->
+    <main class="text-white pt-[170px] sm:hidden">
+      <section class="max-w-[80%] mx-auto">
+        <h1 class="text-[#b494ff] font-bold text-3xl">
+          Welcome to...
+        </h1>
+      </section>
+      <section class="text-center">
+        <div class="">
+          <a href="index.html" class="relative inline-block group">
+            <img src="./images/logo.svg" alt="Orbit Logo"
+              class="h-29 w-auto transition-opacity duration-300 group-hover:opacity-0" />
+          </a>
+          <h1 class="text-lg font-extrabold text-[#89e1fe] tracking-wide animate-fade-in drop-shadow-md">
+            Stay in sync. <span class="text-indigo-300">Stay in Orbit.</span>
+          </h1>
+        </div>
+      </section>
+      <section class="text-center mt-[75px]">
+        <a href="login.html">
+          <button
+            class="bg-gradient-to-r from-[#4c3B71] border-[1.5px] border-slate-400 to-indigo-900 text-white px-6 py-3 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300">
+            <span class="text-xl tracking-wide">Step Into Orbit</span>
+          </button>
+        </a>
+      </section>
+    </main>
+
+    <!-- Main Page for big screens -->
+    <main class="py-16 px-2 max-w-[850px] mx-auto hidden sm:block">
       <div
         class="bg-[#115268] text-white p-6 mx-auto rounded-3xl text-center bg-gradient-to-br from-[#115268] to to-indigo-950">
         <h1 class="text-4xl font-bold mb-5">Welcome to Orbit</h1>
@@ -43,7 +72,7 @@
           </button>
         </a>
       </div>
-      <div class="m-10 flex flex-col items-center mx-auto">
+      <div class="m-10 flex-col items-center mx-auto">
         <div
           class="mt-8 text-white bg-[#4c3B71] p-5 rounded-tr-3xl rounded-tl-3xl bg-gradient-to-br from-[#4c3B71] to to-black md:rounded-br-3xl">
           <h1 class="text-3xl font-bold mb-5">Stay in each other's orbit</h1>

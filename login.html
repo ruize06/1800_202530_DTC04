@@ -30,13 +30,33 @@
         </site-navbar>
 
         <!-- Main content goes here -->
-        <div class="container py-5 text-white mx-auto" style="max-width: 420px;">
+        <main class="text-white mb-[35px] pt-[170px] sm:hidden">
+            <section class="max-w-[80%] mx-auto">
+                <h1 class="text-[#b494ff] font-bold text-3xl">
+                    Welcome to...
+                </h1>
+            </section>
+            <section class="text-center">
+                <div class="">
+                    <a href="index.html" class="relative inline-block group">
+                        <img src="./images/logo.svg" alt="Orbit Logo"
+                            class="h-29 w-auto transition-opacity duration-300 group-hover:opacity-0" />
+                    </a>
+                    <h1 class="text-lg font-extrabold text-[#89e1fe] tracking-wide animate-fade-in drop-shadow-md">
+                        Stay in sync. <span class="text-indigo-300">Stay in Orbit.</span>
+                    </h1>
+                </div>
+            </section>
+        </main>
+        <div class="container py-5 text-white px-3 mx-auto" style="max-width: 420px;">
             <!-- Alerts -->
             <div id="authAlert" class="alert alert-danger d-none" role="alert"></div>
 
             <!-- Login -->
-            <div id="loginView" class="flex flex-col jusitfy-center">
-                <h3 class="mb-3 text-xl text-center font-bold">Login</h3>
+            <div id="loginView" class="flex sm:min-h-[50vh] sm:mt-[70px] flex-col jusitfy-center">
+                <div class="hidden sm:inline">
+                    <h1 class="text-center text-2xl pb-3 font-bold">Login</h1>
+                </div>
                 <form id="loginForm" novalidate>
                     <div class="mb-3">
                         <input type="email" id="loginEmail"
@@ -49,17 +69,19 @@
                             placeholder="Password" required />
                     </div>
                     <button type="submit"
-                        class="w-full btn w-100 bg-slate-200 text-black p-2 font-bold rounded-lg hover:scale-105 hover:shadow-2xl transition duration-300">Login</button>
+                        class="w-full btn w-100 bg-[#77d2f1] text-black p-2 font-bold rounded-lg hover:scale-105 hover:shadow-2xl transition duration-300">Login</button>
                 </form>
                 <small class="mt-3 text-center">
                     Don’t have an account?
-                    <a href="#" id="toSignup">Sign up</a>
+                    <a href="#" id="toSignup" class="text-blue-400 underline font-bold">Sign up</a>
                 </small>
             </div>
 
             <!-- Signup -->
-            <div id="signupView" class="hidden container py-5 text-white mx-auto" style="max-width: 420px;">
-                <h3 class="mb-3 text-xl text-center font-bold">Sign Up</h3>
+            <div id="signupView" class="hidden sm:min-h-[50vh] sm:mt-[70px]">
+                <div class="hidden sm:inline">
+                    <h1 class="text-center text-2xl pb-3 font-bold">Sign Up</h1>
+                </div>
                 <form id="signupForm" novalidate>
                     <div class="mb-3">
                         <input type="text" id="signupName"
@@ -77,13 +99,15 @@
                             placeholder="Password" required />
                     </div>
                     <button type="submit"
-                        class="w-full btn w-100 bg-slate-200 text-black p-2 font-bold rounded-lg hover:scale-105 hover:shadow-2xl transition duration-300">Create
+                        class="w-full btn w-100 bg-[#77d2f1] text-black p-2 font-bold rounded-lg hover:scale-105 hover:shadow-2xl transition duration-300">Create
                         Account</button>
                 </form>
-                <small class="mt-3 text-center">
-                    Already have an account?
-                    <a href="#" id="toLogin">Login</a>
-                </small>
+                <div class="flex justify-center">
+                    <small class="mt-3 text-center">
+                        Already have an account?
+                        <a href="#" id="toLogin" class="text-blue-400 underline font-bold">Login</a>
+                    </small>
+                </div>
             </div>
         </div>
 

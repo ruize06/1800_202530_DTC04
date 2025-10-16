@@ -1,7 +1,7 @@
 class SiteFooter extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
-            <footer id="footer" class="text-white p-5 mb-[70px] flex justify-center">
+            <footer id="footer" class="text-white p-5 mb-[70px] justify-center hidden sm:flex">
                 <div>
                     <section class="relative z-10 space-y-5 mb-4">
                         <h1 class="text-5xl font-bold">Any Questions?</h1>
