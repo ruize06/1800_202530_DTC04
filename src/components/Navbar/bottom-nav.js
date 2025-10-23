@@ -90,9 +90,9 @@ class BottomNav extends HTMLElement {
 
     attributeChangedCallback(name, oldValue, newValue) {
         if (name === "active") {
+            document.getElementById("bottom-nav-options").children[this.active].setAttribute("active", "false");
             this.active = newValue;
             console.log(newValue);
-            this.render();
             document.getElementById("bottom-nav-options").children[this.active].setAttribute("active", "true");
             console.log(document.getElementById("bottom-nav-options").children[this.active].active);
         }
