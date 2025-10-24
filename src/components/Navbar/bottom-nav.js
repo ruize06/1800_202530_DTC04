@@ -13,6 +13,8 @@ class BottomNav extends HTMLElement {
         this.pages = [
             // TODO
             // Populate with pages like home, calendar, groups, profile
+            "/main.html",
+            "/todo.html",
         ];
 
         // User clicks on navigation option
@@ -28,7 +30,7 @@ class BottomNav extends HTMLElement {
                 "active",
                 newPageIndex);
             // Switches the current page
-            this.changePage(this.pages[newPageIndex]);
+            this.changePage(this.pages[this.active]);
         });
     }
 
@@ -86,6 +88,10 @@ class BottomNav extends HTMLElement {
                     </nav-item>
                 </div>
             </nav>`;
+    }
+
+    changePage(newPage) {
+        window.location.href = newPage;
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
