@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Web Components -->
+    <script type="module" src="/src/components/Navbar/nav-item.js"></script>
+    <script type="module" src="/src/components/Navbar/bottom-nav.js"></script>
+
+    <title>Orbit - Profile</title>
+  </head>
+
+  <body class="w-[100%] h-[100%]">
+    <nav class="max-w-7xl mx-auto border-b border-gray-200">
+      <div class="relative flex items-center p-12">
+        <h1 class="absolute left-1/2 -translate-x-1/2 text-2xl font-semibold">
+          Profile
+        </h1>
+
+        <button
+          type="button"
+          class="absolute right-0 flex items-center justify-center w-12 h-12 rounded-lg text-gray-800 hover:bg-gray-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="w-6 h-6 stroke-current"
+            fill="none"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+            <path d="M21 21l-6 -6" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Bottom Nav -->
+    <!-- Background -->
+    <!-- #115268 -->
+    <!-- Buttons -->
+    <!-- Active: gray-300 | Hover: gray-400 | Disabled: gray-500 -->
+    <bottom-nav active="0"></bottom-nav>
+  </body>
+</html>
