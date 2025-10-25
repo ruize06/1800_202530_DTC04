@@ -1,41 +1,40 @@
-
-
 class BottomNav extends HTMLElement {
-    static get observedAttributes() {
-        return [`active`];
-    }
+  static get observedAttributes() {
+    return [`active`];
+  }
 
-    constructor() {
-        super();
-        this.active = 0;
-        this.render();
+  constructor() {
+    super();
+    this.active = 0;
+    this.render();
 
-        this.pages = [
-            // TODO
-            // Populate with pages like home, calendar, groups, profile
-            "/main.html",
-            "/todo.html",
-        ];
+    this.pages = [
+      // TODO
+      // Populate with pages like home, calendar, groups, profile
+      "/main.html",
+      "/todo.html",
+      null,
+      "/profile.html",
+    ];
 
-        // User clicks on navigation option
-        this.addEventListener("click", (event) => {
-            if (event.target.closest("nav-item") == null) {
-                return;
-            }
-            // Get the clicked nav-item index
-            let newPageIndex = [...document.getElementById("bottom-nav-options").children].indexOf(
-                event.target.closest("nav-item"));
-            // Changes the icon that is active for the navbar
-            this.setAttribute(
-                "active",
-                newPageIndex);
-            // Switches the current page
-            this.changePage(this.pages[this.active]);
-        });
-    }
+    // User clicks on navigation option
+    this.addEventListener("click", (event) => {
+      if (event.target.closest("nav-item") == null) {
+        return;
+      }
+      // Get the clicked nav-item index
+      let newPageIndex = [
+        ...document.getElementById("bottom-nav-options").children,
+      ].indexOf(event.target.closest("nav-item"));
+      // Changes the icon that is active for the navbar
+      this.setAttribute("active", newPageIndex);
+      // Switches the current page
+      this.changePage(this.pages[this.active]);
+    });
+  }
 
-    render() {
-        this.innerHTML = `
+  render() {
+    this.innerHTML = `
             <nav class="w-full md:max-w-fit left-1/2 -translate-x-1/2 fixed bottom-0 md:bottom-12">
                 <div id="bottom-nav-options"
                     class="bg-[#115268] p-4 md:scale-50 md:hover:scale-100 transition-transform duration-200 flex flex-row items-center hover:items-stretch justify-around space-x-8 md:max-w-fit md:max-h-fit mx-auto rounded-none md:rounded-full">
@@ -88,21 +87,28 @@ class BottomNav extends HTMLElement {
                     </nav-item>
                 </div>
             </nav>`;
-    }
+  }
 
-    changePage(newPage) {
-        window.location.href = newPage;
-    }
+  changePage(newPage) {
+    window.location.href = newPage;
+  }
 
-    attributeChangedCallback(name, oldValue, newValue) {
-        if (name === "active") {
-            document.getElementById("bottom-nav-options").children[this.active].setAttribute("active", "false");
-            this.active = newValue;
-            console.log(newValue);
-            document.getElementById("bottom-nav-options").children[this.active].setAttribute("active", "true");
-            console.log(document.getElementById("bottom-nav-options").children[this.active].active);
-        }
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name === "active") {
+      document
+        .getElementById("bottom-nav-options")
+        .children[this.active].setAttribute("active", "false");
+      this.active = newValue;
+      console.log(newValue);
+      document
+        .getElementById("bottom-nav-options")
+        .children[this.active].setAttribute("active", "true");
+      console.log(
+        document.getElementById("bottom-nav-options").children[this.active]
+          .active
+      );
     }
+  }
 }
 
 customElements.define("bottom-nav", BottomNav);
