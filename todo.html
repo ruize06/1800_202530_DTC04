@@ -8,6 +8,7 @@
     <!-- Web Components -->
     <script type="module" src="/src/components/Navbar/nav-item.js"></script>
     <script type="module" src="/src/components/Navbar/bottom-nav.js"></script>
+    <script type="module" src="/src/components/Tasks/task-box.js"></script>
 
     <title>Orbit - To-Do</title>
 </head>
@@ -32,28 +33,31 @@
     </nav>
 
     <!-- Main -->
-    <main class="max-w-[758px] h-[100%] mx-auto">
+    <main class="max-w-[758px] h-full mx-auto">
 
-        <!-- Add New Task -->
-        <div class="fixed bottom-36 right-8 md:right-[8vw] z-1">
-            <button
-                class="w-16 h-16 hover:scale-105 active:scale-120 bg-[#b494ff] hover:bg-[#9878e1]  text-white rounded-full flex items-center justify-center transition-all duration-250">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8 stroke-current" fill="none"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                </svg>
-        </div> </button>
+        <!-- Tasks -->
+        <div id="my-tasks-container" class="flex flex-col py-8">
 
-        <div id="my-tasks-container">
             <!-- Tasks dynamically added here -->
         </div>
 
     </main>
 
+    <!-- Add New Task -->
+    <div class="fixed bottom-36 right-8 md:right-[8vw] z-1">
+        <button
+            class="w-16 h-16 hover:scale-105 active:scale-120 bg-[#b494ff] hover:bg-[#9878e1]  text-white rounded-full flex items-center justify-center transition-all duration-250">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8 stroke-current" fill="none"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+    </div> </button>
 
     <!-- Bottom Nav -->
     <bottom-nav active=1></bottom-nav>
+
+    <script src="/src/todo.js"></script>
 </body>
 
 </html>
