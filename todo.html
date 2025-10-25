@@ -8,6 +8,7 @@
     <!-- Web Components -->
     <script type="module" src="/src/components/Navbar/nav-item.js"></script>
     <script type="module" src="/src/components/Navbar/bottom-nav.js"></script>
+    <script type="module" src="/src/components/Tasks/task-box.js"></script>
 
     <title>Orbit - To-Do</title>
 </head>
@@ -32,49 +33,11 @@
     </nav>
 
     <!-- Main -->
-    <main class="max-w-[758px] h-full mx-auto bg-black/5">
+    <main class="max-w-[758px] h-full mx-auto">
 
         <!-- Tasks -->
         <div id="my-tasks-container" class="flex flex-col py-8">
 
-            <!-- #warning -->
-            <div
-                class="task-box flex flex-row justify-between max-w-full max-h-32 hover:max-h-fit hover:[&_.hidden]:inline bg-amber-400 rounded-xl p-4 border-4 border-transparent hover:border-amber-500">
-
-                <div class="task-description-container flex flex-row items-center space-x-4 max-w-[60%]">
-                    <svg class="flex-none icon icon-tabler icons-tabler-outline icon-tabler-checklist"
-                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M9.615 20h-2.615a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8" />
-                        <path d="M14 19l2 2l4 -4" />
-                        <path d="M9 8h4" />
-                        <path d="M9 12h2" />
-                    </svg>
-                    <div>
-                        <h1 class="task-title text-2xl font-semibold">
-                            October
-                        </h1>
-                        <p class="task-description hidden">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet
-                            consectetur
-                            adipisicing elit. Vel dolor dolores dolore reiciendis harum eum architecto incidunt commodi
-                        </p>
-                    </div>
-                </div>
-
-                <div class="task-details-container">
-                    <div class="task-date">
-                        <span class="task-day">31</span> /
-                        <span class="task-month">10</span> /
-                        <span class="task-year">2025</span>
-                    </div>
-                    <div class="task-time">
-                        <span class="task-hour">00</span>:<span class="task-minute">00</span>
-                    </div>
-                </div>
-
-            </div>
             <!-- Tasks dynamically added here -->
         </div>
 
@@ -93,6 +56,8 @@
 
     <!-- Bottom Nav -->
     <bottom-nav active=1></bottom-nav>
+
+    <script src="/src/todo.js"></script>
 </body>
 
 </html>
