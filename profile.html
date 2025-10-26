@@ -40,7 +40,7 @@
       </div>
     </nav>
 
-    <div class="max-w-[1024px] mx-auto pb-32">
+    <div class="max-w-[1024px] mx-auto pb-32 m-7">
       <div
         class="flex flex-col justify-center items-center md:flex-row md:gap-16"
       >
@@ -55,41 +55,50 @@
         </div>
 
         <form
-          class="max-w-md w-full sm:px-6 bg-yellow-50 shadow-md rounded px-6 pt-3 pb-8 m-5"
+          class="max-w-md w-full sm:px-6 bg-white shadow-md rounded px-6 pt-3 pb-8 m-5"
         >
           <div>
             <div class="mb-4">
-              <label class="block mb-2" for="username">Username</label>
+              <label class="block mb-2 font-semibold" for="username"
+                >Username</label
+              >
               <input
                 id="username"
                 type="text"
                 placeholder="Username"
-                class="block w-full border border-gray-300 rounded"
+                class="block w-full border border-gray-300 rounded px-1 py-2"
               />
             </div>
             <div class="mb-4">
-              <label class="block mb-2" for="pronouns">Pronouns</label>
+              <label class="block mb-2 font-semibold" for="pronouns"
+                >Pronouns</label
+              >
               <input
                 id="pronouns"
                 type="text"
                 placeholder="Pronouns"
-                class="block w-full border border-gray-300 rounded"
+                class="block w-full border border-gray-300 rounded px-1 py-2"
               />
             </div>
             <div class="mb-4">
-              <label class="block mb-2" for="email">Email</label>
+              <label class="block mb-2 font-semibold" for="email">Email</label>
               <input
                 id="email"
                 type="text"
                 placeholder="Email"
-                class="block w-full border border-gray-300 rounded"
+                class="block w-full border border-gray-300 rounded px-1 py-2"
               />
             </div>
           </div>
           <button
             class="cursor-pointer bg-gradient-to-r from-[#4c3B71] border-[1.5px] border-slate-400 to-indigo-900 text-white px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300"
           >
-            Save
+            Save Changes
+          </button>
+          <button
+            class="cursor-pointer bg-gradient-to-r from-[#4c3B71] border-[1.5px] border-slate-400 to-indigo-900 text-white px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300"
+          >
+            Log Out
           </button>
         </form>
       </div>
