@@ -34,29 +34,37 @@ function cancelAddTaskForm(){
     hidePopup(add_task_form_container);
 }
 
-function renderTasks (tasks, task_list){
+function renderTasks (tasks){
     // Fetch tasks JSON from server then pass the list into tasks
     // For each task, create a <task-box> element and append it to the task list container
-    for (let task in tasks) {
-        var task_box = document.createElement("task-box",
-            {
-                title: task.title,
-                description: task.description,
-                icon: task.icon,   
-                color: task.color,
-                date: task.date,
-                time: task.time,
-            });
+    var task_list = document.getElementById("my-tasks-container");
+
+    for (let i=0; i<tasks.length; i++){ 
+        var task_box = document.createElement("task-box");
+
+        var task = JSON.parse(tasks[i]);
         task_list.appendChild(task_box);
+
+        for (let attribute in task){
+            console.log(attribute);
+            if (typeof task[attribute] === "object") {
+                console.log(task[attribute])
+                task[attribute] = JSON.stringify(task[attribute])
+            }
+            task_box.setAttribute(attribute, task[attribute]);
+        }
     }
 }
 
 function setup (){
-    var task_list = document.getElementById("my-tasks-container");
     var add_button = document.getElementById("add-task-button");
     var add_task_form = document.getElementById("add-task-form");
     var add_task_form_cancel = document.getElementById("add-task-form-cancel");
     var add_task_form_container = document.getElementById("add-task-form-container");
+
+    // #todo
+    // TODO Get task list from server
+    var tasks = [];
 
     // #a Event listeners
     // Open task form
@@ -77,11 +85,11 @@ function setup (){
     // #end-a
 
     // #todo Example JSON for a task
-    var task = document.createElement("task-box")
-    var task_details = {
-        title: "My task",
+    var new_task = {
+        title: "Example task",
         icon: null,
         color: "#a0eeaf",
+        description: "Longer description goes here",
         date: {
             "day": 25,
             "month": 10,
@@ -90,12 +98,13 @@ function setup (){
         time: {
             "hour": 14,
             "minute": 30
-        },
-    }
-
-    console.log(task);
-    task_list.appendChild(task);
+        }
+    };
+    tasks.push(JSON.stringify(new_task));
     // #end-todo
+
+    // #a Render tasks to the task list
+    renderTasks(tasks);
 }
 
 document.addEventListener("DOMContentLoaded", setup);

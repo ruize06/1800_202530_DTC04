@@ -11,15 +11,15 @@ class TaskBox extends HTMLElement{
 
     connectedCallback() {
         this.render();
-        for (let attr in this.observedAttributes){
-            this.setAttribute(attr, null);
+        for (let attr in TaskBox.observedAttributes){
+            this.setAttribute(TaskBox.observedAttributes[attr], null);
         };
     }
 
     render() {
         this.innerHTML = `
             <div
-                class="task-box flex flex-row justify-between max-w-full h-24 hover:max-h-fit hover:[&_.hidden]:inline rounded-xl p-4 border-4 border-transparent hover:scale-105 transition-transform duration-250">
+                class="task-box flex flex-row justify-between max-w-full h-24 hover:max-h-fit hover:[&_.task-description]:inline rounded-xl p-4 border-4 border-transparent hover:scale-105 transition-transform duration-250">
 
                 <div class="task-description-container flex flex-row items-center space-x-4 max-w-[60%]">
 
@@ -97,16 +97,16 @@ class TaskBox extends HTMLElement{
                 this.getElementsByClassName("task-box")[0].style.backgroundColor = newValue;
                 this.getElementsByClassName("task-box")[0].style.color = isLightColor(newValue) ? "#000000": "#ffffff";
             }
-        } else if (name === "date" && newValue != null) {
+        } else if (name === "date" && newValue !== null && newValue != "null") {
             /**
              * @param {JSON} newValue - JSON string with keys: day, month, year
              */
             newValue = JSON.parse(newValue);
             this.getElementsByClassName("task-date")[0].classList.toggle("hidden", false);
-            this.getElementsByClassName("task-day")[0].textContent = newValue["day"].toString().padStart(2, '0');
-            this.getElementsByClassName("task-month")[0].textContent = newValue["month"].toString().padStart(2, '0');
-            this.getElementsByClassName("task-year")[0].textContent = newValue["year"].toString().padStart(4, '0');
-        } else if (name === "time" && newValue != null) {
+            this.getElementsByClassName("task-day")[0].textContent = newValue["day"];
+            this.getElementsByClassName("task-month")[0].textContent = newValue["month"];
+            this.getElementsByClassName("task-year")[0].textContent = newValue["year"];
+        } else if (name === "time" && newValue != null && newValue != "null") {
             /**
              * @param {JSON} newValue - JSON string with keys: hour, minute in 24-hour format
              */
