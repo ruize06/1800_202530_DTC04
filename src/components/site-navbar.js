@@ -7,8 +7,6 @@ import { auth } from '/src/firebaseConfig.js';
 class SiteNavbar extends HTMLElement {
     connectedCallback() {
         onAuthStateChanged(auth, (user) => {
-            var redirect = user ? "/main.html": "/login.html"; ;
-
             this.innerHTML = `
                 <nav class="text-white flex justify-between items-center font-bold p-4">
                     <div class="inline md:inline sm:hidden">
@@ -23,11 +21,15 @@ class SiteNavbar extends HTMLElement {
                         class="h-15 w-auto absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                         </a>
                     </div>
-                    <a href="${redirect}" id="login-button" class="p-2 hover:underline"></a>
+                    <a class="login-button p-2 hover:underline">${user ? "Continue to Orbit" : "SignUp/Login"}</a>
                 </nav>
             `;
-            var loginButton = document.getElementById("login-button")
-            loginButton.textContent = user ? "Continue to Orbit" : "SignUp/Login"
+            var redirect = user ? "/main.html": "/login.html";
+            var loginButtons = document.getElementsByClassName("login-button");
+            for (let i=0; i<loginButtons.length; i++){ 
+                loginButtons[i].setAttribute("href", redirect)
+                console.log(loginButtons[i]);
+            };
         })
     };
 }
