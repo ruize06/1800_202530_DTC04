@@ -90,7 +90,6 @@ class TaskBox extends HTMLElement{
              */
             if (newValue == "null"){
                 // TODO Default color, once Add Task is complete, remove this as an color will be required by default
-                console.log("No color provided, setting default.");
                 this.getElementsByClassName("task-box")[0].style.color = "#ffffff";
                 this.getElementsByClassName("task-box")[0].style.backgroundColor = "#3991ae";
             } else {
@@ -101,19 +100,22 @@ class TaskBox extends HTMLElement{
             /**
              * @param {JSON} newValue - JSON string with keys: day, month, year
              */
-            newValue = JSON.parse(newValue);
+            newValue = newValue.split('-');
             this.getElementsByClassName("task-date")[0].classList.toggle("hidden", false);
-            this.getElementsByClassName("task-day")[0].textContent = newValue["day"];
-            this.getElementsByClassName("task-month")[0].textContent = newValue["month"];
-            this.getElementsByClassName("task-year")[0].textContent = newValue["year"];
+            // Year
+            this.getElementsByClassName("task-year")[0].textContent = newValue[0];
+            // Month
+            this.getElementsByClassName("task-month")[0].textContent = newValue[1];
+            // Day
+            this.getElementsByClassName("task-day")[0].textContent = newValue[2];
         } else if (name === "time" && newValue != null && newValue != "null") {
             /**
              * @param {JSON} newValue - JSON string with keys: hour, minute in 24-hour format
              */
-            newValue = JSON.parse(newValue);
+            newValue = newValue.split(":");
             this.getElementsByClassName("task-time")[0].classList.toggle("hidden", false);
-            this.getElementsByClassName("task-hour")[0].textContent = newValue["hour"].toString().padStart(2, '0');
-            this.getElementsByClassName("task-minute")[0].textContent = newValue["minute"].toString().padStart(2, '0');
+            this.getElementsByClassName("task-hour")[0].textContent = newValue[0];
+            this.getElementsByClassName("task-minute")[0].textContent = newValue[1];
         }
     }
 }

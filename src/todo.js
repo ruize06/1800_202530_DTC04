@@ -18,7 +18,13 @@ function showPopup(popupElement){
 function addTaskFromForm(event) {
     event.preventDefault();
     var task_details = new FormData(event.target);
-    console.log(JSON.stringify(task_details))
+    task_details = Object.fromEntries([...task_details.entries()]);
+    task_details = JSON.stringify(task_details)
+    // #todo
+    // TODO Post created task to server
+
+    renderTasks([task_details])
+    cancelAddTaskForm()
 }
 
 function createAddTaskForm(){
@@ -46,11 +52,6 @@ function renderTasks (tasks){
         task_list.appendChild(task_box);
 
         for (let attribute in task){
-            console.log(attribute);
-            if (typeof task[attribute] === "object") {
-                console.log(task[attribute])
-                task[attribute] = JSON.stringify(task[attribute])
-            }
             task_box.setAttribute(attribute, task[attribute]);
         }
     }
@@ -90,15 +91,8 @@ function setup (){
         icon: null,
         color: "#a0eeaf",
         description: "Longer description goes here",
-        date: {
-            "day": 25,
-            "month": 10,
-            "year": 2025
-        },
-        time: {
-            "hour": 14,
-            "minute": 30
-        }
+        date: "2025-02-01",
+        time: "23:21"
     };
     tasks.push(JSON.stringify(new_task));
     // #end-todo
