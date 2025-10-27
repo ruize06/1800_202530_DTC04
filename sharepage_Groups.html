@@ -49,7 +49,7 @@
             <div class="mb-[20px] p-2 border-zinc-500 border-b-2 font-bold flex justify-between items-center">
                 <h1 id="group_name">Group 1</h1>
                 <div class="flex">
-                    <button id="editBtn">
+                    <button id="edit_btn" onclick="view_change()">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
                             stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
@@ -83,8 +83,8 @@
         </section>
 
         <!-- Edit View -->
-        <div
-            class="ChangeView w-full left-1/2 -translate-x-1/2 fixed bottom-0 z-10 max-w-[95%] md:max-w-[70%] mx-auto bg-slate-500 text-white p-3 h-[500px] hidden">
+        <div id="popup"
+            class="w-full left-1/2 -translate-x-1/2 fixed bottom-0 z-10 max-w-[95%] md:max-w-[70%] mx-auto bg-slate-500 text-white p-3 h-[500px] hidden">
             <div class="flex justify-between mb-[30px]">
                 <input type="text" placeholder="Edit group name">
                 <h1>x</h1>
