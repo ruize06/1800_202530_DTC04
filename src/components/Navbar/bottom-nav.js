@@ -13,7 +13,7 @@ class BottomNav extends HTMLElement {
       // Populate with pages like home, calendar, groups, profile
       "/main.html",
       "/todo.html",
-      null,
+      "/sharepage_Friends.html",
       "/profile.html",
     ];
 
