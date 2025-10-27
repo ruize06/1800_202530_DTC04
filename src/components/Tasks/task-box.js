@@ -63,7 +63,7 @@ class TaskBox extends HTMLElement{
             /**
              * @param {string} newValue - string representing the task's longer description
              */
-            this.getElementsByClassName("task-description")[0].textContent = newValue;
+            this.getElementsByClassName("task-description")[0].innerHTML = newValue;
         } else if (name === "icon") {
             /**
              * @param {string} newValue - string representing innerHTML of the icon SVG
@@ -96,7 +96,7 @@ class TaskBox extends HTMLElement{
                 this.getElementsByClassName("task-box")[0].style.backgroundColor = newValue;
                 this.getElementsByClassName("task-box")[0].style.color = isLightColor(newValue) ? "#000000": "#ffffff";
             }
-        } else if (name === "date" && newValue !== null && newValue != "null") {
+        } else if (name === "date" && newValue !== null && newValue != "null" && newValue != "") {
             /**
              * @param {JSON} newValue - JSON string with keys: day, month, year
              */
@@ -108,7 +108,7 @@ class TaskBox extends HTMLElement{
             this.getElementsByClassName("task-month")[0].textContent = newValue[1];
             // Day
             this.getElementsByClassName("task-day")[0].textContent = newValue[2];
-        } else if (name === "time" && newValue != null && newValue != "null") {
+        } else if (name === "time" && newValue != null && newValue != "null" && newValue != '') {
             /**
              * @param {JSON} newValue - JSON string with keys: hour, minute in 24-hour format
              */

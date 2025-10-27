@@ -19,6 +19,7 @@ function addTaskFromForm(event) {
     event.preventDefault();
     var task_details = new FormData(event.target);
     task_details = Object.fromEntries([...task_details.entries()]);
+    // task_details.description = document.getElementsByName("description")[0].value.replace(/\n/g, '<br>')
     task_details = JSON.stringify(task_details)
     // #todo
     // TODO Post created task to server
