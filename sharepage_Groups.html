@@ -46,18 +46,18 @@
         <section>
 
             <!-- Group List -->
-            <div class="mb-[20px] p-2 border-zinc-500 border-b-2 font-bold flex justify-between items-center">
-                <h1 id="group_name">Group 1</h1>
-                <div class="flex">
-                    <button id="edit_btn" onclick="view_change()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                            stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
-                            <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
-                            <path d="M16 5l3 3" />
-                        </svg>
-                    </button>
-                </div>
+            <div class="group mb-[20px] p-2 border-zinc-500 border-b-2 font-bold flex justify-between items-center">
+
+                <!-- Group Name -->
+                <h1 class="groupTitle">Group 1</h1>
+                <button class="editGroupBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                        <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+                        <path d="M16 5l3 3" />
+                    </svg>
+                </button>
             </div>
             <div class="grid grid-cols-4 md:grid-cols-6 text-center">
                 <div class="bg-slate-300 py-[40px] m-1">profile</div>
@@ -70,30 +70,53 @@
 
 
             <!-- Create New Group Button -->
-            <button class="mt-[30px] flex items-center gap-2 cursor-pointer border-[1.5px] border-slate-400 text-zinc-600 px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl
-                transition-all duration-300 justify-center w-[340px] mx-auto">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                    stroke="#52525b" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
-                    <path d="M15 12h-6" />
-                    <path d="M12 9v6" />
-                </svg>
-                <h1>Create New Group</h1>
-            </button>
-        </section>
-
-        <!-- Edit View -->
-        <div id="popup"
-            class="w-full left-1/2 -translate-x-1/2 fixed bottom-0 z-10 max-w-[95%] md:max-w-[70%] mx-auto bg-slate-500 text-white p-3 h-[500px] hidden">
-            <div class="flex justify-between mb-[30px]">
-                <input type="text" placeholder="Edit group name">
-                <h1>x</h1>
+            <div>
+                <button class="mt-[30px] flex items-center gap-2 cursor-pointer border-[1.5px] border-slate-400 text-zinc-600 px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl
+                    transition-all duration-300 justify-center w-[340px] mx-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="#52525b" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
+                        <path d="M15 12h-6" />
+                        <path d="M12 9v6" />
+                    </svg>
+                    <h1>Create New Group</h1>
+                </button>
             </div>
-        </div>
+        </section>
     </main>
 
+    <!-- Edit Group Popup -->
+    <div id="editGroupPopup" class="bg-gray-500 p-6 h-[600px] w-full fixed bottom-0 z-10 rounded-t-2xl hidden">
+        <div class="flex items-center justify-between">
+            <h1 class="text-xl font-bold mb-4">Edit Group</h1>
+            <button id="cancelEditBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 5 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-x">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M18 6l-12 12" />
+                    <path d="M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <input id="groupNameInput" type="text" class="w-full p-2 border rounded mb-4" placeholder="Group Name">
+
+        <div></div>
+
+        <div class="flex justify-end gap-2">
+            <button class="px-4 py-2 bg-red-800 text-white rounded">
+                Delete
+            </button>
+            <button id="saveEditBtn" class="px-4 py-2 bg-blue-800 text-white rounded">
+                Submit
+            </button>
+        </div>
+    </div>
+
+
     <bottom-nav active=2></bottom-nav>
-    <script type="module" src="src/components/Sharepage/edit.js"></script>
+    <script type="module" src="src/components/Sharepage/edit-group.js"></script>
 </body>
 
 </html>
