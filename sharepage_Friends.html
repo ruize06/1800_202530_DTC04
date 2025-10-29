@@ -63,8 +63,8 @@
             </div>
 
             <!-- Add Friends Button -->
-            <button class="mt-[30px] flex items-center gap-2 cursor-pointer border-[1.5px] border-slate-400 text-zinc-600 px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl
-                transition-all duration-300 justify-center w-[340px] mx-auto">
+            <button id="addFriendsBtn" class="mt-[30px] flex items-center gap-2 cursor-pointer border-[1.5px] border-slate-400 text-zinc-600 px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl
+                    transition-all duration-300 justify-center w-[340px] mx-auto">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
                     stroke="#52525b" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M20.985 12.528a9 9 0 1 0 -8.45 8.456" />
@@ -78,8 +78,26 @@
             </button>
         </section>
     </main>
+
+    <div id="addFriendsPopup" class="bg-gray-500 p-6 h-[600px] w-full fixed bottom-0 z-10 rounded-t-2xl hidden">
+        <div class="flex items-center justify-between">
+            <h1 class="text-xl font-bold mb-4">Search people</h1>
+            <button id="cancelBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 5 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-x">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M18 6l-12 12" />
+                    <path d="M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <input type="text" class="w-full p-2 border rounded mb-4" placeholder="Search">
+    </div>
+
+    <script type="module" src="src/components/Sharepage/add-friends.js"></script>
     <bottom-nav active=2></bottom-nav>
-    <script type="module" src="src/components/Sharepage/edit.js"></script>
 </body>
 
 </html>
