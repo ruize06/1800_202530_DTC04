@@ -9,7 +9,6 @@ class BottomNav extends HTMLElement {
     this.render();
 
     this.pages = [
-      // TODO
       // Populate with pages like home, calendar, groups, profile
       "/main.html",
       "/todo.html",

@@ -13,3 +13,43 @@ export function isLightColor(hexColor) {
     }
     return false
 }
+
+// export function hidePopup(popupElement, transitionSpeed=300){
+//     popupElement?.classList.toggle("translate-y-full", true);
+//     setTimeout(() => {
+//         popupElement?.classList.toggle("hidden", true);
+//     }, transitionSpeed);
+// }
+
+// export function showPopup(popupElement){
+//     popupElement?.classList.toggle("hidden", false);
+//     setTimeout(() => {
+//         popupElement?.classList.toggle("translate-y-full", false);
+//     }, 0);
+// }
+
+export function addPopupEventListeners(openButton, closeButton, popupElement, onOpen, onClose) {
+  /**
+   * Create event listensers for a popup
+   * 
+   * @param openButton (HTMLElement) - opens popup onclick
+   * @param closeButton (HTMLElement) - closes popup onclick
+   * @param popupElement (HTMLElement) - element to show/hide, usually a div
+   * @param onOpen (callableFunction) - callback function called when the menu is activated
+   * @param onClose (callableFunction) - callback function called when the menu is closed
+   */
+  // Open popup
+  const openFunc = () => {onOpen();/* showPopup(popupElement)*/}
+  const closeFunc = () => {onClose();/* hidePopup(popupElement)*/}
+  openButton?.addEventListener("click", openFunc);
+  // Cancel popup
+  closeButton?.addEventListener("click", closeFunc);
+  popupElement?.addEventListener(
+      "focusout", () => {
+          popupElement.timer = setTimeout(closeFunc, 0);
+  });
+  popupElement?.addEventListener(
+      "focusin", () => {
+          clearTimeout(popupElement.timer);
+  });
+}

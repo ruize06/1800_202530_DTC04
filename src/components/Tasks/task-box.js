@@ -88,14 +88,9 @@ class TaskBox extends HTMLElement{
             /**
              * @param {string} newValue - string representing color code for bg background
              */
-            if (newValue == "null"){
-                // TODO Default color, once Add Task is complete, remove this as an color will be required by default
-                this.getElementsByClassName("task-box")[0].style.color = "#ffffff";
-                this.getElementsByClassName("task-box")[0].style.backgroundColor = "#3991ae";
-            } else {
-                this.getElementsByClassName("task-box")[0].style.backgroundColor = newValue;
-                this.getElementsByClassName("task-box")[0].style.color = isLightColor(newValue) ? "#000000": "#ffffff";
-            }
+            this.getElementsByClassName("task-box")[0].style.backgroundColor = newValue;
+            this.getElementsByClassName("task-box")[0].style.color = isLightColor(newValue) ? "#000000": "#ffffff";
+            
         } else if (name === "date" && newValue !== null && newValue != "null" && newValue != "") {
             /**
              * @param {JSON} newValue - JSON string with keys: day, month, year
