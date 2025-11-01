@@ -19,17 +19,17 @@ class TaskBox extends HTMLElement{
     render() {
         this.innerHTML = `
             <div
-                class="task-box flex flex-row justify-between max-w-full h-24 hover:max-h-fit hover:[&_.task-description]:inline rounded-xl p-4 border-4 border-transparent hover:scale-105 transition-transform duration-250">
+                class="task-box flex flex-row justify-between max-w-full min-h-24 h-24 hover:h-auto hover:[&_.task-description]:inline rounded-xl p-4 border-4 border-transparent transition-transform duration-250">
 
-                <div class="task-description-container flex flex-row items-center space-x-4 max-w-[60%]">
+                <div class="task-description-container flex flex-row items-center space-x-4 max-w-[70%]">
 
                     <div class="task-icon-container flex-none">
                     </div>
 
-                    <div class="task-title-container">
-                        <h1 class="task-title text-2xl font-semibold">
+                    <div class="task-title-container max-w-[90%] h-auto">
+                        <h1 class="task-title text-2xl font-semibold overflow-hidden text-ellipsis">
                         </h1>
-                        <p class="task-description hidden">
+                        <p class="task-description hidden w-full break-all text-wrap">
                         </p>
                     </div>
                 </div>
@@ -88,14 +88,9 @@ class TaskBox extends HTMLElement{
             /**
              * @param {string} newValue - string representing color code for bg background
              */
-            if (newValue == "null"){
-                // TODO Default color, once Add Task is complete, remove this as an color will be required by default
-                this.getElementsByClassName("task-box")[0].style.color = "#ffffff";
-                this.getElementsByClassName("task-box")[0].style.backgroundColor = "#3991ae";
-            } else {
-                this.getElementsByClassName("task-box")[0].style.backgroundColor = newValue;
-                this.getElementsByClassName("task-box")[0].style.color = isLightColor(newValue) ? "#000000": "#ffffff";
-            }
+            this.getElementsByClassName("task-box")[0].style.backgroundColor = newValue;
+            this.getElementsByClassName("task-box")[0].style.color = isLightColor(newValue) ? "#000000": "#ffffff";
+            
         } else if (name === "date" && newValue !== null && newValue != "null" && newValue != "") {
             /**
              * @param {JSON} newValue - JSON string with keys: day, month, year

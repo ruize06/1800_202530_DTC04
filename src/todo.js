@@ -1,18 +1,17 @@
-// #todo
-// TODO: Test JSON stringify and parse for nested objects (i.e. date and time)
+import { addPopupEventListeners } from '/src/utils.js'
 
-function hidePopup(popupElement){
+function hidePopup(popupElement, transitionSpeed=300){
     popupElement?.classList.toggle("translate-y-full", true);
     setTimeout(() => {
         popupElement?.classList.toggle("hidden", true);
-    }, 300);
+    }, transitionSpeed);
 }
 
 function showPopup(popupElement){
     popupElement?.classList.toggle("hidden", false);
     setTimeout(() => {
         popupElement?.classList.toggle("translate-y-full", false);
-    }, 1);
+    }, 0);
 }
 
 function addTaskFromForm(event) {
@@ -69,18 +68,21 @@ function setup (){
     var tasks = [];
 
     // #a Event listeners
-    // Open task form
-    add_button?.addEventListener("click", createAddTaskForm);
-    // Cancel task form
-    add_task_form_cancel?.addEventListener("click", cancelAddTaskForm);
-    add_task_form_container?.addEventListener(
-        "focusout", () => {
-            this.timer = setTimeout(cancelAddTaskForm, 0);
-    });
-    add_task_form_container?.addEventListener(
-        "focusin", () => {
-            clearTimeout(this.timer);
-    });
+    addPopupEventListeners(
+        add_button, add_task_form_cancel, add_task_form_container,
+        createAddTaskForm, cancelAddTaskForm);
+    // // Open task form
+    // add_button?.addEventListener("click", createAddTaskForm);
+    // // Cancel task form
+    // add_task_form_cancel?.addEventListener("click", cancelAddTaskForm);
+    // add_task_form_container?.addEventListener(
+    //     "focusout", () => {
+    //         this.timer = setTimeout(cancelAddTaskForm, 0);
+    // });
+    // add_task_form_container?.addEventListener(
+    //     "focusin", () => {
+    //         clearTimeout(this.timer);
+    // });
 
     // Post task to server when add_task_form is submitted
     add_task_form?.addEventListener("submit", addTaskFromForm);
