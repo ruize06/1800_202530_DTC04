@@ -43,6 +43,11 @@ function listenUserProfile(userId) {
     usernameInput.value = data.username || "";
     emailInput.value = data.email || "";
     pronounsInput.value = data.pronouns || "";
+
+    const cardUsername = document.getElementById("card-username");
+    const cardEmail = document.getElementById("card-email");
+    cardUsername.textContent = data.username || "Username";
+    cardEmail.textContent = data.email || "Email";
   });
 }
 
