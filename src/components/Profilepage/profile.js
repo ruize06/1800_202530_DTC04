@@ -86,7 +86,7 @@ imageInput.addEventListener("change", async (e) => {
     profileImage.src = downloadURL;
   } catch (err) {
     console.error("Failed to upload profile image:", err);
-    alert("Failed to upload profile image: " + err.message);
+    alert("Failed to upload profile image, please try again later");
   }
 });
 
@@ -108,7 +108,7 @@ async function saveProfile() {
     isEditing = false;
   } catch (err) {
     console.error("Failed to update profile:", err);
-    alert("Failed to update profile: " + err.message);
+    alert("Failed to update profile, please try again later");
   }
 }
 
