@@ -68,28 +68,6 @@ function listenUserProfile(userId) {
   });
 }
 
-//Upload image
-imageInput.addEventListener("change", async (e) => {
-  const file = e.target.files[0];
-  if (!file || !currentUserId) return;
-
-  try {
-    const uniqueFileName = `${currentUserId}-${Date.now()}-${file.name}`;
-    const storageRef = ref(storage, `profile_pictures/${uniqueFileName}`);
-
-    await uploadBytes(storageRef, file);
-    const downloadURL = await getDownloadURL(storageRef);
-
-    const userDocRef = doc(db, "userprofiles", currentUserId);
-    await updateDoc(userDocRef, { profilePicture: downloadURL });
-
-    profileImage.src = downloadURL;
-  } catch (err) {
-    console.error("Failed to upload profile image:", err);
-    alert("Failed to upload profile image, please try again later");
-  }
-});
-
 //Save profile info (username, email, pronouns)
 async function saveProfile() {
   if (!currentUserId) return;
