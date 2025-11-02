@@ -1,7 +1,7 @@
 // profile.js
 import { auth, db, storage } from "../../firebaseConfig.js";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { doc, setDoc, onSnapshot } from "firebase/firestore";
+import { doc, setDoc, onSnapshot, updateDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 // DOM Elements
@@ -16,14 +16,15 @@ const logoutBtn = document.getElementById("logout-btn");
 let currentUserId = null;
 let isEditing = false;
 
+//Form Editable
 function setFormEditable(editable) {
   usernameInput.disabled = !editable;
   emailInput.disabled = !editable;
   pronounsInput.disabled = !editable;
-  imageInput.disabled = !editable;
   saveBtn.textContent = editable ? "Save Changes" : "Edit";
 }
 
+//Listen for real-time user profile changes
 function listenUserProfile(userId) {
   const userDocRef = doc(db, "userprofiles", userId);
 
@@ -45,12 +46,29 @@ function listenUserProfile(userId) {
   });
 }
 
-async function uploadProfileImage(file, userId) {
-  const storageRef = ref(storage, `profile_pictures/${userId}.jpg`);
-  await uploadBytes(storageRef, file);
-  return await getDownloadURL(storageRef);
-}
+//Upload image
+imageInput.addEventListener("change", async (e) => {
+  const file = e.target.files[0];
+  if (!file || !currentUserId) return;
 
+  try {
+    const uniqueFileName = `${currentUserId}-${Date.now()}-${file.name}`;
+    const storageRef = ref(storage, `profile_pictures/${uniqueFileName}`);
+
+    await uploadBytes(storageRef, file);
+    const downloadURL = await getDownloadURL(storageRef);
+
+    const userDocRef = doc(db, "userprofiles", currentUserId);
+    await updateDoc(userDocRef, { profilePicture: downloadURL });
+
+    profileImage.src = downloadURL;
+  } catch (err) {
+    console.error("Failed to upload profile image:", err);
+    alert("Failed to upload profile image: " + err.message);
+  }
+});
+
+//Save profile info (username, email, pronouns)
 async function saveProfile() {
   if (!currentUserId) return;
 
@@ -62,14 +80,7 @@ async function saveProfile() {
   };
 
   try {
-    if (imageInput.files.length > 0) {
-      const file = imageInput.files[0];
-      const downloadURL = await uploadProfileImage(file, currentUserId);
-      updates.profilePicture = downloadURL;
-      profileImage.src = downloadURL;
-    }
-
-    await setDoc(userDocRef, updates, { merge: true });
+    await updateDoc(userDocRef, updates);
     alert("Profile updated!");
     setFormEditable(false);
     isEditing = false;
@@ -79,17 +90,7 @@ async function saveProfile() {
   }
 }
 
-imageInput.addEventListener("change", (e) => {
-  const file = e.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      profileImage.src = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  }
-});
-
+//Save button click (toggle edit/save)
 saveBtn.addEventListener("click", async (e) => {
   e.preventDefault();
   if (!isEditing) {
@@ -100,6 +101,7 @@ saveBtn.addEventListener("click", async (e) => {
   }
 });
 
+// Log out
 logoutBtn.addEventListener("click", async () => {
   await signOut(auth);
   window.location.href = "/login.html";
