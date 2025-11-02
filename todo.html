@@ -12,7 +12,7 @@
     <script type="module" src="/src/components/Tasks/task-box.js"></script>
 
     <!-- Scripts -->
-    <script defer type="module" src="/src/todo.js"></script>
+    <script defer type="module" src="/src/components/Tasks/todo.js"></script>
 
     <title>Orbit - To-Do</title>
 </head>
@@ -43,10 +43,8 @@
     <main class="max-w-[758px] h-full mx-auto">
 
         <!-- Tasks -->
-        <div id="my-tasks-container" class="flex flex-col px-8 space-y-8">
+        <div id="my-tasks-container" class="flex flex-col px-8 pb-28 space-y-8">
 
-            <p class="task-description hidden text-wrap break-all">
-            </p>
             <!-- Tasks dynamically added here -->
         </div>
 
@@ -95,6 +93,7 @@
             <!-- novalidate> -->
 
             <div class="flex flex-col space-y-4">
+                <!-- Group/User -->
                 <!-- Title -->
                 <div class="flex flex-col gap-2">
                     <label for="title">Title</label>
@@ -128,10 +127,8 @@
             </div>
 
             <!-- Submit Button -->
-            <div
+            <input type="submit" name="submit" placeholder="Save"
                 class="text-xl max-w-fit px-6 py-3 float-right clear-both rounded-full bg-[#a17afc] hover:bg-[#9878e1] hover:scale-105 active:scale-120">
-                <input type="submit" name="submit" placeholder="Save">
-            </div>
 
         </form>
 

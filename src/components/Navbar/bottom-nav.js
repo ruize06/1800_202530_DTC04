@@ -11,7 +11,7 @@ class BottomNav extends HTMLElement {
     this.pages = [
       // Populate with pages like home, calendar, groups, profile
       "/main.html",
-      "/todo.html",
+      "/todo.html?type=user",
       "/sharepage_Friends.html",
       "/profile.html",
     ];
@@ -34,7 +34,7 @@ class BottomNav extends HTMLElement {
 
   render() {
     this.innerHTML = `
-            <nav class="w-full md:max-w-fit left-1/2 -translate-x-1/2 fixed bottom-0 md:bottom-12">
+            <nav class="w-full md:max-w-fit md:left-1/2 md:-translate-x-1/2 fixed bottom-0 md:bottom-4">
                 <div id="bottom-nav-options"
                     class="bg-[#115268] p-2 md:scale-50 md:hover:scale-100 transition-transform duration-200 flex flex-row items-center hover:items-stretch justify-around space-x-2 md:space-x-8 md:max-w-fit md:max-h-fit mx-auto rounded-none md:rounded-full">
 
