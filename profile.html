@@ -52,12 +52,25 @@
           <div
             class="w-full bg-gradient-to-tr from-purple-100 to-purple-200 p-6 rounded-xl shadow-lg flex flex-col justify-center items-center"
           >
-            <img src="images/person.png" class="w-36 h-36 rounded-full mt-6" />
+            <img
+              id="profileImage"
+              src="images/person.png"
+              class="w-36 h-36 rounded-full mt-6"
+            />
+
             <p id="card-username" class="mt-4 font-semibold text-lg">
               Username
             </p>
             <p id="card-email" class="text-sm text-gray-700">Email</p>
+
+            <input
+              type="file"
+              id="imageInput"
+              accept="image/*"
+              class="hidden"
+            />
             <label
+              for="imageInput"
               class="cursor-pointer bg-gradient-to-r from-[#4c3B71] border-[1.5px] border-slate-400 to-indigo-900 text-white px-6 py-3 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300 text-sm tracking-wide mt-4"
             >
               Upload Image
@@ -105,11 +118,13 @@
           </div>
           <div class="flex flex-col md:flex-row gap-4 mt-4">
             <button
+              id="save-btn"
               class="w-full md:w-1/2 cursor-pointer bg-gradient-to-r from-[#4c3B71] border-[1.5px] border-slate-400 to-indigo-900 text-white px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300"
             >
               Save Changes
             </button>
             <button
+              id="logout-btn"
               class="w-full md:w-1/2 cursor-pointer bg-gradient-to-r from-[#4c3B71] border-[1.5px] border-slate-400 to-indigo-900 text-white px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300"
             >
               Log Out
@@ -125,6 +140,6 @@
     <!-- Buttons -->
     <!-- Active: gray-300 | Hover: gray-400 | Disabled: gray-500 -->
     <bottom-nav active="3"></bottom-nav>
-    <script type="module" src="src/components/Profile/profile.js"></script>
+    <script type="module" src="src/components/Profilepage/profile.js"></script>
   </body>
 </html>
