@@ -19,7 +19,7 @@ class TaskBox extends HTMLElement{
     render() {
         this.innerHTML = `
             <div
-                class="task-box flex flex-row justify-between max-w-full min-h-24 h-24 hover:h-auto hover:[&_.task-description]:inline rounded-xl p-4 border-4 border-transparent transition-transform duration-250">
+                class="task-box flex flex-row justify-between max-w-full max-h-fit hover:[&_.task-description]:inline rounded-xl p-4">
 
                 <div class="task-description-container flex flex-row items-center space-x-4 max-w-[70%]">
 
@@ -27,7 +27,7 @@ class TaskBox extends HTMLElement{
                     </div>
 
                     <div class="task-title-container max-w-[90%] h-auto">
-                        <h1 class="task-title text-2xl font-semibold overflow-hidden text-ellipsis">
+                        <h1 class="task-title text-xl font-semibold overflow-hidden text-ellipsis">
                         </h1>
                         <p class="task-description hidden w-full break-all text-wrap">
                         </p>
@@ -35,7 +35,7 @@ class TaskBox extends HTMLElement{
                 </div>
 
 
-                <div class="task-details-container flex flex-col font-bold space-y-2">
+                <div class="task-details-container flex gap-2 font-bold">
 
                     <div class="task-date hidden">
                         <span class="task-day"></span> /
