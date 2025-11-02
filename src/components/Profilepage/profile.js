@@ -112,5 +112,5 @@ onAuthStateChanged(auth, (user) => {
   }
   currentUserId = user.uid;
   listenUserProfile(currentUserId);
-  setFormEditable(false); // 初始为只读模式
+  setFormEditable(false);
 });
