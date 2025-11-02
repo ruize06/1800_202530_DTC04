@@ -1,4 +1,7 @@
 import { addPopupEventListeners } from '/src/utils.js'
+import { onAuthReady } from '/src/authentication.js';
+import { db, auth } from "/src/firebaseConfig.js";
+import { onSnapshot, collection, getDoc, getDocs, addDoc, query, where } from "firebase/firestore";
 
 function hidePopup(popupElement, transitionSpeed=300){
     popupElement?.classList.toggle("translate-y-full", true);
@@ -19,11 +22,18 @@ function addTaskFromForm(event) {
     var task_details = new FormData(event.target);
     task_details = Object.fromEntries([...task_details.entries()]);
     // task_details.description = document.getElementsByName("description")[0].value.replace(/\n/g, '<br>')
-    task_details = JSON.stringify(task_details)
+
+    task_details.userID = auth.currentUser.uid
+
+    const tasks_collection = collection(db, "tasks")
+    addDoc(tasks_collection, task_details)
+        .then( async (docref) => {
+            const doc = await getDoc(docref);
+            renderTasks([doc]);
+        })
     // #todo
     // TODO Post created task to server
 
-    renderTasks([task_details])
     cancelAddTaskForm()
 }
 
@@ -45,16 +55,19 @@ function renderTasks (tasks){
     // For each task, create a <task-box> element and append it to the task list container
     var task_list = document.getElementById("my-tasks-container");
 
-    for (let i=0; i<tasks.length; i++){ 
+    tasks.forEach((task) => {
+        console.log(task)
         var task_box = document.createElement("task-box");
 
-        var task = JSON.parse(tasks[i]);
+        var taskJSON = task.data()
         task_list.appendChild(task_box);
 
-        for (let attribute in task){
-            task_box.setAttribute(attribute, task[attribute]);
-        }
-    }
+        task_box.setAttribute("title", taskJSON["title"]);
+        task_box.setAttribute("description", taskJSON["description"]);
+        task_box.setAttribute("color", taskJSON["color"]);
+        task_box.setAttribute("time", taskJSON["time"]);
+        task_box.setAttribute("date", taskJSON["date"]);
+    })
 }
 
 function setup (){
@@ -65,43 +78,34 @@ function setup (){
 
     // #todo
     // TODO Get task list from server
-    var tasks = [];
+    
+    onAuthReady( async (user) => {
+        const tasks_q = query(collection(db, "tasks"), where("userID", "==", user.uid));
+        var tasks = await getDocs(tasks_q)
 
-    // #a Event listeners
-    addPopupEventListeners(
-        add_button, add_task_form_cancel, add_task_form_container,
-        createAddTaskForm, cancelAddTaskForm);
-    // // Open task form
-    // add_button?.addEventListener("click", createAddTaskForm);
-    // // Cancel task form
-    // add_task_form_cancel?.addEventListener("click", cancelAddTaskForm);
-    // add_task_form_container?.addEventListener(
-    //     "focusout", () => {
-    //         this.timer = setTimeout(cancelAddTaskForm, 0);
-    // });
-    // add_task_form_container?.addEventListener(
-    //     "focusin", () => {
-    //         clearTimeout(this.timer);
-    // });
+        // #a Event listeners
+        addPopupEventListeners(
+            add_button, add_task_form_cancel, add_task_form_container,
+            createAddTaskForm, cancelAddTaskForm);
+        // // Open task form
+        // Post task to server when add_task_form is submitted
+        add_task_form?.addEventListener("submit", addTaskFromForm);
+        // #end-a
 
-    // Post task to server when add_task_form is submitted
-    add_task_form?.addEventListener("submit", addTaskFromForm);
-    // #end-a
+        // #todo Example JSON for a task
+        // {
+        //     title: "Example task",
+        //     icon: null,
+        //     color: "#a0eeaf",
+        //     description: "Longer description goes here",
+        //     date: "2025-02-01",
+        //     time: "23:21"
+        // };
+        // #end-todo
 
-    // #todo Example JSON for a task
-    var new_task = {
-        title: "Example task",
-        icon: null,
-        color: "#a0eeaf",
-        description: "Longer description goes here",
-        date: "2025-02-01",
-        time: "23:21"
-    };
-    tasks.push(JSON.stringify(new_task));
-    // #end-todo
-
-    // #a Render tasks to the task list
-    renderTasks(tasks);
+        // #a Render tasks to the task list
+        renderTasks(tasks);
+    });
 }
 
 document.addEventListener("DOMContentLoaded", setup);
