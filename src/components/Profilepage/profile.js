@@ -22,6 +22,23 @@ function setFormEditable(editable) {
   emailInput.disabled = !editable;
   pronounsInput.disabled = !editable;
   saveBtn.textContent = editable ? "Save Changes" : "Edit";
+  if (editable) {
+    saveBtn.textContent = "Save Changes";
+    saveBtn.classList.remove(
+      "bg-gradient-to-r",
+      "from-[#4c3B71]",
+      "to-indigo-900"
+    );
+    saveBtn.classList.add("bg-blue-900");
+  } else {
+    saveBtn.textContent = "Edit";
+    saveBtn.classList.remove("bg-blue-900");
+    saveBtn.classList.add(
+      "bg-gradient-to-r",
+      "from-[#4c3B71]",
+      "to-indigo-900"
+    );
+  }
 }
 
 //Listen for real-time user profile changes
