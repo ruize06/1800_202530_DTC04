@@ -39,8 +39,8 @@ export function addPopupEventListeners(openButton, closeButton, popupElement, on
    * @param onClose (callableFunction) - callback function called when the menu is closed
    */
   // Open popup
-  const openFunc = () => {onOpen();/* showPopup(popupElement)*/}
-  const closeFunc = () => {onClose();/* hidePopup(popupElement)*/}
+  const openFunc = (e) => {onOpen(e);/* showPopup(popupElement)*/}
+  const closeFunc = (e) => {onClose(e);/* hidePopup(popupElement)*/}
   openButton?.addEventListener("click", openFunc);
   // Cancel popup
   closeButton?.addEventListener("click", closeFunc);
