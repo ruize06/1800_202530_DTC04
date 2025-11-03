@@ -44,12 +44,15 @@ export function addPopupEventListeners(openButton, closeButton, popupElement, on
   openButton?.addEventListener("click", openFunc);
   // Cancel popup
   closeButton?.addEventListener("click", closeFunc);
-  popupElement?.addEventListener(
-      "focusout", () => {
-          popupElement.timer = setTimeout(closeFunc, 0);
-  });
-  popupElement?.addEventListener(
-      "focusin", () => {
-          clearTimeout(popupElement.timer);
-  });
+  if (popupElement?.getAttribute("listener") !== "true") {
+    popupElement?.setAttribute("listener", "true")
+    popupElement?.addEventListener(
+        "focusout", () => {
+            popupElement.timer = setTimeout(closeFunc, 0);
+    });
+    popupElement?.addEventListener(
+        "focusin", () => {
+            clearTimeout(popupElement.timer);
+    });
+  }
 }

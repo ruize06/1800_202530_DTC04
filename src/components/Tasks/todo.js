@@ -1,7 +1,7 @@
 import { addPopupEventListeners } from '/src/utils.js'
 import { onAuthReady } from '/src/authentication.js';
 import { db, auth } from "/src/firebaseConfig.js";
-import { onSnapshot, collection, getDoc, getDocs, addDoc, query, where } from "firebase/firestore";
+import { onSnapshot, collection, getDoc, getDocs, addDoc, setDoc, doc, query, where, deleteDoc } from "firebase/firestore";
 
 function hidePopup(popupElement, transitionSpeed=300){
     popupElement?.classList.toggle("translate-y-full", true);
@@ -31,23 +31,63 @@ function addTaskFromForm(event) {
             const doc = await getDoc(docref);
             renderTasks([doc]);
         })
-    // #todo
-    // TODO Post created task to server
 
     cancelAddTaskForm()
 }
 
 function createAddTaskForm(){
-    var add_task_form = document.getElementById("add-task-form");
-    var add_task_form_container = document.getElementById("add-task-form-container");
-    add_task_form?.reset();
-    showPopup(add_task_form_container);
-    add_task_form_container.focus();
+    var _task_form = document.getElementById("add-task-form");
+    var _task_form_container = document.getElementById("add-task-form-container");
+    _task_form?.reset();
+    showPopup(_task_form_container);
+    _task_form_container.focus();
 }
 
 function cancelAddTaskForm(){
-    var add_task_form_container = document.getElementById("add-task-form-container");
-    hidePopup(add_task_form_container);
+    var _task_form_container = document.getElementById("add-task-form-container");
+    hidePopup(_task_form_container);
+}
+
+function editTaskFromForm(event) {
+    event.preventDefault();
+    var task_details = new FormData(event.target);
+    task_details = Object.fromEntries([...task_details.entries()]);
+    // task_details.description = document.getElementsByName("description")[0].value.replace(/\n/g, '<br>')
+    task_details.userID = auth.currentUser.uid
+
+    const task_doc = doc(db, "tasks", event.target.taskID)
+    setDoc(task_doc, task_details)
+
+    cancelEditTaskForm()
+}
+
+function deleteTaskFromForm(event) {
+    event.preventDefault();
+    const task_doc = doc(db, "tasks", document.getElementById("edit-task-form").taskID)
+    deleteDoc(task_doc)
+
+    cancelEditTaskForm()
+}
+
+function createEditTaskForm(event){
+    var _task_form = document.getElementById("edit-task-form");
+    var _task_form_container = document.getElementById("edit-task-form-container");
+    _task_form?.reset()
+    const task_box = event.target.closest("task-box")
+    showPopup(_task_form_container)
+
+    _task_form.taskID = task_box.id
+    _task_form["title"].value = task_box.title;
+    _task_form["description"].value = task_box.getAttribute("description");
+    _task_form["color"].value = task_box.getAttribute("color");
+    _task_form["time"].value = task_box.getAttribute("time");
+    _task_form["date"].value = task_box.getAttribute("date");
+    _task_form_container.focus();
+}
+
+function cancelEditTaskForm(){
+    var _task_form_container = document.getElementById("edit-task-form-container");
+    hidePopup(_task_form_container);
 }
 
 function renderTasks (tasks){
@@ -56,25 +96,42 @@ function renderTasks (tasks){
     var task_list = document.getElementById("my-tasks-container");
 
     tasks.forEach((task) => {
-        console.log(task)
         var task_box = document.createElement("task-box");
-
-        var taskJSON = task.data()
         task_list.appendChild(task_box);
+        task_box.id = task.id
+        onSnapshot(doc(db,"tasks", task.id), (docSnap) => {
+            if (docSnap.exists()) {
+                task_box = document.getElementById(docSnap.id)
+                
+                const edit_task_form_cancel = document.getElementById("edit-task-form-cancel")
+                const edit_task_form_container = document.getElementById("edit-task-form-container")
+                addPopupEventListeners(
+                    task_box, edit_task_form_cancel, edit_task_form_container,
+                    createEditTaskForm, cancelEditTaskForm);
 
-        task_box.setAttribute("title", taskJSON["title"]);
-        task_box.setAttribute("description", taskJSON["description"]);
-        task_box.setAttribute("color", taskJSON["color"]);
-        task_box.setAttribute("time", taskJSON["time"]);
-        task_box.setAttribute("date", taskJSON["date"]);
+                var taskJSON = docSnap.data();
+
+                task_box.setAttribute("title", taskJSON["title"]);
+                task_box.setAttribute("description", taskJSON["description"]);
+                task_box.setAttribute("color", taskJSON["color"]);
+                task_box.setAttribute("time", taskJSON["time"]);
+                task_box.setAttribute("date", taskJSON["date"]);
+            } else {
+                console.log("removed task")
+                document.getElementById(docSnap.id).remove()
+            }
+        })
     })
 }
 
 function setup (){
-    var add_button = document.getElementById("add-task-button");
-    var add_task_form = document.getElementById("add-task-form");
-    var add_task_form_cancel = document.getElementById("add-task-form-cancel");
-    var add_task_form_container = document.getElementById("add-task-form-container");
+    const add_button = document.getElementById("add-task-button");
+    const add_task_form = document.getElementById("add-task-form");
+    const add_task_form_cancel = document.getElementById("add-task-form-cancel");
+    const add_task_form_container = document.getElementById("add-task-form-container");
+
+    const edit_task_form = document.getElementById("edit-task-form");
+    const delete_task_button = edit_task_form["delete"];
 
     // #todo
     // TODO Get task list from server
@@ -90,6 +147,8 @@ function setup (){
         // // Open task form
         // Post task to server when add_task_form is submitted
         add_task_form?.addEventListener("submit", addTaskFromForm);
+        edit_task_form?.addEventListener("submit", editTaskFromForm);
+        delete_task_button?.addEventListener("click", deleteTaskFromForm);
         // #end-a
 
         // #todo Example JSON for a task
