@@ -48,18 +48,6 @@
 
             <!-- Friends List -->
             <div class="flex flex-col gap-3 text-zinc-600 mt-[20px]">
-                <div class="flex items-center gap-2 bg-gray-200 p-1 rounded-full">
-                    <img class="max-w-[50px]" src="images/person.png" alt="">
-                    <h1 class="font-bold">Alex</h1>
-                </div>
-                <div class="flex items-center gap-2 bg-gray-200 p-1 rounded-full">
-                    <img class="max-w-[50px]" src="images/person.png" alt="">
-                    <h1 class="font-bold">Maggie</h1>
-                </div>
-                <div class="flex items-center gap-2 bg-gray-200 p-1 rounded-full">
-                    <img class="max-w-[50px]" src="images/person.png" alt="">
-                    <h1 class="font-bold">Ruize</h1>
-                </div>
             </div>
 
             <!-- Add Friends Button -->
@@ -79,9 +67,10 @@
         </section>
     </main>
 
+    <!-- Add Friends Popup -->
     <div id="addFriendsPopup" class="bg-gray-500 p-6 h-[600px] w-full fixed bottom-0 z-10 rounded-t-2xl hidden">
-        <div class="flex items-center justify-between">
-            <h1 class="text-xl font-bold mb-4">Search people</h1>
+        <div class="flex items-center justify-between mb-4">
+            <h1 class="text-xl font-bold">Search user</h1>
             <button id="cancelBtn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 5 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -93,8 +82,14 @@
             </button>
         </div>
 
-        <input type="text" class="w-full p-2 border rounded mb-4" placeholder="Search">
+        <input type="text" id="searchInput" placeholder="Enter a username"
+            class="w-full p-2 mb-4 rounded bg-gray-700 text-white placeholder-gray-300" />
+
+        <button id="searchBtn" class="bg-cyan-500 text-white px-4 py-2 rounded mb-4 w-full">Search</button>
+
+        <ul id="searchResults" class="space-y-2 overflow-y-auto max-h-[300px] text-white"></ul>
     </div>
+
 
     <script type="module" src="src/components/Sharepage/add-friends.js"></script>
     <bottom-nav active=2></bottom-nav>
