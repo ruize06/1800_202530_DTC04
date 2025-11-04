@@ -10,17 +10,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Other libraries go here -->
+  <script type="module" src="/src/app.js" defer></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script type="module" src="/src/components/site-footer.js"></script>
   <script type="module" src="/src/components/site-navbar.js"></script>
-  <!-- <link rel="stylesheet" href="./styles/style.css"> -->
 </head>
 
 <body style="
       background-image: url(https://static.vecteezy.com/system/resources/previews/024/790/556/non_2x/seamless-night-sky-stars-pattern-sketch-moon-space-planets-and-hand-drawn-star-illustration-outer-space-symbols-decorative-texture-cosmic-wallpaper-wrapping-paper-textile-outline-design-vector.jpg);
     ">
-  <div class="bg-black w-[100%] h-[100%] block opacity-70 fixed z-0"></div>
+  <div class="bg-black w-full h-full block opacity-70 fixed z-0"></div>
   <div class="relative z-1">
     <site-navbar>
       <script type="module" src="/src/components/site-navbar.js"></script>
@@ -47,7 +46,7 @@
       <section class="text-center mt-[75px]">
         <a href="login.html">
           <button
-            class="bg-gradient-to-r from-[#4c3B71] border-[1.5px] border-slate-400 to-indigo-900 text-white px-6 py-3 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300">
+            class="bg-linear-to-r from-[#4c3B71] border-[1.5px] border-slate-400 to-indigo-900 text-white px-6 py-3 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300">
             <span class="text-xl tracking-wide">Step Into Orbit</span>
           </button>
         </a>
@@ -57,7 +56,7 @@
     <!-- Main Page for big screens -->
     <main class="py-16 px-2 max-w-[850px] mx-auto hidden sm:block">
       <div
-        class="bg-[#115268] text-white p-6 mx-auto rounded-3xl text-center bg-gradient-to-br from-[#115268] to to-indigo-950">
+        class="bg-[#115268] text-white p-6 mx-auto rounded-3xl text-center bg-linear-to-br from-[#115268] to to-indigo-950">
         <h1 class="text-4xl font-bold mb-5">Welcome to Orbit</h1>
         <p class="mb-4">
           Orbit is your space to study smarter, together. Orbit keeps your
@@ -74,7 +73,7 @@
       </div>
       <div class="m-10 flex-col items-center mx-auto">
         <div
-          class="mt-8 text-white bg-[#4c3B71] p-5 rounded-tr-3xl rounded-tl-3xl bg-gradient-to-br from-[#4c3B71] to to-black md:rounded-br-3xl">
+          class="mt-8 text-white bg-[#4c3B71] p-5 rounded-tr-3xl rounded-tl-3xl bg-linear-to-br from-[#4c3B71] to to-black md:rounded-br-3xl">
           <h1 class="text-3xl font-bold mb-5">Stay in each other's orbit</h1>
           <p class="text-md">
             Studying becomes a shared journey when using Orbit. Orbit connects
@@ -87,7 +86,7 @@
         </div>
         <div class="flex flex-col md:flex-row">
           <div
-            class="text-white bg-[#4c3B71] p-5 rounded-br-3xl rounded-bl-3xl bg-gradient-to-tr from-[#4c3B71] to to-black md:max-w-[40%]">
+            class="text-white bg-[#4c3B71] p-5 rounded-br-3xl rounded-bl-3xl bg-linear-to-tr from-[#4c3B71] to to-black md:max-w-[40%]">
             <h1 class="text-3xl font-bold mb-5">Share and Sync</h1>
             <p class="text-md">
               Share and sync with ease as Orbit keep your study group
@@ -99,7 +98,7 @@
             </p>
           </div>
           <div
-            class="flex flex-col max-w-fit mx-auto bg-[#115268] p-5 rounded-2xl text-white mt-3 bg-gradient-to-tl from-[#115268] to to-black">
+            class="flex flex-col max-w-fit mx-auto bg-[#115268] p-5 rounded-2xl text-white mt-3 bg-linear-to-tl from-[#115268] to to-black">
             <h1 class="mb-2 font-bold">Watch our pitch!</h1>
             <iframe width="430" height="230" src="https://www.youtube.com/embed/ndMiZio55xQ"></iframe>
           </div>
