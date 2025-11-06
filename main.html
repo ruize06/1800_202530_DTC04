@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- 样式 -->
     <link href="/src/styles/style.css" rel="stylesheet" />
 
     <!-- Web Components -->
@@ -17,32 +16,16 @@
 
   <body data-page="main" class="w-full h-full bg-white">
     <!-- Navbar -->
-    <nav class="max-w-7xl mx-auto border-b border-gray-200 relative">
-      <div class="flex items-center p-6 justify-center relative">
-        <h1 class="absolute left-1/2 -translate-x-1/2 text-2xl font-semibold">
+    <nav class="max-w-7xl mx-auto border-b border-gray-200">
+      <div class="relative flex items-center p-12">
+        <h1
+          class="absolute left-1/2 -translate-x-1/2 text-2xl font-semibold text-[--text-color]"
+        >
           Welcome
         </h1>
-        <button
-          type="button"
-          class="absolute right-0 w-12 h-12 flex items-center justify-center rounded-lg text-gray-800 hover:bg-gray-300"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            class="w-6 h-6 stroke-current"
-            fill="none"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
-            <path d="M21 21l-6 -6" />
-          </svg>
-        </button>
       </div>
     </nav>
 
-    <!-- 内容区 -->
     <main class="max-w-4xl mx-auto pt-6 space-y-6">
       <!-- Announcements -->
       <section class="p-4 border-b-2 border-gray-300 text-gray-700">
@@ -52,7 +35,7 @@
 
       <!-- To-do List -->
       <section class="p-4 text-gray-700">
-        <h2 class="text-2xl font-semibold mb-2">Today's To-do List</h2>
+        <h2 class="text-2xl font-semibold mb-4">Today's To-do List</h2>
         <div id="my-tasks-container" class="space-y-2"></div>
       </section>
     </main>
