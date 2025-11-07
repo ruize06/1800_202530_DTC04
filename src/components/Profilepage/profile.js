@@ -29,11 +29,8 @@ let isEditing = false;
 function setFormEditable(editable) {
   usernameInput.disabled = !editable;
   pronounsInput.disabled = !editable;
-
-  // Email is always read-only
   emailInput.readOnly = true;
   emailInput.style.backgroundColor = "#f0f0f0";
-
   saveBtn.textContent = editable ? "Save Changes" : "Edit";
 }
 
@@ -42,10 +39,8 @@ function listenUserProfile(userId, userEmail) {
   const userDocRef = doc(db, "userprofiles", userId);
 
   onSnapshot(userDocRef, (docSnap) => {
-    if (!docSnap.exists() || isEditing) return; // Don't overwrite while editing
+    if (!docSnap.exists() || isEditing) return;
     const data = docSnap.data();
-
-    // Update form inputs
     usernameInput.value = data.username || "";
     pronounsInput.value = data.pronouns || "";
     emailInput.value = userEmail || "";
@@ -75,8 +70,6 @@ async function saveProfile() {
       username,
       pronouns,
     });
-
-    // Show popup alert instead of changing button
     alert("Profile updated!");
 
     setFormEditable(false);
@@ -135,9 +128,6 @@ onAuthStateChanged(auth, async (user) => {
     );
   }
 
-  // Listen to Firestore updates
   listenUserProfile(currentUserId, userEmail);
-
-  // Default: form not editable
   setFormEditable(false);
 });
