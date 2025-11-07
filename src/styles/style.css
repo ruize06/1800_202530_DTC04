@@ -1,74 +1,39 @@
 @import "tailwindcss";
 
-:root
-{
-    /*Light color scheme here:*/
-    --light-text-color: #000000;
-    --light-secondary-text-color: #666666;
-    --light-highlight-text-color: #337744;
-    --light-contrast-text-color: #ffffff;
+:root {
+  /*Light color scheme here:*/
+  --light-text-color: #000000;
+  --light-contrast-text-color: #ffffff;
 
-    --light-bg-color: #FFFFFF;
-    --light-secondary-bg-color: #CBD5E1;
-    --light-highlight-bg-color: #88CC99;
-    --light-contrast-bg-color: #111111;
+  --light-bg-color: #ffffff;
+  --light-secondary-bg-color: #eaf7fe;
+  --light-gradient-bg-color: #ddd9f9;
 
-    --light-primary-button-bg-color: #FFFFFF;
-    --light-primary-button-hover-bg-color: #E0E5EB;
-    --light-secondary-button-bg-color: #DDEEFF;
-    --light-secondary-button-hover-bg-color: #CCDDFF;
-    --light-contrast-button-bg-color: #111111;
-    --light-contrast-button-hover-bg-color: #333333;
-    
-    
-    /*Dark color scheme here:*/
-    --dark-text-color: #FFFFFF;
-    --dark-secondary-text-color: #999999;
-    --dark-highlight-text-color: #88CC99;
-    --dark-contrast-text-color: #000000;
+  --light-primary-button-bg-color: #204c85;
+  --light-secondary-button-bg-color: #483e74;
 
-    --dark-bg-color: #222222;
-    --dark-secondary-bg-color: #444444;
-    --dark-highlight-bg-color: #337744;
-    --dark-contrast-bg-color: #EEEEEE;
+  --light-primary-border-color: #1d7ece;
+  --light-hover-border-color: #142855;
 }
 
-body
-{
-    /* Color scheme */
-    --text-color: var(--light-text-color);
-    --secondary-text-color: var(--light-secondary-text-color);
-    --contrast-text-color: var(--light-contrast-text-color);
+body {
+  /* Color scheme */
+  --text-color: var(--light-text-color);
+  --contrast-text-color: var(--light-contrast-text-color);
 
-    --bg-color: var(--light-bg-color);
-    --secondary-bg-color: var(--light-secondary-bg-color);
-    --contrast-bg-color: var(--light-contrast-bg-color);
+  --bg-color: var(--light-bg-color);
+  --secondary-bg-color: var(--light-secondary-bg-color);
+  --gradient-bg-color: var(--light-gradient-bg-color);
 
-    --primary-button-bg-color: var(--light-primary-button-bg-color);
-    --primary-button-hover-bg-color: var(--light-primary-button-hover-bg-color);
-    --secondary-button-bg-color: var(--light-secondary-button-bg-color);
-    --secondary-button-hover-bg-color: var(--light-secondary-button-hover-bg-color);
-    --contrast-button-bg-color: var(--light-contrast-button-bg-color);
-    --contrast-button-hover-bg-color: var(--light-contrast-button-hover-bg-color);
+  --primary-button-bg-color: var(--light-primary-button-bg-color);
 
+  --secondary-button-bg-color: var(--light-secondary-button-bg-color);
 
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: var(--text-color);
-    background-color: var(--bg-color);
+  --primary-border-color: var(--light-primary-border-color);
+  --hover-border-color: var(--light-hover-border-color);
+
+  color: var(--text-color);
+  background-color: var(--bg-color);
 }
 
-body.dark-mode
-{
-    /* Color scheme */
-    --text-color: var(--dark-text-color);
-    --secondary-text-color: var(--dark-secondary-text-color);
-    --highlight-text-color: var(--dark-highlight-text-color);
-    --contrast-text-color: var(--dark-contrast-text-color);
-
-    --bg-color: var(--dark-bg-color);
-    --secondary-bg-color: var(--dark-secondary-bg-color);
-    --highlight-bg-color: var(--dark-highlight-bg-color);
-    --contrast-bg-color: var(--dark-contrast-bg-color);
-
-    /* Missing button dark-modes */
-}
+/* button */

@@ -1,118 +1,133 @@
 // profile.js
-import { auth, db, storage } from "../../firebaseConfig.js";
+import { auth, db } from "../../firebaseConfig.js";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { doc, setDoc, onSnapshot, updateDoc } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { doc, setDoc, getDoc, updateDoc, onSnapshot } from "firebase/firestore";
 
 // DOM Elements
-const profileImage = document.getElementById("profileImage");
-const imageInput = document.getElementById("imageInput");
 const usernameInput = document.getElementById("username");
 const emailInput = document.getElementById("email");
 const pronounsInput = document.getElementById("pronouns");
 const saveBtn = document.getElementById("save-btn");
 const logoutBtn = document.getElementById("logout-btn");
+const errorMsg = document.getElementById("error-msg");
+
+// Profile card elements
+const cardUsername = document.getElementById("card-username");
+const cardEmail = document.getElementById("card-email");
+
+// Update card username in real time
+usernameInput.addEventListener("input", () => {
+  if (cardUsername) {
+    cardUsername.textContent = usernameInput.value.trim() || "Username";
+  }
+});
 
 let currentUserId = null;
 let isEditing = false;
 
-//Form Editable
+// Set form editable state
 function setFormEditable(editable) {
   usernameInput.disabled = !editable;
-  emailInput.disabled = !editable;
   pronounsInput.disabled = !editable;
+  emailInput.readOnly = true;
+  emailInput.style.backgroundColor = "#f0f0f0";
   saveBtn.textContent = editable ? "Save Changes" : "Edit";
-  if (editable) {
-    saveBtn.textContent = "Save Changes";
-    saveBtn.classList.remove(
-      "bg-gradient-to-r",
-      "from-[#4c3B71]",
-      "to-indigo-900"
-    );
-    saveBtn.classList.add("bg-blue-900");
-  } else {
-    saveBtn.textContent = "Edit";
-    saveBtn.classList.remove("bg-blue-900");
-    saveBtn.classList.add(
-      "bg-gradient-to-r",
-      "from-[#4c3B71]",
-      "to-indigo-900"
-    );
-  }
 }
 
-//Listen for real-time user profile changes
-function listenUserProfile(userId) {
+// Listen to Firestore real-time updates
+function listenUserProfile(userId, userEmail) {
   const userDocRef = doc(db, "userprofiles", userId);
 
   onSnapshot(userDocRef, (docSnap) => {
-    if (!docSnap.exists()) {
-      setDoc(
-        userDocRef,
-        { username: "", email: "", pronouns: "", profilePicture: "" },
-        { merge: true }
-      );
-      return;
-    }
-
+    if (!docSnap.exists() || isEditing) return;
     const data = docSnap.data();
-    profileImage.src = data.profilePicture || "images/person.png";
     usernameInput.value = data.username || "";
-    emailInput.value = data.email || "";
     pronounsInput.value = data.pronouns || "";
+    emailInput.value = userEmail || "";
 
-    const cardUsername = document.getElementById("card-username");
-    const cardEmail = document.getElementById("card-email");
-    cardUsername.textContent = data.username || "Username";
-    cardEmail.textContent = data.email || "Email";
+    // Update profile card display
+    if (cardUsername) cardUsername.textContent = data.username || "Username";
+    if (cardEmail) cardEmail.textContent = userEmail || "Email";
   });
 }
 
-//Save profile info (username, email, pronouns)
+// Save profile changes
 async function saveProfile() {
   if (!currentUserId) return;
 
-  const userDocRef = doc(db, "userprofiles", currentUserId);
-  const updates = {
-    username: usernameInput.value,
-    email: emailInput.value,
-    pronouns: pronounsInput.value,
-  };
+  const username = usernameInput.value.trim();
+  const pronouns = pronounsInput.value.trim();
+
+  if (!username) {
+    errorMsg.textContent = "⚠️ Username is required!";
+    usernameInput.focus();
+    return;
+  }
+  errorMsg.textContent = "";
 
   try {
-    await updateDoc(userDocRef, updates);
+    await updateDoc(doc(db, "userprofiles", currentUserId), {
+      username,
+      pronouns,
+    });
     alert("Profile updated!");
+
     setFormEditable(false);
     isEditing = false;
   } catch (err) {
     console.error("Failed to update profile:", err);
-    alert("Failed to update profile, please try again later");
+    alert("Failed to update profile. Please try again later.");
   }
 }
 
-//Save button click (toggle edit/save)
-saveBtn.addEventListener("click", async (e) => {
+// Handle Save / Edit button click
+saveBtn.addEventListener("click", (e) => {
   e.preventDefault();
   if (!isEditing) {
     isEditing = true;
     setFormEditable(true);
   } else {
-    await saveProfile();
+    saveProfile();
   }
 });
 
-// Log out
+// Logout
 logoutBtn.addEventListener("click", async () => {
   await signOut(auth);
   window.location.href = "/login.html";
 });
 
-onAuthStateChanged(auth, (user) => {
+// Initialize user profile
+onAuthStateChanged(auth, async (user) => {
   if (!user) {
     window.location.href = "/login.html";
     return;
   }
+
   currentUserId = user.uid;
-  listenUserProfile(currentUserId);
+  const userEmail = user.email;
+
+  // Auto-fill email (read-only)
+  emailInput.value = userEmail;
+  emailInput.readOnly = true;
+  emailInput.style.backgroundColor = "#f0f0f0";
+
+  // Initialize Firestore document if it doesn't exist
+  const userDocRef = doc(db, "userprofiles", currentUserId);
+  const docSnap = await getDoc(userDocRef);
+  if (!docSnap.exists()) {
+    await setDoc(
+      userDocRef,
+      {
+        username: "",
+        pronouns: "",
+        profilePicture: "",
+        email: userEmail,
+      },
+      { merge: true }
+    );
+  }
+
+  listenUserProfile(currentUserId, userEmail);
   setFormEditable(false);
 });
