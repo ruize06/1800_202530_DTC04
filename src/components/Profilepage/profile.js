@@ -14,6 +14,8 @@ const errorMsg = document.getElementById("error-msg");
 // Profile card elements
 const cardUsername = document.getElementById("card-username");
 const cardEmail = document.getElementById("card-email");
+
+// Update card username in real time
 usernameInput.addEventListener("input", () => {
   if (cardUsername) {
     cardUsername.textContent = usernameInput.value.trim() || "Username";
@@ -30,11 +32,9 @@ function setFormEditable(editable) {
 
   // Email is always read-only
   emailInput.readOnly = true;
-  emailInput.style.backgroundColor = "#f0f0f0"; // visual cue for read-only
+  emailInput.style.backgroundColor = "#f0f0f0";
 
   saveBtn.textContent = editable ? "Save Changes" : "Edit";
-  saveBtn.classList.toggle("bg-blue-900", editable);
-  saveBtn.classList.toggle("bg-linear-to-r", !editable);
 }
 
 // Listen to Firestore real-time updates
@@ -76,18 +76,14 @@ async function saveProfile() {
       pronouns,
     });
 
-    // Show save success
-    saveBtn.textContent = "✔ Saved!";
-    saveBtn.classList.add("bg-green-700");
-    setTimeout(() => {
-      setFormEditable(false);
-      isEditing = false;
-      saveBtn.textContent = "Edit";
-      saveBtn.classList.remove("bg-green-700");
-    }, 1500);
+    // Show popup alert instead of changing button
+    alert("Profile updated!");
+
+    setFormEditable(false);
+    isEditing = false;
   } catch (err) {
     console.error("Failed to update profile:", err);
-    errorMsg.textContent = "❌ Failed to update profile. Try again.";
+    alert("Failed to update profile. Please try again later.");
   }
 }
 

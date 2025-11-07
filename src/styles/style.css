@@ -37,25 +37,3 @@ body {
 }
 
 /* button */
-.btn-primary {
-  width: 100%;
-  max-width: 50%;
-  cursor: pointer;
-  background: linear-gradient(
-    to right,
-    var(--secondary-button-bg-color),
-    var(--primary-button-bg-color)
-  );
-  color: white;
-  padding: 0.5rem 1rem;
-  font-weight: 600;
-  border-radius: 9999px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  border: 1.5px solid #94a3b8;
-}
-
-.btn-primary:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
-}
