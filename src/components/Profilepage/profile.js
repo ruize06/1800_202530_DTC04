@@ -1,10 +1,9 @@
 // profile.js
 import { auth, db } from "../../firebaseConfig.js";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { doc, setDoc, getDoc, onSnapshot, updateDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc, updateDoc, onSnapshot } from "firebase/firestore";
 
 // DOM Elements
-const profileImage = document.getElementById("profileImage");
 const usernameInput = document.getElementById("username");
 const emailInput = document.getElementById("email");
 const pronounsInput = document.getElementById("pronouns");
@@ -12,56 +11,52 @@ const saveBtn = document.getElementById("save-btn");
 const logoutBtn = document.getElementById("logout-btn");
 const errorMsg = document.getElementById("error-msg");
 
+// Profile card elements
+const cardUsername = document.getElementById("card-username");
+const cardEmail = document.getElementById("card-email");
+usernameInput.addEventListener("input", () => {
+  if (cardUsername) {
+    cardUsername.textContent = usernameInput.value.trim() || "Username";
+  }
+});
+
 let currentUserId = null;
 let isEditing = false;
 
+// Set form editable state
 function setFormEditable(editable) {
   usernameInput.disabled = !editable;
   pronounsInput.disabled = !editable;
 
+  // Email is always read-only
   emailInput.readOnly = true;
+  emailInput.style.backgroundColor = "#f0f0f0"; // visual cue for read-only
 
-  if (editable) {
-    saveBtn.textContent = "Save Changes";
-    saveBtn.classList.remove(
-      "bg-linear-to-r",
-      "from-[var(--secondary-button-bg-color)] ",
-      "to-[var(--primary-button-bg-color)]"
-    );
-    saveBtn.classList.add("bg-blue-900");
-  } else {
-    saveBtn.textContent = "Edit";
-    saveBtn.classList.remove("bg-blue-900");
-    saveBtn.classList.add(
-      "bg-linear-to-r",
-      "from-[var(--secondary-button-bg-color)] ",
-      "to-[var(--primary-button-bg-color)]"
-    );
-  }
+  saveBtn.textContent = editable ? "Save Changes" : "Edit";
+  saveBtn.classList.toggle("bg-blue-900", editable);
+  saveBtn.classList.toggle("bg-linear-to-r", !editable);
 }
 
+// Listen to Firestore real-time updates
 function listenUserProfile(userId, userEmail) {
   const userDocRef = doc(db, "userprofiles", userId);
 
   onSnapshot(userDocRef, (docSnap) => {
-    if (!docSnap.exists()) return;
-
+    if (!docSnap.exists() || isEditing) return; // Don't overwrite while editing
     const data = docSnap.data();
 
+    // Update form inputs
     usernameInput.value = data.username || "";
     pronounsInput.value = data.pronouns || "";
     emailInput.value = userEmail || "";
 
-    emailInput.readOnly = true;
-    emailInput.style.backgroundColor = "#f0f0f0";
-
-    const cardUsername = document.getElementById("card-username");
-    const cardEmail = document.getElementById("card-email");
-    cardUsername.textContent = data.username || "Username";
-    cardEmail.textContent = userEmail || "Email";
+    // Update profile card display
+    if (cardUsername) cardUsername.textContent = data.username || "Username";
+    if (cardEmail) cardEmail.textContent = userEmail || "Email";
   });
 }
 
+// Save profile changes
 async function saveProfile() {
   if (!currentUserId) return;
 
@@ -70,45 +65,50 @@ async function saveProfile() {
 
   if (!username) {
     errorMsg.textContent = "⚠️ Username is required!";
-    errorMsg.style.color = "red";
     usernameInput.focus();
     return;
-  } else {
-    errorMsg.textContent = "";
   }
-
-  const userDocRef = doc(db, "userprofiles", currentUserId);
-  const updates = {
-    username,
-    pronouns,
-  };
+  errorMsg.textContent = "";
 
   try {
-    await updateDoc(userDocRef, updates);
-    alert("Profile updated!");
-    setFormEditable(false);
-    isEditing = false;
+    await updateDoc(doc(db, "userprofiles", currentUserId), {
+      username,
+      pronouns,
+    });
+
+    // Show save success
+    saveBtn.textContent = "✔ Saved!";
+    saveBtn.classList.add("bg-green-700");
+    setTimeout(() => {
+      setFormEditable(false);
+      isEditing = false;
+      saveBtn.textContent = "Edit";
+      saveBtn.classList.remove("bg-green-700");
+    }, 1500);
   } catch (err) {
     console.error("Failed to update profile:", err);
-    alert("Failed to update profile, please try again later");
+    errorMsg.textContent = "❌ Failed to update profile. Try again.";
   }
 }
 
-saveBtn.addEventListener("click", async (e) => {
+// Handle Save / Edit button click
+saveBtn.addEventListener("click", (e) => {
   e.preventDefault();
   if (!isEditing) {
     isEditing = true;
     setFormEditable(true);
   } else {
-    await saveProfile();
+    saveProfile();
   }
 });
 
+// Logout
 logoutBtn.addEventListener("click", async () => {
   await signOut(auth);
   window.location.href = "/login.html";
 });
 
+// Initialize user profile
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
     window.location.href = "/login.html";
@@ -118,31 +118,30 @@ onAuthStateChanged(auth, async (user) => {
   currentUserId = user.uid;
   const userEmail = user.email;
 
-  const userDocRef = doc(db, "userprofiles", currentUserId);
-
-  try {
-    const docSnap = await getDoc(userDocRef);
-
-    if (!docSnap.exists()) {
-      await setDoc(
-        userDocRef,
-        {
-          username: "",
-          pronouns: "",
-          profilePicture: "",
-          email: userEmail,
-        },
-        { merge: true }
-      );
-    }
-  } catch (err) {
-    console.error("Error initializing user profile:", err);
-  }
-
-  emailInput.value = userEmail || "";
+  // Auto-fill email (read-only)
+  emailInput.value = userEmail;
   emailInput.readOnly = true;
   emailInput.style.backgroundColor = "#f0f0f0";
 
+  // Initialize Firestore document if it doesn't exist
+  const userDocRef = doc(db, "userprofiles", currentUserId);
+  const docSnap = await getDoc(userDocRef);
+  if (!docSnap.exists()) {
+    await setDoc(
+      userDocRef,
+      {
+        username: "",
+        pronouns: "",
+        profilePicture: "",
+        email: userEmail,
+      },
+      { merge: true }
+    );
+  }
+
+  // Listen to Firestore updates
   listenUserProfile(currentUserId, userEmail);
+
+  // Default: form not editable
   setFormEditable(false);
 });
