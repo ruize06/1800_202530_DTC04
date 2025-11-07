@@ -12,6 +12,9 @@
 
   --light-primary-button-bg-color: #204c85;
   --light-secondary-button-bg-color: #483e74;
+
+  --light-primary-border-color: #066ec3;
+  --light-hover-border-color: #60c9f6;
 }
 
 body {
@@ -30,6 +33,9 @@ body {
 
   --contrast-button-bg-color: var(--light-contrast-button-bg-color);
   --contrast-button-hover-bg-color: var(--light-contrast-button-hover-bg-color);
+
+  --primary-border-color: var(--light-primary-border-color);
+  --hover-border-color: var(--light-hover-border-color);
 
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
