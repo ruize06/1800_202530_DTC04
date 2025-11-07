@@ -4,46 +4,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link href="/src/styles/style.css" rel="stylesheet" />
-
     <!-- Web Components -->
     <script type="module" src="/src/app.js"></script>
+    <link href="/src/styles/style.css" rel="stylesheet" />
+
     <script type="module" src="/src/components/Navbar/nav-item.js"></script>
     <script type="module" src="/src/components/Navbar/bottom-nav.js"></script>
 
     <title>Orbit - Home</title>
   </head>
 
-  <body data-page="main" class="w-full h-full bg-white">
-    <!-- Navbar -->
+  <body class="w-[100%] h-[100%]">
     <nav class="max-w-7xl mx-auto border-b border-gray-200">
       <div class="relative flex items-center p-12">
-        <h1
-          class="absolute left-1/2 -translate-x-1/2 text-2xl font-semibold text-[--text-color]"
-        >
+        <h1 class="absolute left-1/2 -translate-x-1/2 text-2xl font-semibold">
           Welcome
         </h1>
       </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto pt-6 space-y-6">
-      <!-- Announcements -->
-      <section class="p-4 border-b-2 border-gray-300 text-gray-700">
-        <h2 class="text-2xl font-semibold mb-2">Announcements</h2>
-        <p class="text-gray-500">No announcements yet.</p>
+    <div class="max-w-[80%] mx-auto pt-[20px]">
+      <section
+        class="p-1 border-b-[2px] mb-[300px] border-gray-500 text-gray-500"
+      >
+        <h1 class="text-2xl">Announcements</h1>
       </section>
-
-      <!-- To-do List -->
-      <section class="p-4 text-gray-700">
-        <h2 class="text-2xl font-semibold mb-4">Today's To-do List</h2>
-        <div id="my-tasks-container" class="space-y-2"></div>
+      <section class="border-b-[2px] border-gray-500 text-gray-500">
+        <h1 class="text-2xl">To-do List</h1>
       </section>
-    </main>
-
+    </div>
     <!-- Bottom Nav -->
+    <!-- Background -->
+    <!-- #115268 -->
+    <!-- Buttons -->
+    <!-- Active: gray-300 | Hover: gray-400 | Disabled: gray-500 -->
     <bottom-nav active="0"></bottom-nav>
-
-    <!-- Main JS -->
-    <script type="module" src="/src/components/Main/main.js"></script>
   </body>
 </html>
