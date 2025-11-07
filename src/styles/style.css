@@ -3,7 +3,6 @@
 :root {
   /*Light color scheme here:*/
   --light-text-color: #000000;
-  --light-secondary-text-color: #666666;
   --light-contrast-text-color: #ffffff;
 
   --light-bg-color: #ffffff;
@@ -20,7 +19,6 @@
 body {
   /* Color scheme */
   --text-color: var(--light-text-color);
-  --secondary-text-color: var(--light-secondary-text-color);
   --contrast-text-color: var(--light-contrast-text-color);
 
   --bg-color: var(--light-bg-color);
@@ -31,29 +29,33 @@ body {
 
   --secondary-button-bg-color: var(--light-secondary-button-bg-color);
 
-  --contrast-button-bg-color: var(--light-contrast-button-bg-color);
-  --contrast-button-hover-bg-color: var(--light-contrast-button-hover-bg-color);
-
   --primary-border-color: var(--light-primary-border-color);
   --hover-border-color: var(--light-hover-border-color);
 
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   color: var(--text-color);
   background-color: var(--bg-color);
 }
 
-body.dark-mode {
-  /* Color scheme */
-  --text-color: var(--dark-text-color);
-  --secondary-text-color: var(--dark-secondary-text-color);
-  --highlight-text-color: var(--dark-highlight-text-color);
-  --contrast-text-color: var(--dark-contrast-text-color);
+/* button */
+.btn-primary {
+  width: 100%;
+  max-width: 50%;
+  cursor: pointer;
+  background: linear-gradient(
+    to right,
+    var(--secondary-button-bg-color),
+    var(--primary-button-bg-color)
+  );
+  color: white;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  border: 1.5px solid #94a3b8;
+}
 
-  --bg-color: var(--dark-bg-color);
-  --secondary-bg-color: var(--dark-secondary-bg-color);
-  --highlight-bg-color: var(--dark-highlight-bg-color);
-  --contrast-bg-color: var(--dark-contrast-bg-color);
-
-  /* Missing button dark-modes */
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
 }
