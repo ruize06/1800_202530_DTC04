@@ -32,17 +32,17 @@
     <main class="mb-[150px] max-w-[95%] md:max-w-[70%] mx-auto">
         <section class="flex justify-between max-w-[80%] mx-auto mt-[20px]">
 
-            <!-- Friends Tab -->
-            <a class="md:w-1/2 text-center cursor-pointer border-[1.5px] border-slate-400 text-zinc-600 bg-white px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl
-                transition-all duration-300" href="sharepage_Friends.html">Friends
-            </a>
-
             <!-- Groups Tab -->
-            <button class="md:w-1/2 cursor-pointer bg-gradient-to-r from-[#4c3B71] border-[1.5px] border-slate-400
+            <button class="md:w-[200px] cursor-pointer bg-gradient-to-r from-[#4c3B71] border-[1.5px] border-slate-400
                 to-indigo-900 text-white px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl
                 transition-all duration-300">
                 Groups
             </button>
+
+            <!-- Friends Tab -->
+            <a class="md:w-[200px] text-center cursor-pointer border-[1.5px] border-slate-400 text-zinc-600 bg-white px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl
+                transition-all duration-300" href="sharepage_Friends.html">Friends
+            </a>
         </section>
 
         <section>
@@ -72,7 +72,7 @@
 
 
             <!-- Create New Group Button -->
-            <div>
+            <div id="addGroupsBtn">
                 <button class="mt-[30px] flex items-center gap-2 cursor-pointer border-[1.5px] border-slate-400 text-zinc-600 px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl
                     transition-all duration-300 justify-center w-[340px] mx-auto">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
@@ -86,6 +86,22 @@
             </div>
         </section>
     </main>
+
+    <!-- Add Group Popup -->
+    <div id="addGroupsPopup" class="bg-gray-500 p-6 h-[600px] w-full fixed bottom-0 z-10 rounded-t-2xl hidden">
+        <div class="flex items-center justify-between">
+            <h1 class="text-xl font-bold mb-4">Create New Group</h1>
+            <button id="cancelGroupsBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 5 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-x">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M18 6l-12 12" />
+                    <path d="M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    </div>
 
     <!-- Edit Group Popup -->
     <div id="editGroupPopup" class="bg-gray-500 p-6 h-[600px] w-full fixed bottom-0 z-10 rounded-t-2xl hidden">
