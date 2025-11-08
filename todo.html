@@ -52,9 +52,9 @@
 
   <!-- Add task form -->
   <div id="add-task-form-container" tabindex="-1"
-    class="bg-[var(--light-secondary-bg-color)] text-[--text-color] fixed z-2 bottom-0 md:left-1/2 md:-translate-x-1/2 translate-y-full w-full md:max-w-[768px] rounded-t-xl px-8 pb-8 transition-all duration-300">
+    class="bg-[var(--secondary-bg-color)] text-[var(--text-color)] fixed z-2 bottom-0 md:left-1/2 md:-translate-x-1/2 translate-y-full w-full md:max-w-[768px] rounded-t-xl px-8 pb-8 transition-all duration-300">
     <div
-      class="sticky flex flex-row items-center justify-between top-0 bg-inherit py-4 border-b border-[var(--light-primary-border-color)]">
+      class="sticky flex flex-row items-center justify-between top-0 bg-inherit py-4 border-b border-[var(--primary-border-color)]">
       <p class="text-3xl font-bold">Create Your Task</p>
       <!-- Cancel Button -->
       <div id="add-task-form-cancel" class="p-4 rounded-full hover:text-gray-500">
@@ -70,7 +70,7 @@
 
     <!-- Form -->
     <form id="add-task-form"
-      class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none [&_.task-input]:border-[var(--light-primary-border-color)] [&_.task-input]:focus:border-[var(--light-hover-border-color)] max-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both">
+      class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)] max-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both">
       <!-- novalidate> -->
 
       <div class="flex flex-col space-y-4">
@@ -113,9 +113,9 @@
 
   <!-- Edit task form -->
   <div id="edit-task-form-container" tabindex="-1"
-    class="bg-[var(--light-secondary-bg-color)] text-[--light-text-color] fixed z-2 bottom-0 md:left-1/2 md:-translate-x-1/2 translate-y-full w-full md:max-w-[768px] rounded-t-xl px-8 pb-8 transition-all duration-300">
+    class="bg-[var(--secondary-bg-color)] text-[--contrast-text-color] fixed z-2 bottom-0 md:left-1/2 md:-translate-x-1/2 translate-y-full w-full md:max-w-[768px] rounded-t-xl px-8 pb-8 transition-all duration-300">
     <div
-      class="sticky flex flex-row items-center justify-between top-0 bg-inherit py-4 border-b border-[var(--light-primary-border-color)]">
+      class="sticky flex flex-row items-center justify-between top-0 bg-inherit py-4 border-b border-[var(--primary-border-color)]">
       <p class="text-3xl font-bold">Edit Your Task</p>
       <!-- Cancel Button -->
       <div id="edit-task-form-cancel" class="p-4 rounded-full hover:text-gray-500">
@@ -131,7 +131,7 @@
 
     <!-- Form -->
     <form id="edit-task-form"
-      class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none [&_.task-input]:border-[var(--light-primary-border-color)] [&_.task-input]:focus:border-[var(--light-hover-border-color)] max-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both">
+      class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)] max-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both">
       <!-- novalidate> -->
 
       <div class="flex flex-col space-y-4">
