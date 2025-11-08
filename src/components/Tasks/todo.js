@@ -3,14 +3,14 @@ import { onAuthReady } from '/src/authentication.js';
 import { db, auth } from "/src/firebaseConfig.js";
 import { onSnapshot, collection, getDoc, getDocs, addDoc, setDoc, doc, query, where, deleteDoc } from "firebase/firestore";
 
-function hidePopup(popupElement, transitionSpeed=300){
+function hidePopup(popupElement, transitionSpeed = 300) {
     popupElement?.classList.toggle("translate-y-full", true);
     setTimeout(() => {
         popupElement?.classList.toggle("hidden", true);
     }, transitionSpeed);
 }
 
-function showPopup(popupElement){
+function showPopup(popupElement) {
     popupElement?.classList.toggle("hidden", false);
     setTimeout(() => {
         popupElement?.classList.toggle("translate-y-full", false);
@@ -33,7 +33,7 @@ async function addTaskFromForm(event, ownerID) {
     cancelAddTaskForm()
 }
 
-function createAddTaskForm(){
+function createAddTaskForm() {
     var _task_form = document.getElementById("add-task-form");
     var _task_form_container = document.getElementById("add-task-form-container");
     _task_form?.reset();
@@ -41,7 +41,7 @@ function createAddTaskForm(){
     _task_form_container.focus();
 }
 
-function cancelAddTaskForm(){
+function cancelAddTaskForm() {
     var _task_form_container = document.getElementById("add-task-form-container");
     hidePopup(_task_form_container);
 }
@@ -67,7 +67,7 @@ function deleteTaskFromForm(event) {
     cancelEditTaskForm()
 }
 
-function createEditTaskForm(event){
+function createEditTaskForm(event) {
     var _task_form = document.getElementById("edit-task-form");
     var _task_form_container = document.getElementById("edit-task-form-container");
     _task_form?.reset()
@@ -83,12 +83,12 @@ function createEditTaskForm(event){
     _task_form_container.focus();
 }
 
-function cancelEditTaskForm(){
+function cancelEditTaskForm() {
     var _task_form_container = document.getElementById("edit-task-form-container");
     hidePopup(_task_form_container);
 }
 
-function renderTasks (tasks){
+function renderTasks(tasks) {
     // Fetch tasks JSON from server then pass the list into tasks
     // For each task, create a <task-box> element and append it to the task list container
     var task_list = document.getElementById("my-tasks-container");
@@ -97,10 +97,10 @@ function renderTasks (tasks){
         var task_box = document.createElement("task-box");
         task_list.appendChild(task_box);
         task_box.id = task.id
-        onSnapshot(doc(db,"tasks", task.id), (docSnap) => {
+        onSnapshot(doc(db, "tasks", task.id), (docSnap) => {
             if (docSnap.exists()) {
                 task_box = document.getElementById(docSnap.id)
-                
+
                 const edit_task_form_cancel = document.getElementById("edit-task-form-cancel")
                 const edit_task_form_container = document.getElementById("edit-task-form-container")
                 addPopupEventListeners(
@@ -122,7 +122,7 @@ function renderTasks (tasks){
     })
 }
 
-function setup (){
+function setup() {
     const add_button = document.getElementById("add-task-button");
     const add_task_form = document.getElementById("add-task-form");
     const add_task_form_cancel = document.getElementById("add-task-form-cancel");
@@ -131,7 +131,7 @@ function setup (){
     const edit_task_form = document.getElementById("edit-task-form");
     const delete_task_button = edit_task_form["delete"];
 
-    onAuthReady( async (user) => {
+    onAuthReady(async (user) => {
         const searchParams = new URLSearchParams(window.location.search)
         var todoListOwnerID = null;
         console.log(searchParams.get("type"))
@@ -141,15 +141,18 @@ function setup (){
                 break;
             case 'group':
                 todoListOwnerID = localStorage.getItem("todoGroupID");
-                onSnapshot(doc(db, "groups", todoListOwnerID), (docSnap) => {
+                onSnapshot(doc(db, "userprofiles", user.uid, "groups", todoListOwnerID), (docSnap) => {
                     if (docSnap.exists()) {
-                        document.getElementById("topNavTitle").innerText = docSnap.data()["name"] + "'s List";
+                        const editGroup = document.getElementById("editGroup")
+
+                        document.getElementById("topNavTitle").innerText = docSnap.data()["name"];
+                        editGroup.classList.remove('hidden');
                     } else console.warn("Group doesn't exist")
                 })
                 break;
             default:
                 console.warn("No todo type specified")
-            }
+        }
         if (!todoListOwnerID) {
             console.warn("No group ID found");
             window.location.href = "/main.html";
@@ -163,8 +166,8 @@ function setup (){
             createAddTaskForm, cancelAddTaskForm);
         // // Open task form
         // Post task to server when add_task_form is submitted
-        add_task_form?.addEventListener("submit", (e) => {addTaskFromForm(e, todoListOwnerID)});
-        edit_task_form?.addEventListener("submit", (e) => {editTaskFromForm(e, todoListOwnerID)});
+        add_task_form?.addEventListener("submit", (e) => { addTaskFromForm(e, todoListOwnerID) });
+        edit_task_form?.addEventListener("submit", (e) => { editTaskFromForm(e, todoListOwnerID) });
         delete_task_button?.addEventListener("click", deleteTaskFromForm);
         // #end-a
 

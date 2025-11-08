@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         snapshot.forEach(doc => {
             const group = doc.data();
+            const groupId = doc.id;
 
             const groupDiv = document.createElement('div');
             groupDiv.className = "flex items-center bg-gray-200 p-3 rounded-full";
@@ -28,6 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             groupDiv.appendChild(nameTag);
             groupList.appendChild(groupDiv);
+
+            groupDiv.addEventListener('click', () => {
+                localStorage.setItem("todoGroupID", groupId);
+                window.location.href = `/todo.html?type=group`;
+            });
         });
     }
 
