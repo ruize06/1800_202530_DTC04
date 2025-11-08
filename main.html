@@ -1,52 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Web Components -->
     <script type="module" src="/src/app.js"></script>
-    <link href="/src/styles/style.css" rel="stylesheet">
+    <link href="/src/styles/style.css" rel="stylesheet" />
 
     <script type="module" src="/src/components/Navbar/nav-item.js"></script>
     <script type="module" src="/src/components/Navbar/bottom-nav.js"></script>
 
     <title>Orbit - Home</title>
-</head>
+  </head>
 
-<body class="w-[100%] h-[100%]">
+  <body class="w-[100%] h-[100%]">
     <nav class="max-w-7xl mx-auto border-b border-gray-200">
-        <div class="relative flex items-center p-12">
-            <h1 class="absolute left-1/2 -translate-x-1/2 text-2xl font-semibold">
-                Welcome
-            </h1>
-
-            <button type="button"
-                class="absolute right-0 flex items-center justify-center w-12 h-12 rounded-lg text-gray-800 hover:bg-gray-300">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 stroke-current" fill="none"
-                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
-                    <path d="M21 21l-6 -6" />
-                </svg>
-            </button>
-        </div>
+      <div class="relative flex items-center p-12">
+        <h1 class="absolute left-1/2 -translate-x-1/2 text-2xl font-semibold">
+          Welcome
+        </h1>
+      </div>
     </nav>
 
     <div class="max-w-[80%] mx-auto pt-[20px]">
-        <section class="p-1 border-b-[2px] mb-[300px] border-gray-500 text-gray-500">
-            <h1 class="text-2xl">Announcements</h1>
-        </section>
-        <section class="border-b-[2px] border-gray-500 text-gray-500">
-            <h1 class="text-2xl">To-do List</h1>
-        </section>
+      <section
+        class="p-1 border-b-[2px] mb-[300px] border-gray-500 text-gray-500"
+      >
+        <h1 class="text-2xl">Announcements</h1>
+      </section>
+      <section class="border-b-[2px] border-gray-500 text-gray-500">
+        <h1 class="text-2xl">To-do List</h1>
+      </section>
     </div>
     <!-- Bottom Nav -->
     <!-- Background -->
     <!-- #115268 -->
     <!-- Buttons -->
     <!-- Active: gray-300 | Hover: gray-400 | Disabled: gray-500 -->
-    <bottom-nav active=0></bottom-nav>
-</body>
-
+    <bottom-nav active="0"></bottom-nav>
+  </body>
 </html>

@@ -1,98 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="/src/app.js"></script>
+    <link href="/src/styles/style.css" rel="stylesheet" />
 
-  <script type="module" src="/src/app.js"></script>
-  <link href="/src/styles/style.css" rel="stylesheet">
+    <!-- Web Components -->
+    <script type="module" src="/src/components/Navbar/nav-item.js"></script>
+    <script type="module" src="/src/components/Navbar/bottom-nav.js"></script>
 
-  <!-- Web Components -->
-  <script type="module" src="/src/components/Navbar/nav-item.js"></script>
-  <script type="module" src="/src/components/Navbar/bottom-nav.js"></script>
+    <title>Orbit - Profile</title>
+  </head>
 
-  <title>Orbit - Profile</title>
-</head>
-
-<body class="w-full h-full bg-white">
-  <nav class="max-w-7xl mx-auto border-b border-gray-200">
-    <div class="relative flex items-center p-12">
-      <h1 class="absolute left-1/2 -translate-x-1/2 text-2xl font-semibold text-black">
-        Profile
-      </h1>
-
-      <button type="button"
-        class="absolute right-3 flex items-center justify-center w-10 h-10 rounded-lg text-gray-800 hover:bg-[#4c3b71]">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 stroke-black" fill="none"
-          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
-          <path d="M21 21l-6 -6" />
-        </svg>
-      </button>
-    </div>
-  </nav>
-
-  <div class="max-w-[1024px] mx-auto pb-32 px-8 mt-10 md:px-0">
-    <div class="flex flex-col justify-center items-center md:flex-row md:gap-12 w-full">
-      <!-- Profile Card -->
-      <div class="flex flex-col justify-center items-center w-full sm:w-[90%] md:w-72 lg:w-64 md:px-5 mb-6 md:mb-0">
-        <div
-          class="w-full bg-gradient-to-tr from-purple-100 to-purple-200 p-6 rounded-xl shadow-lg flex flex-col justify-center items-center">
-          <img id="profileImage" src="images/person.png" class="w-36 h-36 rounded-full mt-6" />
-
-          <p id="card-username" class="mt-4 font-semibold text-lg">
-            Username
-          </p>
-          <p id="card-email" class="text-sm text-gray-700">Email</p>
-
-          <label for="imageInput"
-            class="cursor-pointer bg-gradient-to-r from-[#4c3B71] border-[1.5px] border-slate-400 to-indigo-900 text-white px-6 py-3 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300 text-sm tracking-wide mt-4">
-            Upload Image
-          </label>
-        </div>
+  <body class="w-full h-full bg-[--bg-color]">
+    <nav class="max-w-7xl mx-auto border-b border-gray-200">
+      <div class="relative flex items-center p-12">
+        <h1
+          class="absolute left-1/2 -translate-x-1/2 text-2xl font-semibold text-[--text-color]"
+        >
+          Profile
+        </h1>
       </div>
+    </nav>
 
-      <!-- Profile Form -->
-      <form class="w-full sm:w-[90%] md:w-96 lg:w-[28rem] bg-gray-50 shadow-md rounded-xl px-6 py-5">
-        <div>
-          <div class="mb-4">
-            <label class="block mb-2 font-semibold" for="username">Username</label>
-            <input id="username" type="text" placeholder="Username"
-              class="block w-full border border-gray-300 rounded px-1 py-2" />
-          </div>
-          <div class="mb-4">
-            <label class="block mb-2 font-semibold" for="pronouns">Pronouns</label>
-            <input id="pronouns" type="text" placeholder="Pronouns"
-              class="block w-full border border-gray-300 rounded px-1 py-2" />
-          </div>
-          <div class="mb-4">
-            <label class="block mb-2 font-semibold" for="email">Email</label>
-            <input id="email" type="text" placeholder="Email"
-              class="block w-full border border-gray-300 rounded px-1 py-2" />
+    <div class="max-w-[1024px] mx-auto pb-32 px-8 mt-10 md:px-0">
+      <div
+        class="flex flex-col justify-center items-center md:flex-row md:gap-12 w-full"
+      >
+        <!-- Profile Card -->
+        <div
+          class="flex flex-col justify-center items-center w-full sm:w-[90%] md:w-72 lg:w-64 md:px-5 mb-6 md:mb-0"
+        >
+          <div
+            class="w-full bg-linear-to-tr from-[var(--secondary-bg-color)] to-[var(--gradient-bg-color)] p-6 rounded-xl shadow-lg flex flex-col justify-center items-center"
+          >
+            <img
+              id="profileImage"
+              src="images/person.png"
+              class="w-36 h-36 rounded-full mt-6"
+            />
+
+            <p id="card-username" class="mt-4 font-semibold text-lg">
+              Username
+            </p>
+            <p id="card-email" class="text-sm text-gray-700">Email</p>
           </div>
         </div>
-        <div class="flex flex-col md:flex-row gap-4 mt-4">
-          <button id="save-btn"
-            class="w-full md:w-1/2 cursor-pointer bg-gradient-to-r from-[#4c3B71] border-[1.5px] border-slate-400 to-indigo-900 text-white px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300">
-            Save Changes
-          </button>
-          <button id="logout-btn"
-            class="w-full md:w-1/2 cursor-pointer bg-gradient-to-r from-[#4c3B71] border-[1.5px] border-slate-400 to-indigo-900 text-white px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300">
-            Log Out
-          </button>
-        </div>
-      </form>
+
+        <!-- Profile Form -->
+        <form
+          class="w-full sm:w-[90%] md:w-96 lg:w-[28rem] bg-gray-50 shadow-md rounded-xl px-6 py-5"
+        >
+          <div>
+            <div class="mb-4">
+              <label class="block mb-2 font-semibold" for="username"
+                >Username</label
+              >
+              <input
+                id="username"
+                type="text"
+                placeholder="Username"
+                class="block w-full border border-gray-300 rounded px-1 py-2"
+              />
+              <p id="error-msg" style="margin-top: 4px; font-size: 0.9em"></p>
+            </div>
+            <div class="mb-4">
+              <label class="block mb-2 font-semibold" for="pronouns"
+                >Pronouns</label
+              >
+              <input
+                id="pronouns"
+                type="text"
+                placeholder="Pronouns"
+                class="block w-full border border-gray-300 rounded px-1 py-2"
+              />
+            </div>
+            <div class="mb-4">
+              <label class="block mb-2 font-semibold" for="email"
+                >Email(Read Only)</label
+              >
+              <input
+                id="email"
+                type="text"
+                placeholder="Email"
+                class="block w-full border border-gray-300 rounded px-1 py-2"
+              />
+            </div>
+          </div>
+          <div class="flex flex-col md:flex-row gap-4 mt-4">
+            <button
+              id="save-btn"
+              class="w-full md:w-1/2 cursor-pointer bg-gradient-to-r from-[var(--light-secondary-button-bg-color)] border-[1.5px] border-slate-400 to-[var(--light-primary-button-bg-color)] text-white px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300"
+            >
+              Save Changes
+            </button>
+            <button
+              id="logout-btn"
+              class="w-full md:w-1/2 cursor-pointer bg-gradient-to-r from-[var(--light-secondary-button-bg-color)] border-[1.5px] border-slate-400 to-[var(--light-primary-button-bg-color)] text-white px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300"
+            >
+              Log Out
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
 
-  <!-- Bottom Nav -->
-  <!-- Background -->
-  <!-- #115268 -->
-  <!-- Buttons -->
-  <!-- Active: gray-300 | Hover: gray-400 | Disabled: gray-500 -->
-  <bottom-nav active="3"></bottom-nav>
-  <script type="module" src="src/components/Profilepage/profile.js"></script>
-</body>
-
+    <!-- Bottom Nav -->
+    <!-- Background -->
+    <!-- #115268 -->
+    <!-- Buttons -->
+    <!-- Active: gray-300 | Hover: gray-400 | Disabled: gray-500 -->
+    <bottom-nav active="3"></bottom-nav>
+    <script type="module" src="src/components/Profilepage/profile.js"></script>
+  </body>
 </html>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <script type="module" src="/src/app.js"></script>
-    <link href="/src/styles/style.css" rel="stylesheet">
+    <link href="/src/styles/style.css" rel="stylesheet" />
 
     <script type="module" src="/src/components/Navbar/nav-item.js"></script>
     <script type="module" src="/src/components/Navbar/bottom-nav.js"></script>
@@ -16,40 +16,31 @@
 <body class="w-[100%] h-[100%]">
     <nav class="max-w-7xl mx-auto border-b border-gray-200">
         <div class="relative flex items-center p-12">
-            <h1 class="absolute left-1/2 -translate-x-1/2 text-2xl font-semibold">
+            <h1 class="absolute left-1/2 -translate-x-1/2 text-2xl font-semibold text-[--text-color]">
                 Share
             </h1>
-            <button type="button"
-                class="absolute right-0 flex items-center justify-center w-12 h-12 rounded-lg text-gray-800 hover:bg-gray-300">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 stroke-current" fill="none"
-                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
-                    <path d="M21 21l-6 -6" />
-                </svg>
-            </button>
         </div>
     </nav>
+
     <main class="mb-[150px] max-w-[95%] md:max-w-[70%] mx-auto">
         <section class="flex justify-between max-w-[80%] mx-auto mt-[20px]">
 
+            <!-- Friends Tab -->
+            <a class="md:w-1/2 text-center cursor-pointer border-[1.5px] border-slate-400 text-zinc-600 bg-white px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl
+                transition-all duration-300" href="sharepage_Friends.html">Friends
+            </a>
+
             <!-- Groups Tab -->
-            <button class="md:w-[200px] cursor-pointer bg-gradient-to-r from-[#4c3B71] border-[1.5px] border-slate-400
+            <button class="md:w-1/2 cursor-pointer bg-gradient-to-r from-[#4c3B71] border-[1.5px] border-slate-400
                 to-indigo-900 text-white px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl
                 transition-all duration-300">
                 Groups
             </button>
-
-            <!-- Friends Tab -->
-            <a class="md:w-[200px] text-center cursor-pointer border-[1.5px] border-slate-400 text-zinc-600 bg-white px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl
-                transition-all duration-300" href="sharepage_Friends.html">Friends
-            </a>
         </section>
 
         <section>
-
             <!-- Group List -->
             <div class="group mb-[20px] p-2 border-zinc-500 border-b-2 font-bold flex justify-between items-center">
-
                 <!-- Group Name -->
                 <h1 class="groupTitle">Group 1</h1>
                 <button class="editGroupBtn">
@@ -70,9 +61,8 @@
                 <div class="bg-slate-300 py-[40px] m-1">profile</div>
             </div>
 
-
             <!-- Create New Group Button -->
-            <div id="addGroupsBtn">
+            <div>
                 <button class="mt-[30px] flex items-center gap-2 cursor-pointer border-[1.5px] border-slate-400 text-zinc-600 px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl
                     transition-all duration-300 justify-center w-[340px] mx-auto">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
@@ -118,22 +108,19 @@
             </button>
         </div>
 
-        <input id="groupNameInput" type="text" class="w-full p-2 border rounded mb-4" placeholder="Group Name">
+        <input id="groupNameInput" type="text" class="w-full p-2 border rounded mb-4" placeholder="Group Name" />
 
         <div></div>
 
         <div class="flex justify-end gap-2">
-            <button class="px-4 py-2 bg-red-800 text-white rounded">
-                Delete
-            </button>
+            <button class="px-4 py-2 bg-red-800 text-white rounded">Delete</button>
             <button id="saveEditBtn" class="px-4 py-2 bg-blue-800 text-white rounded">
                 Submit
             </button>
         </div>
     </div>
 
-
-    <bottom-nav active=2></bottom-nav>
+    <bottom-nav active="2"></bottom-nav>
     <script type="module" src="src/components/Sharepage/edit-group.js"></script>
     <script type="module" src="src/components/Sharepage/add-group.js"></script>
 </body>
