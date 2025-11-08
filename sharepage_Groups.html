@@ -25,44 +25,26 @@
     <main class="mb-[150px] max-w-[95%] md:max-w-[70%] mx-auto">
         <section class="flex justify-between max-w-[80%] mx-auto mt-[20px]">
 
-            <!-- Friends Tab -->
-            <a class="md:w-1/2 text-center cursor-pointer border-[1.5px] border-slate-400 text-zinc-600 bg-white px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl
-                transition-all duration-300" href="sharepage_Friends.html">Friends
-            </a>
-
             <!-- Groups Tab -->
-            <button class="md:w-1/2 cursor-pointer bg-gradient-to-r from-[#4c3B71] border-[1.5px] border-slate-400
+            <button class="md:w-[200px] cursor-pointer bg-gradient-to-r from-[#4c3B71] border-[1.5px] border-slate-400
                 to-indigo-900 text-white px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl
                 transition-all duration-300">
                 Groups
             </button>
+
+            <!-- Friends Tab -->
+            <a class="md:w-[200px] text-center cursor-pointer border-[1.5px] border-slate-400 text-zinc-600 bg-white px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl
+                transition-all duration-300" href="sharepage_Friends.html">Friends
+            </a>
         </section>
 
         <section>
             <!-- Group List -->
-            <div class="group mb-[20px] p-2 border-zinc-500 border-b-2 font-bold flex justify-between items-center">
-                <!-- Group Name -->
-                <h1 class="groupTitle">Group 1</h1>
-                <button class="editGroupBtn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                        stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
-                        <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
-                        <path d="M16 5l3 3" />
-                    </svg>
-                </button>
-            </div>
-            <div class="grid grid-cols-4 md:grid-cols-6 text-center">
-                <div class="bg-slate-300 py-[40px] m-1">profile</div>
-                <div class="bg-slate-300 py-[40px] m-1">profile</div>
-                <div class="bg-slate-300 py-[40px] m-1">profile</div>
-                <div class="bg-slate-300 py-[40px] m-1">profile</div>
-                <div class="bg-slate-300 py-[40px] m-1">profile</div>
-                <div class="bg-slate-300 py-[40px] m-1">profile</div>
+            <div id="groupList" class="my-5 gap-2 p-2 font-bold flex flex-col">
             </div>
 
             <!-- Create New Group Button -->
-            <div>
+            <div id="addGroupBtn">
                 <button class="mt-[30px] flex items-center gap-2 cursor-pointer border-[1.5px] border-slate-400 text-zinc-600 px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl
                     transition-all duration-300 justify-center w-[340px] mx-auto">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
@@ -78,10 +60,10 @@
     </main>
 
     <!-- Add Group Popup -->
-    <div id="addGroupsPopup" class="bg-gray-500 p-6 h-[600px] w-full fixed bottom-0 z-10 rounded-t-2xl hidden">
+    <div id="addGroupPopup" class="bg-gray-500 p-6 h-[600px] w-full fixed bottom-0 z-10 rounded-t-2xl hidden">
         <div class="flex items-center justify-between">
             <h1 class="text-xl font-bold mb-4">Create New Group</h1>
-            <button id="cancelGroupsBtn">
+            <button id="cancelGroupBtn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 5 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="icon icon-tabler icons-tabler-outline icon-tabler-x">
@@ -91,6 +73,16 @@
                 </svg>
             </button>
         </div>
+
+        <input id="addGroupName" type="text" class="w-full p-2 border rounded mb-1" placeholder="Group Name" />
+
+        <div id="noGroupName" class="hidden mb-1">
+            <h1 class="text-red-400">Please enter your group name</h1>
+        </div>
+
+        <button id="saveGroupBtn" class="bg-cyan-500 rounded-full p-2">
+            Submit
+        </button>
     </div>
 
     <!-- Edit Group Popup -->
@@ -109,8 +101,6 @@
         </div>
 
         <input id="groupNameInput" type="text" class="w-full p-2 border rounded mb-4" placeholder="Group Name" />
-
-        <div></div>
 
         <div class="flex justify-end gap-2">
             <button class="px-4 py-2 bg-red-800 text-white rounded">Delete</button>
