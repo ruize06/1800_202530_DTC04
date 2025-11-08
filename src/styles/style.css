@@ -35,8 +35,8 @@ body {
   --primary-border-color: var(--light-primary-border-color);
   --hover-border-color: var(--light-hover-border-color);
 
-  --deactive-border-color: #ddd9f9;
-  --active-border-color: #1d7ece;
+  --deactive-border-color: var(--light-deactive-border-color);
+  --active-border-color: var(--light-active-border-color);
 
   color: var(--text-color);
   background-color: var(--bg-color);
