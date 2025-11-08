@@ -164,7 +164,7 @@ function setup (){
         // // Open task form
         // Post task to server when add_task_form is submitted
         add_task_form?.addEventListener("submit", (e) => {addTaskFromForm(e, todoListOwnerID)});
-        edit_task_form?.addEventListener("submit", editTaskFromForm);
+        edit_task_form?.addEventListener("submit", (e) => {editTaskFromForm(e, todoListOwnerID)});
         delete_task_button?.addEventListener("click", deleteTaskFromForm);
         // #end-a
 
