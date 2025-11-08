@@ -1,291 +1,188 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full p-0 m-0 box-border">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <script type="module" src="/src/app.js"></script>
-    <link href="/src/styles/style.css" rel="stylesheet" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Web Components -->
-    <script type="module" src="/src/components/Navbar/nav-item.js"></script>
-    <script type="module" src="/src/components/Navbar/bottom-nav.js"></script>
-    <script type="module" src="/src/components/Tasks/task-box.js"></script>
+  <script type="module" src="/src/app.js"></script>
+  <link href="/src/styles/style.css" rel="stylesheet" />
 
-    <!-- Scripts -->
-    <script defer type="module" src="/src/components/Tasks/todo.js"></script>
+  <!-- Web Components -->
+  <script type="module" src="/src/components/Navbar/nav-item.js"></script>
+  <script type="module" src="/src/components/Navbar/bottom-nav.js"></script>
+  <script type="module" src="/src/components/Tasks/task-box.js"></script>
 
-    <title>Orbit - To-Do</title>
-  </head>
+  <!-- Scripts -->
+  <script defer type="module" src="/src/components/Tasks/todo.js"></script>
 
-  <body class="w-full h-full p-0 m-0 overflow-x-hidden">
-    <!-- Top Nav -->
-    <nav class="max-w-7xl mx-auto border-b border-gray-200">
-      <div class="relative flex items-center p-12">
-        <h1
-          class="absolute left-1/2 -translate-x-1/2 text-2xl font-semibold text-[--text-color]"
-        >
-          Your Tasks
-        </h1>
-      </div>
-    </nav>
+  <title>Orbit - To-Do</title>
+</head>
 
-    <!-- Main -->
-    <main class="max-w-[758px] h-full mx-auto">
-      <!-- Tasks -->
-      <div id="my-tasks-container" class="flex flex-col px-8 pt-8 pb-28 gap-8">
-        <!-- Tasks dynamically added here -->
-      </div>
-    </main>
+<body class="w-full h-full p-0 m-0 overflow-x-hidden">
+  <!-- Top Nav -->
+  <nav class="max-w-7xl mx-auto border-b border-gray-200">
+    <div class="relative flex items-center p-12">
+      <h1 id="topNavTitle" class="absolute left-1/2 -translate-x-1/2 text-2xl font-semibold text-[--text-color]">
+        Your Tasks
+      </h1>
+    </div>
+  </nav>
 
-    <!-- #a Add New Task -->
-    <!-- Add task button -->
-    <div class="fixed bottom-36 right-8 md:right-[8vw] z-1">
-      <button
-        id="add-task-button"
-        class="w-16 h-16 hover:scale-105 active:scale-120 shadow-lg hover:shadow-xl bg-[var(--light-primary-button-bg-color)] hover:bg-[var(--light-secondary-button-bg-color)] text-white rounded-full flex items-center justify-center transition-all duration-250"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          class="w-8 h-8 stroke-current"
-          fill="none"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <line x1="12" y1="5" x2="12" y2="19"></line>
-          <line x1="5" y1="12" x2="19" y2="12"></line>
+  <!-- Main -->
+  <main class="max-w-[758px] h-full mx-auto">
+    <!-- Tasks -->
+    <div id="my-tasks-container" class="flex flex-col px-8 pt-8 pb-28 gap-8">
+      <!-- Tasks dynamically added here -->
+    </div>
+  </main>
+
+  <!-- #a Add New Task -->
+  <!-- Add task button -->
+  <div class="fixed bottom-36 right-8 md:right-[8vw] z-1">
+    <button id="add-task-button"
+      class="w-16 h-16 hover:scale-105 active:scale-120 shadow-lg hover:shadow-xl bg-[var(--light-primary-button-bg-color)] hover:bg-[var(--light-secondary-button-bg-color)] text-white rounded-full flex items-center justify-center transition-all duration-250">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8 stroke-current" fill="none"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Add task form -->
+  <div id="add-task-form-container" tabindex="-1"
+    class="bg-[var(--light-secondary-bg-color)] text-[--text-color] fixed z-2 bottom-0 md:left-1/2 md:-translate-x-1/2 translate-y-full w-full md:max-w-[768px] rounded-t-xl px-8 pb-8 transition-all duration-300">
+    <div
+      class="sticky flex flex-row items-center justify-between top-0 bg-inherit py-4 border-b border-[var(--light-primary-border-color)]">
+      <p class="text-3xl font-bold">Create Your Task</p>
+      <!-- Cancel Button -->
+      <div id="add-task-form-cancel" class="p-4 rounded-full hover:text-gray-500">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-x">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M18 6l-12 12" />
+          <path d="M6 6l12 12" />
         </svg>
-      </button>
+      </div>
     </div>
 
-    <!-- Add task form -->
-    <div
-      id="add-task-form-container"
-      tabindex="-1"
-      class="bg-[var(--light-secondary-bg-color)] text-[--text-color] fixed z-2 bottom-0 md:left-1/2 md:-translate-x-1/2 translate-y-full w-full md:max-w-[768px] rounded-t-xl px-8 pb-8 transition-all duration-300"
-    >
-      <div
-        class="sticky flex flex-row items-center justify-between top-0 bg-inherit py-4 border-b border-[var(--light-primary-border-color)]"
-      >
-        <p class="text-3xl font-bold">Create Your Task</p>
-        <!-- Cancel Button -->
-        <div
-          id="add-task-form-cancel"
-          class="p-4 rounded-full hover:text-gray-500"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="icon icon-tabler icons-tabler-outline icon-tabler-x"
-          >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M18 6l-12 12" />
-            <path d="M6 6l12 12" />
-          </svg>
+    <!-- Form -->
+    <form id="add-task-form"
+      class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none [&_.task-input]:border-[var(--light-primary-border-color)] [&_.task-input]:focus:border-[var(--light-hover-border-color)] max-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both">
+      <!-- novalidate> -->
+
+      <div class="flex flex-col space-y-4">
+        <!-- Group/User -->
+        <!-- Title -->
+        <div class="flex flex-col gap-2">
+          <label for="title">Title</label>
+          <input class="task-input border-b text-xl" type="text" name="title" placeholder="Give your task a title"
+            maxlength="64" required />
+        </div>
+        <!-- Color -->
+        <div class="flex flex-col gap-2">
+          <label for="color">Color</label>
+          <input class="task-input border rounded-full p-0 h-12 w-24 [&::-webkit-color-swatch]:rounded-full"
+            type="color" name="color" value="#4bf3c0" />
+        </div>
+        <!-- Description -->
+        <div class="flex flex-col gap-2">
+          <label for="description">Description (optional)</label>
+          <textarea class="task-input border resize-none rounded-xl" name="description" placeholder="Add more details"
+            rows="6" cols="30"></textarea>
+        </div>
+        <!-- Date -->
+        <div class="flex flex-col gap-2 max-w-fit">
+          <label for="date">Date (optional)</label>
+          <input class="task-input border rounded-xl [&::-webkit-calendar-picker-indicator]" type="date" name="date" />
+        </div>
+        <!-- Time -->
+        <div class="flex flex-col gap-2 max-w-fit">
+          <label for="time">Time (optional)</label>
+          <input class="task-input border rounded-xl [&::-webkit-calendar-picker-indicator]" type="time" name="time" />
         </div>
       </div>
 
-      <!-- Form -->
-      <form
-        id="add-task-form"
-        class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none [&_.task-input]:border-[var(--light-primary-border-color)] [&_.task-input]:focus:border-[var(--light-hover-border-color)] max-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both"
-      >
-        <!-- novalidate> -->
+      <!-- Submit Button -->
+      <input type="submit" name="submit" placeholder="Save"
+        class="text-xl text-white max-w-fit px-6 py-3 float-right clear-both rounded-full bg-[var(--primary-button-bg-color)] hover:bg-[var(--secondary-button-bg-color)] hover:scale-105 active:scale-120" />
+    </form>
+  </div>
 
-        <div class="flex flex-col space-y-4">
-          <!-- Group/User -->
-          <!-- Title -->
-          <div class="flex flex-col gap-2">
-            <label for="title">Title</label>
-            <input
-              class="task-input border-b text-xl"
-              type="text"
-              name="title"
-              placeholder="Give your task a title"
-              maxlength="64"
-              required
-            />
-          </div>
-          <!-- Color -->
-          <div class="flex flex-col gap-2">
-            <label for="color">Color</label>
-            <input
-              class="task-input border rounded-full p-0 h-12 w-24 [&::-webkit-color-swatch]:rounded-full"
-              type="color"
-              name="color"
-              value="#4bf3c0"
-            />
-          </div>
-          <!-- Description -->
-          <div class="flex flex-col gap-2">
-            <label for="description">Description (optional)</label>
-            <textarea
-              class="task-input border resize-none rounded-xl"
-              name="description"
-              placeholder="Add more details"
-              rows="6"
-              cols="30"
-            ></textarea>
-          </div>
-          <!-- Date -->
-          <div class="flex flex-col gap-2 max-w-fit">
-            <label for="date">Date (optional)</label>
-            <input
-              class="task-input border rounded-xl [&::-webkit-calendar-picker-indicator]"
-              type="date"
-              name="date"
-            />
-          </div>
-          <!-- Time -->
-          <div class="flex flex-col gap-2 max-w-fit">
-            <label for="time">Time (optional)</label>
-            <input
-              class="task-input border rounded-xl [&::-webkit-calendar-picker-indicator]"
-              type="time"
-              name="time"
-            />
-          </div>
-        </div>
-
-        <!-- Submit Button -->
-        <input
-          type="submit"
-          name="submit"
-          placeholder="Save"
-          class="text-xl text-white max-w-fit px-6 py-3 float-right clear-both rounded-full bg-[var(--primary-button-bg-color)] hover:bg-[var(--secondary-button-bg-color)] hover:scale-105 active:scale-120"
-        />
-      </form>
+  <!-- Edit task form -->
+  <div id="edit-task-form-container" tabindex="-1"
+    class="bg-[var(--light-secondary-bg-color)] text-[--light-text-color] fixed z-2 bottom-0 md:left-1/2 md:-translate-x-1/2 translate-y-full w-full md:max-w-[768px] rounded-t-xl px-8 pb-8 transition-all duration-300">
+    <div
+      class="sticky flex flex-row items-center justify-between top-0 bg-inherit py-4 border-b border-[var(--light-primary-border-color)]">
+      <p class="text-3xl font-bold">Edit Your Task</p>
+      <!-- Cancel Button -->
+      <div id="edit-task-form-cancel" class="p-4 rounded-full hover:text-gray-500">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-x">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M18 6l-12 12" />
+          <path d="M6 6l12 12" />
+        </svg>
+      </div>
     </div>
 
-    <!-- Edit task form -->
-    <div
-      id="edit-task-form-container"
-      tabindex="-1"
-      class="bg-[var(--light-secondary-bg-color)] text-[--light-text-color] fixed z-2 bottom-0 md:left-1/2 md:-translate-x-1/2 translate-y-full w-full md:max-w-[768px] rounded-t-xl px-8 pb-8 transition-all duration-300"
-    >
-      <div
-        class="sticky flex flex-row items-center justify-between top-0 bg-inherit py-4 border-b border-[var(--light-primary-border-color)]"
-      >
-        <p class="text-3xl font-bold">Edit Your Task</p>
-        <!-- Cancel Button -->
-        <div
-          id="edit-task-form-cancel"
-          class="p-4 rounded-full hover:text-gray-500"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="icon icon-tabler icons-tabler-outline icon-tabler-x"
-          >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M18 6l-12 12" />
-            <path d="M6 6l12 12" />
-          </svg>
+    <!-- Form -->
+    <form id="edit-task-form"
+      class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none [&_.task-input]:border-[var(--light-primary-border-color)] [&_.task-input]:focus:border-[var(--light-hover-border-color)] max-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both">
+      <!-- novalidate> -->
+
+      <div class="flex flex-col space-y-4">
+        <!-- Group/User -->
+        <!-- Title -->
+        <div class="flex flex-col gap-2">
+          <label for="title">Title</label>
+          <input class="task-input border-b text-xl" type="text" name="title" placeholder="Give your task a title"
+            maxlength="64" required />
+        </div>
+        <!-- Color -->
+        <div class="flex flex-col gap-2">
+          <label for="color">Color</label>
+          <input class="task-input border rounded-full p-0 h-12 w-24 [&::-webkit-color-swatch]:rounded-full"
+            type="color" name="color" value="#4bf3c0" />
+        </div>
+        <!-- Description -->
+        <div class="flex flex-col gap-2">
+          <label for="description">Description</label>
+          <textarea class="task-input border resize-none rounded-xl" name="description" placeholder="Add more details"
+            rows="3" cols="30" maxlength="1024"></textarea>
+        </div>
+        <!-- Date -->
+        <div class="flex flex-col gap-2 max-w-fit">
+          <label for="date">Date</label>
+          <input class="task-input border rounded-xl [&::-webkit-calendar-picker-indicator]" type="date" name="date" />
+        </div>
+        <!-- Time -->
+        <div class="flex flex-col gap-2 max-w-fit">
+          <label for="time">Time</label>
+          <input class="task-input border rounded-xl [&::-webkit-calendar-picker-indicator]" type="time" name="time" />
+        </div>
+
+        <!-- Submit buttons -->
+        <div class="flex flex-row justify-between">
+          <!-- Delete Button -->
+          <input name="delete" type="button"
+            class="text-xl max-w-fit px-6 py-3 rounded-full text-white bg-[#921f3c] hover:bg-[var(--secondary-button-bg-color)] hover:scale-105 active:scale-120"
+            value="Delete" />
+
+          <!-- Submit Button -->
+          <input type="submit" name="submit" placeholder="Save"
+            class="text-xl max-w-fit px-6 py-3 rounded-full text-white bg-[var(--primary-button-bg-color)] hover:bg-[var(--secondary-button-bg-color)] hover:scale-105 active:scale-120" />
         </div>
       </div>
+    </form>
+  </div>
+  <!-- #end-a -->
 
-      <!-- Form -->
-      <form
-        id="edit-task-form"
-        class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none [&_.task-input]:border-[var(--light-primary-border-color)] [&_.task-input]:focus:border-[var(--light-hover-border-color)] max-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both"
-      >
-        <!-- novalidate> -->
+  <!-- Bottom Nav -->
+  <bottom-nav active="1"></bottom-nav>
+</body>
 
-        <div class="flex flex-col space-y-4">
-          <!-- Group/User -->
-          <!-- Title -->
-          <div class="flex flex-col gap-2">
-            <label for="title">Title</label>
-            <input
-              class="task-input border-b text-xl"
-              type="text"
-              name="title"
-              placeholder="Give your task a title"
-              maxlength="64"
-              required
-            />
-          </div>
-          <!-- Color -->
-          <div class="flex flex-col gap-2">
-            <label for="color">Color</label>
-            <input
-              class="task-input border rounded-full p-0 h-12 w-24 [&::-webkit-color-swatch]:rounded-full"
-              type="color"
-              name="color"
-              value="#4bf3c0"
-            />
-          </div>
-          <!-- Description -->
-          <div class="flex flex-col gap-2">
-            <label for="description">Description</label>
-            <textarea
-              class="task-input border resize-none rounded-xl"
-              name="description"
-              placeholder="Add more details"
-              rows="3"
-              cols="30"
-              maxlength="1024"
-            ></textarea>
-          </div>
-          <!-- Date -->
-          <div class="flex flex-col gap-2 max-w-fit">
-            <label for="date">Date</label>
-            <input
-              class="task-input border rounded-xl [&::-webkit-calendar-picker-indicator]"
-              type="date"
-              name="date"
-            />
-          </div>
-          <!-- Time -->
-          <div class="flex flex-col gap-2 max-w-fit">
-            <label for="time">Time</label>
-            <input
-              class="task-input border rounded-xl [&::-webkit-calendar-picker-indicator]"
-              type="time"
-              name="time"
-            />
-          </div>
-
-          <!-- Submit buttons -->
-          <div class="flex flex-row justify-between">
-            <!-- Delete Button -->
-            <input
-              name="delete"
-              type="button"
-              class="text-xl max-w-fit px-6 py-3 rounded-full text-white bg-[#921f3c] hover:bg-[var(--secondary-button-bg-color)] hover:scale-105 active:scale-120"
-              value="Delete"
-            />
-
-            <!-- Submit Button -->
-            <input
-              type="submit"
-              name="submit"
-              placeholder="Save"
-              class="text-xl max-w-fit px-6 py-3 rounded-full text-white bg-[var(--primary-button-bg-color)] hover:bg-[var(--secondary-button-bg-color)] hover:scale-105 active:scale-120"
-            />
-          </div>
-        </div>
-      </form>
-    </div>
-    <!-- #end-a -->
-
-    <!-- Bottom Nav -->
-    <bottom-nav active="1"></bottom-nav>
-  </body>
 </html>
