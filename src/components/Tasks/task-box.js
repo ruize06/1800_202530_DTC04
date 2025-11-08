@@ -21,8 +21,7 @@ class TaskBox extends HTMLElement{
             <div
                 class="task-box shadow-lg flex flex-row justify-between max-w-full max-h-fit hover:scale-105 hover:[&_.task-description]:inline rounded-xl p-4 transition-transform duration-250">
 
-                <div class="task-description-container flex flex-row items-center space-x-4 max-w-[70%]">
-
+                <div class="task-description-container flex flex-row space-x-4 max-w-[70%]">
                     <div class="task-icon-container flex-none">
                     </div>
 

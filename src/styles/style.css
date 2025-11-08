@@ -2,8 +2,8 @@
 
 :root {
   /*Light color scheme here:*/
-  --light-text-color: #000000;
-  --light-contrast-text-color: #ffffff;
+  --light-text-color: #115268;
+  --light-contrast-text-color: #eaf7fe;
 
   --light-bg-color: #ffffff;
   --light-secondary-bg-color: #eaf7fe;
@@ -13,7 +13,10 @@
   --light-secondary-button-bg-color: #483e74;
 
   --light-primary-border-color: #1d7ece;
-  --light-hover-border-color: #142855;
+  --light-hover-border-color: #483e74;
+
+  --light-deactive-border-color: #ddd9f9;
+  --light-active-border-color: #1d7ece;
 }
 
 body {
@@ -31,6 +34,9 @@ body {
 
   --primary-border-color: var(--light-primary-border-color);
   --hover-border-color: var(--light-hover-border-color);
+
+  --deactive-border-color: var(--light-deactive-border-color);
+  --active-border-color: var(--light-active-border-color);
 
   color: var(--text-color);
   background-color: var(--bg-color);

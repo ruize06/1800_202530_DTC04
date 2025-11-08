@@ -17,20 +17,18 @@ function showPopup(popupElement){
     }, 0);
 }
 
-function addTaskFromForm(event) {
+async function addTaskFromForm(event, ownerID) {
     event.preventDefault();
     var task_details = new FormData(event.target);
     task_details = Object.fromEntries([...task_details.entries()]);
     // task_details.description = document.getElementsByName("description")[0].value.replace(/\n/g, '<br>')
 
-    task_details.userID = auth.currentUser.uid
+    task_details.ownerID = ownerID
 
     const tasks_collection = collection(db, "tasks")
-    addDoc(tasks_collection, task_details)
-        .then( async (docref) => {
-            const doc = await getDoc(docref);
-            renderTasks([doc]);
-        })
+    const docref = await addDoc(tasks_collection, task_details)
+    const doc = await getDoc(docref);
+    renderTasks([doc]);
 
     cancelAddTaskForm()
 }
@@ -48,12 +46,12 @@ function cancelAddTaskForm(){
     hidePopup(_task_form_container);
 }
 
-function editTaskFromForm(event) {
+function editTaskFromForm(event, ownerID) {
     event.preventDefault();
     var task_details = new FormData(event.target);
     task_details = Object.fromEntries([...task_details.entries()]);
     // task_details.description = document.getElementsByName("description")[0].value.replace(/\n/g, '<br>')
-    task_details.userID = auth.currentUser.uid
+    task_details.ownerID = ownerID
 
     const task_doc = doc(db, "tasks", event.target.taskID)
     setDoc(task_doc, task_details)
@@ -133,11 +131,30 @@ function setup (){
     const edit_task_form = document.getElementById("edit-task-form");
     const delete_task_button = edit_task_form["delete"];
 
-    // #todo
-    // TODO Get task list from server
-    
     onAuthReady( async (user) => {
-        const tasks_q = query(collection(db, "tasks"), where("userID", "==", user.uid));
+        const searchParams = new URLSearchParams(window.location.search)
+        var todoListOwnerID = null;
+        console.log(searchParams.get("type"))
+        switch (searchParams.get("type")) {
+            case 'user':
+                todoListOwnerID = user.uid;
+                break;
+            case 'group':
+                todoListOwnerID = localStorage.getItem("todoGroupID");
+                onSnapshot(doc(db, "groups", todoListOwnerID), (docSnap) => {
+                    if (docSnap.exists()) {
+                        document.getElementById("topNavTitle").innerText = docSnap.data()["name"] + "'s List";
+                    } else console.warn("Group doesn't exist")
+                })
+                break;
+            default:
+                console.warn("No todo type specified")
+            }
+        if (!todoListOwnerID) {
+            console.warn("No group ID found");
+            window.location.href = "/main.html";
+        }
+        const tasks_q = query(collection(db, "tasks"), where("ownerID", "==", todoListOwnerID));
         var tasks = await getDocs(tasks_q)
 
         // #a Event listeners
@@ -146,11 +163,13 @@ function setup (){
             createAddTaskForm, cancelAddTaskForm);
         // // Open task form
         // Post task to server when add_task_form is submitted
-        add_task_form?.addEventListener("submit", addTaskFromForm);
-        edit_task_form?.addEventListener("submit", editTaskFromForm);
+        add_task_form?.addEventListener("submit", (e) => {addTaskFromForm(e, todoListOwnerID)});
+        edit_task_form?.addEventListener("submit", (e) => {editTaskFromForm(e, todoListOwnerID)});
         delete_task_button?.addEventListener("click", deleteTaskFromForm);
         // #end-a
 
+        // #a Render tasks to the task list
+        renderTasks(tasks);
         // #todo Example JSON for a task
         // {
         //     title: "Example task",
@@ -162,8 +181,6 @@ function setup (){
         // };
         // #end-todo
 
-        // #a Render tasks to the task list
-        renderTasks(tasks);
     });
 }
 
