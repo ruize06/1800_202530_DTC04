@@ -134,6 +134,7 @@ function setup (){
     onAuthReady( async (user) => {
         const searchParams = new URLSearchParams(window.location.search)
         var todoListOwnerID = null;
+        console.log(searchParams.get("type"))
         switch (searchParams.get("type")) {
             case 'user':
                 todoListOwnerID = user.uid;
@@ -142,8 +143,7 @@ function setup (){
                 todoListOwnerID = localStorage.getItem("todoGroupID");
                 onSnapshot(doc(db, "groups", todoListOwnerID), (docSnap) => {
                     if (docSnap.exists()) {
-                        task_box = document.getElementById(docSnap.id);
-                        document.getElementById("topNavTitle").innerText = docSnap.data("name") + "'s List";
+                        document.getElementById("topNavTitle").innerText = docSnap.data()["name"] + "'s List";
                     } else console.warn("Group doesn't exist")
                 })
                 break;
