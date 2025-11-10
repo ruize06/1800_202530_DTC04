@@ -24,7 +24,7 @@
 <body class="w-full h-full p-0 m-0 overflow-x-hidden">
   <!-- Top Nav -->
   <nav class="max-w-7xl mx-auto border-b border-gray-200">
-    <div class="relative flex items-center p-12">
+    <div class="relative flex items-center p-8">
       <h1 id="topNavTitle" class="absolute left-1/2 -translate-x-1/2 text-2xl font-semibold text-[--text-color]">
         Your Tasks
       </h1>
@@ -129,7 +129,9 @@
         class="text-xl text-white max-w-fit px-6 py-3 float-right clear-both rounded-full bg-[var(--primary-button-bg-color)] hover:bg-[var(--secondary-button-bg-color)] hover:scale-105 active:scale-120" />
     </form>
   </div>
+  <!-- #end-a -->
 
+  <!-- #a -->
   <!-- Edit task form -->
   <div id="edit-task-form-container" tabindex="-1"
     class="bg-[var(--secondary-bg-color)] outline-none **:focus:outline-none text-[--contrast-text-color] fixed z-2 bottom-0 md:left-1/2 md:-translate-x-1/2 translate-y-full w-full md:max-w-[768px] rounded-t-xl px-8 pb-8 transition-all duration-300">
@@ -152,7 +154,7 @@
     <form id="edit-task-form"
       class="
             [&_label]:font-bold [&_label]:text-xl
-            [&_.task-input]:p-2 [&_.task-input]:border-gray-200/50 [&_.task-input]:focus:border-gray-100
+            [&_.task-input]:p-2 [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)]
             max-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both">
       <!-- novalidate> -->
 
@@ -193,12 +195,54 @@
         <div class="flex flex-row justify-between">
           <!-- Delete Button -->
           <input name="delete" type="button"
-            class="text-xl max-w-fit px-6 py-3 rounded-full bg-red-500 hover:bg-red-600 hover:scale-105 active:scale-120"
+            class="text-xl text-[var(--contrast-text-color)] max-w-fit px-6 py-3 rounded-full bg-red-500 hover:bg-red-600 hover:scale-105 active:scale-120"
             value="Delete">
 
           <!-- Submit Button -->
           <input type="submit" name="submit" placeholder="Save"
-            class="text-xl max-w-fit px-6 py-3 rounded-full bg-[#a17afc] hover:bg-[#9878e1] hover:scale-105 active:scale-120">
+            class="text-xl text-[var(--contrast-text-color)] max-w-fit px-6 py-3 rounded-full bg-[var(--primary-button-bg-color)] hover:bg-[var(--primary-button-bg-color)] hover:scale-105 active:scale-120">
+        </div>
+      </div>
+    </form>
+
+  </div>
+  <!-- #end-a -->
+
+  <!-- #a -->
+  <!-- Share task form -->
+  <div id="share-task-form-container" tabindex="-1"
+    class="bg-[var(--secondary-bg-color)] outline-none **:focus:outline-none text-[--contrast-text-color] fixed z-2 bottom-0 md:left-1/2 md:-translate-x-1/2 translate-y-full w-full md:max-w-[768px] rounded-t-xl px-8 pb-8 transition-all duration-300">
+    <div
+      class="sticky flex flex-row items-center justify-between top-0 bg-inherit py-4 border-b border-[var(--primary-border-color)]">
+      <p class="text-3xl font-bold">Share Task</p>
+      <!-- Cancel Button -->
+      <div id="share-task-form-cancel" class="p-4 rounded-full hover:text-gray-500">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-x">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M18 6l-12 12" />
+          <path d="M6 6l12 12" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <form id="share-task-form"
+      class="
+            [&_label]:font-bold [&_label]:text-xl
+            [&_.task-input]:p-2 [&_.task-input]:border-gray-200/50 [&_.task-input]:focus:border-gray-100
+            max-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both">
+      <!-- novalidate> -->
+
+      <div class="flex flex-col space-y-4">
+        <!-- Group/User -->
+        <!-- Title -->
+        <!-- Submit buttons -->
+        <div class="flex flex-row justify-between">
+          <!-- Submit Button -->
+          <input type="submit" name="submit" placeholder="Send"
+            class="text-xl max-w-fit px-6 py-3 rounded-full bg-[var(--primary-button-bg-color)] hover:bg-[var(--secondary-button-bg-color)] hover:scale-105 active:scale-120">
         </div>
       </div>
     </form>

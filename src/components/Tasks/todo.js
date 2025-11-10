@@ -3,6 +3,8 @@ import { onAuthReady } from '/src/authentication.js';
 import { db, auth } from "/src/firebaseConfig.js";
 import { onSnapshot, collection, getDoc, getDocs, addDoc, setDoc, doc, query, where, deleteDoc } from "firebase/firestore";
 
+import { createShareTaskForm, cancelShareTaskForm } from '/src/components/Tasks/share-task.js';
+
 function hidePopup(popupElement, transitionSpeed = 300) {
     popupElement?.classList.toggle("translate-y-full", true);
     setTimeout(() => {
@@ -104,8 +106,13 @@ function renderTasks(tasks) {
                 const edit_task_form_cancel = document.getElementById("edit-task-form-cancel")
                 const edit_task_form_container = document.getElementById("edit-task-form-container")
                 addPopupEventListeners(
-                    task_box, edit_task_form_cancel, edit_task_form_container,
+                    task_box.getElementsByClassName("task-box")[0], edit_task_form_cancel, edit_task_form_container,
                     createEditTaskForm, cancelEditTaskForm);
+                const share_task_form_cancel = document.getElementById("share-task-form-cancel")
+                const share_task_form_container = document.getElementById("share-task-form-container")
+                addPopupEventListeners(
+                    task_box.getElementsByClassName("share-icon")[0], share_task_form_cancel, share_task_form_container,
+                    createShareTaskForm, cancelShareTaskForm);
 
                 var taskJSON = docSnap.data();
 
@@ -141,13 +148,12 @@ function setup() {
                 break;
             case 'group':
                 todoListOwnerID = localStorage.getItem("todoGroupID");
-                onSnapshot(doc(db, "groups", todoListOwnerID), (docSnap) => {
+                onSnapshot(doc(db, "userprofiles", user.uid, "groups", todoListOwnerID), (docSnap) => {
                     if (docSnap.exists()) {
                         const editGroup = document.getElementById("editGroup")
-                        const addMember = document.getElementById("addMember")
+
                         document.getElementById("topNavTitle").innerText = docSnap.data()["name"];
                         editGroup.classList.remove('hidden');
-                        addMember.classList.remove('hidden');
                     } else console.warn("Group doesn't exist")
                 })
                 break;
