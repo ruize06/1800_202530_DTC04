@@ -15,6 +15,8 @@
 
   <!-- Scripts -->
   <script defer type="module" src="/src/components/Tasks/todo.js"></script>
+  <script defer type="module" src="/src/components/Sharepage/edit-group.js"></script>
+  <script defer type="module" src="/src/components/Sharepage/add-member.js"></script>
 
   <title>Orbit - To-Do</title>
 </head>
@@ -26,9 +28,18 @@
       <h1 id="topNavTitle" class="absolute left-1/2 -translate-x-1/2 text-2xl font-semibold text-[--text-color]">
         Your Tasks
       </h1>
+      <button id="addMember" class="mr-auto hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 -2 24 24" fill="none" stroke="#115268"
+          stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+          <path d="M16 19h6" />
+          <path d="M19 16v6" />
+          <path d="M6 21v-2a4 4 0 0 1 4 -4h4" />
+        </svg>
+      </button>
       <button id="editGroup" class="ml-auto hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000000"
-          stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 -2 24 24" fill="none" stroke="#115268"
+          stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
           <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
           <path d="M16 5l3 3" />
@@ -188,6 +199,83 @@
     </form>
   </div>
   <!-- #end-a -->
+
+  <!-- Edit Group Popup -->
+  <div id="editGroupPopup" class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full md:max-w-[768px]
+            bg-[var(--secondary-bg-color)] text-[var(--text-color)] rounded-t-xl px-8 pb-8 shadow-lg
+            translate-y-full h-[680px] transition-transform duration-300 z-10 ease-in-out hidden">
+    <div
+      class="sticky flex flex-row items-center justify-between top-0 bg-inherit py-4 border-b border-[var(--primary-border-color)]">
+      <p class="text-3xl font-bold">Edit Group</p>
+      <!-- Cancel Button -->
+      <div id="cancelEditBtn" class="p-4 rounded-full hover:text-gray-500">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M18 6l-12 12" />
+          <path d="M6 6l12 12" />
+        </svg>
+      </div>
+    </div>
+    <form
+      class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)] max-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both">
+      <div class="flex flex-col gap-2 mb-4">
+        <label for="title">Group Name</label>
+        <div class="flex justify-between">
+          <input id="groupNameInput" class="task-input border-b text-xl w-[80%]" type="text" name="title"
+            placeholder="Change your group name" maxlength="64" />
+          <button id="saveEditBtn" type="button"
+            class="px-6 rounded-full bg-[var(--primary-button-bg-color)] text-white hover:bg-[var(--secondary-button-bg-color)]">
+            Save
+          </button>
+        </div>
+      </div>
+
+      <!-- Group Members List -->
+      <div class="flex items-center justify-between mb-4">
+        <h1 class="text-xl font-bold">Group Members</h1>
+      </div>
+
+      <ul id="groupMembersList"
+        class="space-y-2 h-[300px] overflow-y-scroll mb-4 border p-3 rounded border-[var(--deactive-border-color)]">
+      </ul>
+
+      <button id="leaveGroup" type="button"
+        class="bg-[#921f3c] hover:bg-[var(--secondary-button-bg-color)] text-white p-2 w-full rounded-full mt-3">
+        Leave group
+      </button>
+    </form>
+  </div>
+
+  <!-- Add Member Popup -->
+  <div id="addMemberPopup" class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full md:max-w-[768px]
+            bg-[var(--secondary-bg-color)] text-[var(--text-color)] rounded-t-xl px-8 pb-8 shadow-lg
+            translate-y-full transition-transform h-[680px] duration-300 z-10 ease-in-out hidden">
+    <div
+      class="sticky flex flex-row items-center justify-between top-0 bg-inherit py-4 border-b border-[var(--primary-border-color)]">
+      <p class="text-3xl font-bold">Add a New Member</p>
+
+      <div id="cancelBtn" class="p-4 rounded-full hover:text-gray-500">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M18 6l-12 12" />
+          <path d="M6 6l12 12" />
+        </svg>
+      </div>
+    </div>
+
+    <div class="max-h-[60vh] overflow-y-scroll p-8">
+      <input type="text" id="searchInput" placeholder="Add a new member"
+        class="w-full p-2 mb-4 rounded bg-gray-700 text-white placeholder-gray-300" />
+      <button id="searchBtn" class="bg-cyan-500 text-white px-4 py-2 rounded mb-4 w-full">
+        Search
+      </button>
+
+      <ul id="searchResults" class="space-y-2 mb-4"></ul>
+    </div>
+  </div>
+
 
   <!-- Bottom Nav -->
   <bottom-nav active="1"></bottom-nav>
