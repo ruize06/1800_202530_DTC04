@@ -139,7 +139,10 @@
 
     <!-- Form -->
     <form id="edit-task-form"
-      class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)] max-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both">
+      class="
+            [&_label]:font-bold [&_label]:text-xl
+            [&_.task-input]:p-2 [&_*]:focus:outline-none [&_.task-input]:border-gray-200/50 [&_.task-input]:focus:border-gray-100
+            max-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both">
       <!-- novalidate> -->
 
       <div class="flex flex-col space-y-4">
@@ -147,50 +150,53 @@
         <!-- Title -->
         <div class="flex flex-col gap-2">
           <label for="title">Title</label>
-          <input class="task-input border-b text-xl" type="text" name="title" placeholder="Give your task a title"
-            maxlength="64" required />
+          <input class="task-input border-b-2 text-xl" type="text" name="title" placeholder="Give your task a title"
+            maxlength="64" required>
         </div>
         <!-- Color -->
         <div class="flex flex-col gap-2">
           <label for="color">Color</label>
-          <input class="task-input border rounded-full p-0 h-12 w-24 [&::-webkit-color-swatch]:rounded-full"
-            type="color" name="color" value="#4bf3c0" />
+          <input class="task-input border-2 rounded-full p-0 h-12 w-24 [&::-webkit-color-swatch]:rounded-full"
+            type="color" name="color" value="#4bf3c0">
         </div>
         <!-- Description -->
         <div class="flex flex-col gap-2">
           <label for="description">Description</label>
-          <textarea class="task-input border resize-none rounded-xl" name="description" placeholder="Add more details"
+          <textarea class="task-input border-2 resize-none rounded-xl" name="description" placeholder="Add more details"
             rows="3" cols="30" maxlength="1024"></textarea>
         </div>
         <!-- Date -->
         <div class="flex flex-col gap-2 max-w-fit">
           <label for="date">Date</label>
-          <input class="task-input border rounded-xl [&::-webkit-calendar-picker-indicator]" type="date" name="date" />
+          <input class="task-input border-2 rounded-xl [&::-webkit-calendar-picker-indicator]:invert" type="date"
+            name="date">
         </div>
         <!-- Time -->
         <div class="flex flex-col gap-2 max-w-fit">
           <label for="time">Time</label>
-          <input class="task-input border rounded-xl [&::-webkit-calendar-picker-indicator]" type="time" name="time" />
+          <input class="task-input border-2 rounded-xl [&::-webkit-calendar-picker-indicator]:invert" type="time"
+            name="time">
         </div>
 
         <!-- Submit buttons -->
         <div class="flex flex-row justify-between">
           <!-- Delete Button -->
           <input name="delete" type="button"
-            class="text-xl max-w-fit px-6 py-3 rounded-full text-white bg-[#921f3c] hover:bg-[var(--secondary-button-bg-color)] hover:scale-105 active:scale-120"
-            value="Delete" />
+            class="text-xl max-w-fit px-6 py-3 rounded-full bg-red-500 hover:bg-red-600 hover:scale-105 active:scale-120"
+            value="Delete">
 
           <!-- Submit Button -->
           <input type="submit" name="submit" placeholder="Save"
-            class="text-xl max-w-fit px-6 py-3 rounded-full text-white bg-[var(--primary-button-bg-color)] hover:bg-[var(--secondary-button-bg-color)] hover:scale-105 active:scale-120" />
+            class="text-xl max-w-fit px-6 py-3 rounded-full bg-[#a17afc] hover:bg-[#9878e1] hover:scale-105 active:scale-120">
         </div>
       </div>
     </form>
+
   </div>
   <!-- #end-a -->
 
   <!-- Bottom Nav -->
-  <bottom-nav active="1"></bottom-nav>
+  <bottom-nav active=1></bottom-nav>
 </body>
 
 </html>
