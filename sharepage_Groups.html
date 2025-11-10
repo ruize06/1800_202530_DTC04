@@ -23,21 +23,6 @@
     </nav>
 
     <main class="mb-[150px] max-w-[95%] md:max-w-[70%] mx-auto">
-        <section class="flex justify-between max-w-[80%] mx-auto mt-[20px]">
-
-            <!-- Groups Tab -->
-            <button class="md:w-[200px] cursor-pointer bg-gradient-to-r from-[#4c3B71] border-[1.5px] border-slate-400
-                to-indigo-900 text-white px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl
-                transition-all duration-300">
-                Groups
-            </button>
-
-            <!-- Friends Tab -->
-            <a class="md:w-[200px] text-center cursor-pointer border-[1.5px] border-slate-400 text-zinc-600 bg-white px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl
-                transition-all duration-300" href="sharepage_Friends.html">Friends
-            </a>
-        </section>
-
         <section>
             <!-- Group List -->
             <div id="groupList" class="my-5 gap-2 p-2 font-bold flex flex-col">
@@ -85,35 +70,10 @@
         </button>
     </div>
 
-    <!-- Edit Group Popup -->
-    <div id="editGroupPopup" class="bg-gray-500 p-6 h-[600px] w-full fixed bottom-0 z-10 rounded-t-2xl hidden">
-        <div class="flex items-center justify-between">
-            <h1 class="text-xl font-bold mb-4">Edit Group</h1>
-            <button id="cancelEditBtn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 5 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="icon icon-tabler icons-tabler-outline icon-tabler-x">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M18 6l-12 12" />
-                    <path d="M6 6l12 12" />
-                </svg>
-            </button>
-        </div>
-
-        <input id="groupNameInput" type="text" class="w-full p-2 border rounded mb-4" placeholder="Group Name" />
-
-        <div class="flex justify-end gap-2">
-            <button class="px-4 py-2 bg-red-800 text-white rounded">Delete</button>
-            <button id="saveEditBtn" class="px-4 py-2 bg-blue-800 text-white rounded">
-                Submit
-            </button>
-        </div>
-    </div>
-
     <bottom-nav active="2"></bottom-nav>
     <script type="module" src="src/components/Sharepage/edit-group.js"></script>
     <script type="module" src="src/components/Sharepage/add-group.js"></script>
-    <script type="module" src="src/components/Sharepage/todo.js"></script>
+    <script type="module" src="src/components/Tasks/todo.js"></script>
 </body>
 
 </html>

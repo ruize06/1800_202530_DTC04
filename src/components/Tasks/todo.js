@@ -141,12 +141,13 @@ function setup() {
                 break;
             case 'group':
                 todoListOwnerID = localStorage.getItem("todoGroupID");
-                onSnapshot(doc(db, "userprofiles", user.uid, "groups", todoListOwnerID), (docSnap) => {
+                onSnapshot(doc(db, "groups", todoListOwnerID), (docSnap) => {
                     if (docSnap.exists()) {
                         const editGroup = document.getElementById("editGroup")
-
+                        const addMember = document.getElementById("addMember")
                         document.getElementById("topNavTitle").innerText = docSnap.data()["name"];
                         editGroup.classList.remove('hidden');
+                        addMember.classList.remove('hidden');
                     } else console.warn("Group doesn't exist")
                 })
                 break;
