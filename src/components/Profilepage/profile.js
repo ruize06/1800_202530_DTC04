@@ -111,6 +111,7 @@ onAuthStateChanged(auth, async (user) => {
   emailInput.value = userEmail;
   emailInput.readOnly = true;
   emailInput.style.backgroundColor = "#f0f0f0";
+  emailInput.style.pointerEvents = "none";
 
   // Initialize Firestore document if it doesn't exist
   const userDocRef = doc(db, "userprofiles", currentUserId);
@@ -119,7 +120,7 @@ onAuthStateChanged(auth, async (user) => {
     await setDoc(
       userDocRef,
       {
-        username: "",
+        username: user.displayName || "",
         pronouns: "",
         profilePicture: "",
         email: userEmail,
