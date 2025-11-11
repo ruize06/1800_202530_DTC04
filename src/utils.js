@@ -14,19 +14,25 @@ export function isLightColor(hexColor) {
     return false
 }
 
-// export function hidePopup(popupElement, transitionSpeed=300){
-//     popupElement?.classList.toggle("translate-y-full", true);
-//     setTimeout(() => {
-//         popupElement?.classList.toggle("hidden", true);
-//     }, transitionSpeed);
-// }
+export function arrayRemove(array, item) {
+    const index = array.indexOf(item);
+    if (index !== -1) array.splice(index, 1);
+}
 
-// export function showPopup(popupElement){
-//     popupElement?.classList.toggle("hidden", false);
-//     setTimeout(() => {
-//         popupElement?.classList.toggle("translate-y-full", false);
-//     }, 0);
-// }
+
+export function hidePopup(popupElement, transitionSpeed = 300) {
+    popupElement?.classList.toggle("translate-y-full", true);
+    setTimeout(() => {
+        popupElement?.classList.toggle("hidden", true);
+    }, transitionSpeed);
+}
+
+export function showPopup(popupElement) {
+    popupElement?.classList.toggle("hidden", false);
+    setTimeout(() => {
+        popupElement?.classList.toggle("translate-y-full", false);
+    }, 0);
+}
 
 export function addPopupEventListeners(openButton, closeButton, popupElement, onOpen, onClose) {
   /**
