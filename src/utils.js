@@ -19,6 +19,15 @@ export function arrayRemove(array, item) {
     if (index !== -1) array.splice(index, 1);
 }
 
+export function customClone(originalNode, attachNode) {
+  var newNode = originalNode.cloneNode(true);
+  attachNode.appendChild(newNode);
+  for (let attr of originalNode.attributes) {
+    console.log(attr.name)
+    newNode.setAttribute(attr.name, attr.value);
+  }
+  return newNode;
+}
 
 export function hidePopup(popupElement, transitionSpeed = 300) {
     popupElement?.classList.toggle("translate-y-full", true);
