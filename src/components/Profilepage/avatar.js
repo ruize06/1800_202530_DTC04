@@ -1,4 +1,7 @@
-function initAvatarSelector(profileImage, onAvatarSelect) {
+import { db } from "../../firebaseConfig.js";
+import { doc, updateDoc } from "firebase/firestore";
+
+export function setupAvatar(profileImage, userId, onAvatarSelect) {
   const chooseBtn = document.getElementById("choose-avatar-btn");
   const avatarSelector = document.getElementById("avatar-selector");
   const closeBtn = document.getElementById("close-avatar-selector");
@@ -6,20 +9,20 @@ function initAvatarSelector(profileImage, onAvatarSelect) {
   const avatarGrid = document.getElementById("avatar-grid");
 
   const avatarOptions = [
-    "images/elmo.jpg",
-    "images/elmo.png",
-    "images/p1.png",
-    "images/p2.png",
-    "images/p3.png",
-    "images/p4.png",
-    "images/p5.png",
-    "images/p6.png",
-    "images/p7.png",
+    "/images/earth.png",
+    "/images/planet1.png",
+    "/images/planet2.png",
+    "/images/p3.png",
+    "/images/p4.png",
+    "/images/p5.png",
+    "/images/p6.png",
+    "/images/p7.png",
+    "/images/p8.png",
   ];
 
   let selectedAvatar = null;
-
   // Generate avatar options
+
   avatarGrid.innerHTML = "";
   avatarOptions.forEach((url) => {
     const img = document.createElement("img");
@@ -50,18 +53,15 @@ function initAvatarSelector(profileImage, onAvatarSelect) {
     avatarGrid.appendChild(img);
   });
 
-  // Open popup
   chooseBtn.addEventListener("click", () => {
     avatarSelector.classList.remove("hidden");
   });
 
-  // Close popup
   closeBtn.addEventListener("click", () => {
     avatarSelector.classList.add("hidden");
   });
 
-  // Confirm selection
-  confirmBtn.addEventListener("click", () => {
+  confirmBtn.addEventListener("click", async () => {
     if (!selectedAvatar) {
       alert("Please select an avatar!");
       return;
@@ -73,14 +73,18 @@ function initAvatarSelector(profileImage, onAvatarSelect) {
       onAvatarSelect(selectedAvatar);
     }
 
+    if (userId) {
+      try {
+        await updateDoc(doc(db, "userprofiles", userId), {
+          profilePicture: selectedAvatar,
+        });
+        alert("Avatar saved!");
+      } catch (err) {
+        console.error("Failed to save avatar:", err);
+        alert("Failed to save avatar. Please try again later.");
+      }
+    }
+
     avatarSelector.classList.add("hidden");
   });
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  const profileImage = document.getElementById("profileImage");
-
-  initAvatarSelector(profileImage, (selectedAvatar) => {
-    console.log("Selected avatar:", selectedAvatar);
-  });
-});
