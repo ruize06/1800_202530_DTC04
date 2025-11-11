@@ -1,7 +1,7 @@
 import { addPopupEventListeners, hidePopup, showPopup } from '/src/utils.js'
 import { onAuthReady } from '/src/authentication.js';
 import { db, auth } from "/src/firebaseConfig.js";
-import { onSnapshot, collection, getDoc, getDocs, addDoc, setDoc, doc, query, where, deleteDoc } from "firebase/firestore";
+import { onSnapshot, collection, getDoc, getDocs, addDoc, setDoc, doc, query, where, deleteDoc, updateDoc } from "firebase/firestore";
 
 import { createShareTaskForm, cancelShareTaskForm, updateSearchResults } from '/src/components/Tasks/share-task.js';
 
@@ -39,10 +39,8 @@ function editTaskFromForm(event, ownerID) {
     var task_details = new FormData(event.target);
     task_details = Object.fromEntries([...task_details.entries()]);
     // task_details.description = document.getElementsByName("description")[0].value.replace(/\n/g, '<br>')
-    task_details.ownerID = ownerID
-
     const task_doc = doc(db, "tasks", event.target.taskID)
-    setDoc(task_doc, task_details)
+    updateDoc(task_doc, task_details)
 
     cancelEditTaskForm()
 }
