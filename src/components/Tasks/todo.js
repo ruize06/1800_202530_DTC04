@@ -1,23 +1,9 @@
-import { addPopupEventListeners } from '/src/utils.js'
+import { addPopupEventListeners, hidePopup, showPopup } from '/src/utils.js'
 import { onAuthReady } from '/src/authentication.js';
 import { db, auth } from "/src/firebaseConfig.js";
 import { onSnapshot, collection, getDoc, getDocs, addDoc, setDoc, doc, query, where, deleteDoc } from "firebase/firestore";
 
-import { createShareTaskForm, cancelShareTaskForm } from '/src/components/Tasks/share-task.js';
-
-function hidePopup(popupElement, transitionSpeed = 300) {
-    popupElement?.classList.toggle("translate-y-full", true);
-    setTimeout(() => {
-        popupElement?.classList.toggle("hidden", true);
-    }, transitionSpeed);
-}
-
-function showPopup(popupElement) {
-    popupElement?.classList.toggle("hidden", false);
-    setTimeout(() => {
-        popupElement?.classList.toggle("translate-y-full", false);
-    }, 0);
-}
+import { createShareTaskForm, cancelShareTaskForm, updateSearchResults } from '/src/components/Tasks/share-task.js';
 
 async function addTaskFromForm(event, ownerID) {
     event.preventDefault();
@@ -137,6 +123,9 @@ function setup() {
 
     const edit_task_form = document.getElementById("edit-task-form");
     const delete_task_button = edit_task_form["delete"];
+    const share_task_form = document.getElementById("share-task-form");
+    const share_task_search_bar = share_task_form["searchGroups"]
+    const share_task_results_div = document.getElementById("shareSearchResultsDiv")
 
     onAuthReady(async (user) => {
         const searchParams = new URLSearchParams(window.location.search)
@@ -173,8 +162,12 @@ function setup() {
             createAddTaskForm, cancelAddTaskForm);
         // // Open task form
         // Post task to server when add_task_form is submitted
-        add_task_form?.addEventListener("submit", (e) => { addTaskFromForm(e, todoListOwnerID) });
-        edit_task_form?.addEventListener("submit", (e) => { editTaskFromForm(e, todoListOwnerID) });
+        add_task_form?.addEventListener("submit", (e) => {
+            addTaskFromForm(e, todoListOwnerID)});
+        edit_task_form?.addEventListener("submit", (e) => {
+            editTaskFromForm(e, todoListOwnerID)});
+        share_task_form?.addEventListener("submit", (e) => {
+            updateSearchResults(e, share_task_search_bar, share_task_results_div)})
         delete_task_button?.addEventListener("click", deleteTaskFromForm);
         // #end-a
 

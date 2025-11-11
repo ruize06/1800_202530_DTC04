@@ -17,7 +17,7 @@ class TaskBox extends HTMLElement{
     }
 
     render() {
-        this.classList.add("flex", "flex-row", "items-center", "max-w-full")
+        this.classList.add("flex", "flex-row", "items-center", "max-w-full", "space-x-4")
         this.innerHTML = `
             <div
                 class="task-box peer shadow-lg flex flex-row justify-between grow max-h-fit hover:scale-105 hover:[&_.task-description]:inline rounded-xl p-4 transition-transform duration-250">
@@ -47,7 +47,7 @@ class TaskBox extends HTMLElement{
                 </div>
 
             </div>
-            <div class="share-icon float-right max-w-[24px] peer-hover:hidden">
+            <div class="share-icon float-right max-w-[24px] peer-hover:hidden hover:scale-120 transition-transform duration-250">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class=" icon icon-tabler icons-tabler-outline icon-tabler-share-3">

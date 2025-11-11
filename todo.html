@@ -12,9 +12,11 @@
   <script type="module" src="/src/components/Navbar/nav-item.js"></script>
   <script type="module" src="/src/components/Navbar/bottom-nav.js"></script>
   <script type="module" src="/src/components/Tasks/task-box.js"></script>
+  <script type="module" src="/src/components/Search/search-add-result.js"></script>
 
   <!-- Scripts -->
   <script defer type="module" src="/src/components/Tasks/todo.js"></script>
+  <script defer type="module" src="/src/components/Tasks/share-task.js"></script>
   <script defer type="module" src="/src/components/Sharepage/edit-group.js"></script>
   <script defer type="module" src="/src/components/Sharepage/add-member.js"></script>
 
@@ -187,7 +189,7 @@
         <!-- Time -->
         <div class="flex flex-col gap-2 max-w-fit">
           <label for="time">Time</label>
-          <input class="task-input border-2 rounded-xl [&::-webkit-calendar-picker-indicator]:invert" type="time"
+          <input class="task-input border rounded-xl [&::-webkit-calendar-picker-indicator]:invert" type="time"
             name="time">
         </div>
 
@@ -211,7 +213,7 @@
   <!-- #a -->
   <!-- Share task form -->
   <div id="share-task-form-container" tabindex="-1"
-    class="bg-[var(--secondary-bg-color)] outline-none **:focus:outline-none text-[--contrast-text-color] fixed z-2 bottom-0 md:left-1/2 md:-translate-x-1/2 translate-y-full w-full md:max-w-[768px] rounded-t-xl px-8 pb-8 transition-all duration-300">
+    class="bg-[var(--secondary-bg-color)] h-[600px] outline-none **:focus:outline-none text-[--contrast-text-color] fixed z-2 bottom-0 md:left-1/2 md:-translate-x-1/2 translate-y-full w-full md:max-w-[768px] rounded-t-xl px-8 pb-8 transition-all duration-300">
     <div
       class="sticky flex flex-row items-center justify-between top-0 bg-inherit py-4 border-b border-[var(--primary-border-color)]">
       <p class="text-3xl font-bold">Share Task</p>
@@ -230,23 +232,31 @@
     <!-- Form -->
     <form id="share-task-form"
       class="
-            [&_label]:font-bold [&_label]:text-xl
-            [&_.task-input]:p-2 [&_.task-input]:border-gray-200/50 [&_.task-input]:focus:border-gray-100
-            max-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both">
-      <!-- novalidate> -->
+          [&_label]:font-bold [&_label]:text-xl
+          [&_.task-input]:p-2 [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)]
+          max-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both space-y-4">
 
-      <div class="flex flex-col space-y-4">
-        <!-- Group/User -->
-        <!-- Title -->
-        <!-- Submit buttons -->
-        <div class="flex flex-row justify-between">
-          <!-- Submit Button -->
-          <input type="submit" name="submit" placeholder="Send"
-            class="text-xl max-w-fit px-6 py-3 rounded-full bg-[var(--primary-button-bg-color)] hover:bg-[var(--secondary-button-bg-color)] hover:scale-105 active:scale-120">
+      <!-- Search Groups -->
+      <div class="flex flex-col gap-2">
+        <label for="searchGroups">Search Groups</label>
+        <div class="flex flex-row space-x-4 justify-between">
+          <input type="text" name="searchGroups" class="task-input border rounded-xl grow"
+            placeholder="Find a group to share to">
+          <input type="submit" name="search" value="Search"
+            class="text-xl text-[var(--contrast-text-color)] max-w-fit px-6 py-3 rounded-full bg-[var(--primary-button-bg-color)] hover:bg-[var(--primary-button-bg-color)] hover:scale-105 active:scale-120">
         </div>
+      </div>
+
+      <!-- Results -->
+      <div class="flex flex-col space-y-4">
+        <label for="shareSearchResultsDiv">Results</label>
+        <li id="shareSearchResultsDiv" class="flex flex-col space-y-2 text-[var(--text-color)]">
+        </li>
       </div>
     </form>
 
+    <!-- Sharing these tasks -->
+    <div id="tasksToShareDiv" class="flex flex-col"></div>
   </div>
   <!-- #end-a -->
 
