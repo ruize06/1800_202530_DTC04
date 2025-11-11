@@ -34,6 +34,7 @@ function setFormEditable(editable) {
   saveBtn.textContent = editable ? "Save Changes" : "Edit";
 }
 
+// Listen to Firestore real-time updates
 function listenUserProfile(userId, userEmail) {
   const userDocRef = doc(db, "userprofiles", userId);
 
@@ -53,6 +54,7 @@ function listenUserProfile(userId, userEmail) {
   });
 }
 
+// Save profile changes
 async function saveProfile() {
   if (!currentUserId) return;
 
@@ -80,6 +82,7 @@ async function saveProfile() {
   }
 }
 
+// Handle Save / Edit button click
 saveBtn.addEventListener("click", (e) => {
   e.preventDefault();
   if (!isEditing) {
@@ -95,6 +98,7 @@ logoutBtn.addEventListener("click", async () => {
   window.location.href = "/login.html";
 });
 
+// Initialize user profile
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
     window.location.href = "/login.html";
@@ -104,6 +108,7 @@ onAuthStateChanged(auth, async (user) => {
   currentUserId = user.uid;
   const userEmail = user.email;
 
+  // Auto-fill email (read-only)
   emailInput.value = userEmail;
   emailInput.readOnly = true;
   emailInput.style.backgroundColor = "#f0f0f0";
