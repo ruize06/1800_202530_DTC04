@@ -43,4 +43,6 @@ body {
   background-color: var(--bg-color);
 }
 
-/* button */
+.formOverflowScroll {
+  @apply overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent;
+}
