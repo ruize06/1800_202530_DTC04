@@ -4,6 +4,7 @@ class SearchAddResult extends HTMLElement {
     return ["added", "resultTitle"];
   }
     constructor () {
+        super()
         this.added = false
         this.resultTitle = ""
         this.render()
