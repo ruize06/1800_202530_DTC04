@@ -56,6 +56,9 @@ export function createShareTaskForm() {
     _resultsDiv.added = []
     showPopup(_share_form_container)
     _share_form_container.focus()
+    // Update search results right away to see all groups
+    const ev = new Event("submit")
+    _share_form.dispatchEvent(ev)
 }
 
 export function cancelShareTaskForm() {
