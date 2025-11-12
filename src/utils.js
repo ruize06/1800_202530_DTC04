@@ -29,6 +29,12 @@ export function customClone(originalNode, attachNode) {
   return newNode;
 }
 
+export function addEventListeners(target, events, callback) {
+  events.forEach(event => {
+    target.addEventListener(event, callback)
+  });
+}
+
 export function hidePopup(popupElement, transitionSpeed = 300) {
     popupElement?.classList.toggle("translate-y-full", true);
     setTimeout(() => {
