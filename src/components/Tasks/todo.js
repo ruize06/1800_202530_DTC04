@@ -3,7 +3,7 @@ import { onAuthReady } from '/src/authentication.js';
 import { db, auth } from "/src/firebaseConfig.js";
 import { onSnapshot, collection, getDoc, getDocs, addDoc, setDoc, doc, query, where, deleteDoc, updateDoc } from "firebase/firestore";
 
-import { createShareTaskForm, cancelShareTaskForm, updateSearchResults } from '/src/components/Tasks/share-task.js';
+import { createShareTaskForm, cancelShareTaskForm, updateSearchResults, shareTasksFromForm } from '/src/components/Tasks/share-task.js';
 
 async function addTaskFromForm(event, ownerID) {
     event.preventDefault();
@@ -81,7 +81,9 @@ function renderTasks(tasks) {
 
     tasks.forEach((task) => {
         var task_box = document.createElement("task-box");
+        var share_button = document.createElement("share-button");
         task_list.appendChild(task_box);
+        task_box.appendChild(share_button)
         task_box.id = task.id
         onSnapshot(doc(db, "tasks", task.id), (docSnap) => {
             if (docSnap.exists()) {
@@ -121,9 +123,10 @@ function setup() {
 
     const edit_task_form = document.getElementById("edit-task-form");
     const delete_task_button = edit_task_form["delete"];
-    const share_task_form = document.getElementById("share-task-form");
-    const share_task_search_bar = share_task_form["searchGroups"]
+    const share_task_search_form = document.getElementById("share-task-search-form");
+    const share_task_search_bar = share_task_search_form["searchGroups"]
     const share_task_results_div = document.getElementById("shareSearchResultsDiv")
+    const share_task_submit_form = document.getElementById("share-task-form")
 
     onAuthReady(async (user) => {
         const searchParams = new URLSearchParams(window.location.search)
@@ -164,9 +167,14 @@ function setup() {
             addTaskFromForm(e, todoListOwnerID)});
         edit_task_form?.addEventListener("submit", (e) => {
             editTaskFromForm(e, todoListOwnerID)});
-        share_task_form?.addEventListener("submit", (e) => {
-            updateSearchResults(e, share_task_search_bar, share_task_results_div)})
         delete_task_button?.addEventListener("click", deleteTaskFromForm);
+        share_task_search_bar?.addEventListener("input", (e) => {
+            updateSearchResults(e, share_task_search_bar, share_task_results_div)})
+        share_task_search_form?.addEventListener("submit", (e) => {
+            updateSearchResults(e, share_task_search_bar, share_task_results_div)})
+        share_task_submit_form?.addEventListener("submit", (e) => {
+            shareTasksFromForm(e)
+        })
         // #end-a
 
         // #a Render tasks to the task list

@@ -203,7 +203,7 @@
 
           <!-- Submit Button -->
           <input type="submit" name="submit" placeholder="Save"
-            class="text-xl text-[var(--contrast-text-color)] max-w-fit px-6 py-3 rounded-full bg-[var(--primary-button-bg-color)] hover:bg-[var(--primary-button-bg-color)] hover:scale-105 active:scale-120">
+            class="text-xl text-[var(--contrast-text-color)] max-w-fit px-6 py-3 rounded-full bg-[var(--primary-button-bg-color)] hover:bg-[var(--secondary-button-bg-color)] hover:scale-105 active:scale-120">
         </div>
       </div>
     </form>
@@ -231,31 +231,33 @@
       </div>
     </div>
 
-    <div class="flex flex-col h-[60vh] clear-both">
+    <div class="flex flex-col h-[60vh] clear-both space-y-4 px-8 pb-8">
       <!-- Form -->
-      <form id="share-task-form" class="
+      <form id="share-task-search-form" class="
             [&_label]:font-bold [&_label]:text-xl
             [&_.task-input]:p-2 [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)]
-            formOverflowScroll h-[30vh] py-8 px-8 space-y-4 grow">
+            formOverflowScroll h-[30vh] py-8 space-y-4 grow">
         <!-- Search Groups -->
         <div class="flex flex-col gap-2">
           <label for="searchGroups">Search Groups</label>
           <div class="flex flex-row space-x-4 justify-between">
             <input type="text" name="searchGroups" class="task-input border rounded-xl grow"
               placeholder="Find a group to share to">
-            <input type="submit" name="search" value="Search"
-              class="text-xl text-[var(--contrast-text-color)] max-w-fit px-6 py-3 rounded-full bg-[var(--primary-button-bg-color)] hover:bg-[var(--primary-button-bg-color)] hover:scale-105 active:scale-120">
           </div>
         </div>
         <!-- Results -->
-        <div class="flex flex-col space-y-4">
-          <label for="shareSearchResultsDiv">Results</label>
-          <li id="shareSearchResultsDiv" class="flex flex-col space-y-2 text-[var(--text-color)]">
-          </li>
-        </div>
+        <li id="shareSearchResultsDiv" class="flex flex-col space-y-2 text-[var(--text-color)]"></li>
       </form>
+
+      <!-- Submit Share -->
+      <form id="share-task-form" class="max-w-full flex justify-end">
+        <!-- Submit Share -->
+        <input type="submit" name="submit" value="Share"
+          class="text-xl text-[var(--contrast-text-color)] max-w-fit px-6 py-3 rounded-full bg-[var(--primary-button-bg-color)] hover:bg-[var(--secondary-button-bg-color)] hover:scale-105 active:scale-120">
+      </form>
+
       <!-- Sharing these tasks -->
-      <div class="flex flex-col space-y-4 max-h-[20vh] bg-[var(--bg-color)] p-4 rounded-xl shadow-lg">
+      <div class="flex flex-col space-y-2 min-h-[20vh] max-h-[20vh] bg-[var(--bg-color)] p-4 rounded-xl shadow-lg">
         <label for="tasksToShareDiv" class="text-xl font-bold">Sharing these tasks</label>
         <div id="tasksToShareDiv" class="flex flex-col formOverflowScroll"></div>
       </div>

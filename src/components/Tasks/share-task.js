@@ -1,6 +1,6 @@
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs, addDoc, getDoc, doc } from "firebase/firestore";
 import { db } from "/src/firebaseConfig.js"
-import { showPopup, hidePopup, arrayRemove } from "/src/utils.js";
+import { showPopup, hidePopup, arrayRemove, customClone } from "/src/utils.js";
 import { onAuthReady } from "/src/authentication.js";
 
 export function updateSearchResults(event, searchInput, resultsDiv) {
@@ -47,18 +47,25 @@ export function updateSearchResults(event, searchInput, resultsDiv) {
     })
 }
 
-export function createShareTaskForm() {
-    const _share_form = document.getElementById("share-task-form");
+export function createShareTaskForm(event) {
+    const _share_search_form = document.getElementById("share-task-search-form");
     const _share_form_container = document.getElementById("share-task-form-container");
     const _resultsDiv = document.getElementById("shareSearchResultsDiv")
-    _share_form?.reset()
+    _share_search_form?.reset()
     _resultsDiv.innerHTML = "";
     _resultsDiv.added = []
     showPopup(_share_form_container)
     _share_form_container.focus()
     // Update search results right away to see all groups
     const ev = new Event("submit")
-    _share_form.dispatchEvent(ev)
+    _share_search_form.dispatchEvent(ev)
+
+    var _tasks_to_share = document.getElementById("tasksToShareDiv")
+    _tasks_to_share.innerHTML = ""
+    const _to_share_task = event.target.closest("task-box")
+    var _task_box = customClone(_to_share_task, _tasks_to_share);
+    _task_box.setAttribute("disabled", true)
+    _task_box.classList.add("scale-75")
 }
 
 export function cancelShareTaskForm() {
@@ -72,4 +79,25 @@ export function cancelShareTaskForm() {
         return
     }
     hidePopup(_share_form_container);
+}
+
+export async function shareTasksFromForm(event) {
+    event.preventDefault()
+    const _addedGroups = document.getElementById("shareSearchResultsDiv").added
+    if (_addedGroups.length === 0) {
+        alert("No groups have been added yet!")
+        return;
+    }
+    const _shareTasksDiv = document.getElementById("tasksToShareDiv")
+    const _tasksCollection = collection(db, "tasks")
+    for (let task of _shareTasksDiv.children) {
+        const taskSnap = await getDoc(doc(_tasksCollection, task.id))
+        for (let groupID of _addedGroups) {
+            var taskData = taskSnap.data()
+            taskData.ownerID = groupID
+            addDoc(_tasksCollection, taskData)
+        }
+    }
+    cancelShareTaskForm()
+    alert("Shared!")
 }
