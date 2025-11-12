@@ -256,11 +256,12 @@
   <!-- Add Member Popup -->
   <div id="addMemberPopup" class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full md:max-w-[768px]
             bg-[var(--secondary-bg-color)] text-[var(--text-color)] rounded-t-xl px-8 pb-8 shadow-lg
-            translate-y-full transition-transform h-[680px] duration-300 z-10 ease-in-out hidden">
+            translate-y-full h-[680px] transition-transform duration-300 z-10 ease-in-out hidden">
+
     <div
       class="sticky flex flex-row items-center justify-between top-0 bg-inherit py-4 border-b border-[var(--primary-border-color)]">
-      <p class="text-3xl font-bold">Add a New Member</p>
-
+      <p class="text-3xl font-bold">Edit Group</p>
+      <!-- Cancel Button -->
       <div id="cancelBtn" class="p-4 rounded-full hover:text-gray-500">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
           stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -271,17 +272,26 @@
       </div>
     </div>
 
-    <div class="max-h-[60vh] overflow-y-scroll p-8">
-      <input type="text" id="searchInput" placeholder="Add a new member"
-        class="w-full p-2 mb-4 rounded bg-gray-700 text-white placeholder-gray-300" />
-      <button id="searchBtn" class="bg-cyan-500 text-white px-4 py-2 rounded mb-4 w-full">
-        Search
-      </button>
+    <form class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none 
+               [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)] 
+               max-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 
+               [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both">
+
+      <div class="flex flex-col gap-2 mb-4">
+        <div class="flex justify-between">
+          <input id="searchInput" class="task-input border-b text-xl w-[80%]" type="text" name="title"
+            placeholder="Enter username" maxlength="64" />
+          <button id="searchBtn" type="button"
+            class="px-6 rounded-full bg-[var(--primary-button-bg-color)] text-white hover:bg-[var(--secondary-button-bg-color)]">
+            Search
+          </button>
+        </div>
+      </div>
 
       <ul id="searchResults" class="space-y-2 mb-4"></ul>
-    </div>
-  </div>
 
+    </form>
+  </div>
 
   <!-- Bottom Nav -->
   <bottom-nav active=1></bottom-nav>

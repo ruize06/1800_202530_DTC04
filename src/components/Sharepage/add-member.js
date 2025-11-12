@@ -55,26 +55,26 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 matches.forEach(user => {
                     const li = document.createElement("li");
-                    li.className = "bg-gray-700 p-2 rounded flex justify-between items-center";
+                    li.className = "border p-2 rounded flex justify-between items-center";
 
                     const span = document.createElement("span");
                     span.textContent = user.username;
 
                     const addBtn = document.createElement("button");
-                    addBtn.className = "px-3 py-1 rounded text-sm";
+                    addBtn.className = "px-3 w-[70px] py-2 text-sm rounded-full bg-[#921f3c] text-white hover:bg-[var(--secondary-button-bg-color)]";
 
                     if (currentMembers[user.id]) {
                         addBtn.textContent = "Added";
                         addBtn.disabled = true;
-                        addBtn.classList.add("bg-gray-500", "text-white");
+                        addBtn.classList.add("bg-gray-700", "text-white");
                     } else {
                         addBtn.textContent = "Add";
-                        addBtn.classList.add("bg-green-600", "text-white");
+                        addBtn.classList.add("bg-[var(--primary-button-bg-color)]", "text-white");
                         addBtn.addEventListener("click", async () => {
                             addBtn.disabled = true;
                             addBtn.textContent = "Added";
-                            addBtn.classList.remove("bg-green-600");
-                            addBtn.classList.add("bg-gray-500");
+                            addBtn.classList.remove("bg-[var(--primary-button-bg-color)]");
+                            addBtn.classList.add("bg-gray-700");
 
                             const memberRef = doc(db, "groups", groupId, "members", user.id);
                             await setDoc(memberRef, {
