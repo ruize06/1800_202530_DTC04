@@ -2,6 +2,8 @@ import { db } from "../../firebaseConfig.js";
 import { doc, updateDoc } from "firebase/firestore";
 
 export function setupAvatar(profileImage, userId, onAvatarSelect) {
+  
+  //DOM Elements
   const chooseBtn = document.getElementById("choose-avatar-btn");
   const avatarSelector = document.getElementById("avatar-selector");
   const closeBtn = document.getElementById("close-avatar-selector");
@@ -12,12 +14,12 @@ export function setupAvatar(profileImage, userId, onAvatarSelect) {
     "/images/earth.png",
     "/images/planet1.png",
     "/images/planet2.png",
-    "/images/p3.png",
-    "/images/p4.png",
-    "/images/p5.png",
-    "/images/p6.png",
-    "/images/p7.png",
-    "/images/p8.png",
+    "/images/planet3.png",
+    "/images/planet4.png",
+    "/images/planet5.png",
+    "/images/planet6.png",
+    "/images/planet7.png",
+    "/images/planet8.png",
   ];
 
   let selectedAvatar = null;
@@ -53,6 +55,7 @@ export function setupAvatar(profileImage, userId, onAvatarSelect) {
     avatarGrid.appendChild(img);
   });
 
+  // Show the avatar selection menu
   chooseBtn.addEventListener("click", () => {
     avatarSelector.classList.remove("hidden");
   });
@@ -73,6 +76,7 @@ export function setupAvatar(profileImage, userId, onAvatarSelect) {
       onAvatarSelect(selectedAvatar);
     }
 
+    // Show the avatar selection menu
     if (userId) {
       try {
         await updateDoc(doc(db, "userprofiles", userId), {
