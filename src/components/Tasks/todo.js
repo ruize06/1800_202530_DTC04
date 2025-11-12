@@ -138,21 +138,25 @@ function setup() {
                 break;
             case 'group':
                 todoListOwnerID = localStorage.getItem("todoGroupID");
-                onSnapshot(doc(db, "userprofiles", user.uid, "groups", todoListOwnerID), (docSnap) => {
+                onSnapshot(doc(db, "groups", todoListOwnerID), (docSnap) => {
                     if (docSnap.exists()) {
                         const editGroup = document.getElementById("editGroup")
+                        const groupData = docSnap.data()
 
-                        document.getElementById("topNavTitle").innerText = docSnap.data()["name"];
+                        document.getElementById("topNavTitle").innerText = groupData.name;
                         editGroup.classList.remove('hidden');
-                    } else console.warn("Group doesn't exist")
+                    } else {
+                        alert("Group doesn't exist");
+                        // window.location.href = "/sharepage_Groups.html"
+                    }
                 })
                 break;
             default:
                 console.warn("No todo type specified")
         }
         if (!todoListOwnerID) {
-            console.warn("No group ID found");
-            window.location.href = "/main.html";
+            alert("No group ID found");
+            window.location.href = "/sharepage_Groups.html";
         }
         const tasks_q = query(collection(db, "tasks"), where("ownerID", "==", todoListOwnerID));
         var tasks = await getDocs(tasks_q)

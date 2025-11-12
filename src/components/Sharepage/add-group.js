@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         groupDiv.appendChild(nameTag);
 
-        groupDiv.addEventListener('click', () => {
+        groupDiv.addEventListener('click', async() => {
             localStorage.setItem("todoGroupID", groupId);
             window.location.href = `/todo.html?type=group`;
         });
