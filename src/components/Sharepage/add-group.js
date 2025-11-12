@@ -1,4 +1,4 @@
-import { collection, getDocs, doc, setDoc, getDoc } from "firebase/firestore";
+import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
 import { db, auth } from "../../firebaseConfig.js";
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -31,23 +31,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function loadGroups() {
-        const groupsRef = collection(db, "groups");
-        const snapshot = await getDocs(groupsRef);
+        const groups_q = query(
+            collection(db, "groups"),
+            where("members", "array-contains", currentUserId));
+        const snapshot = await getDocs(groups_q);
 
         groupList.innerHTML = "";
 
         for (const docSnap of snapshot.docs) {
             const group = docSnap.data();
             const groupId = docSnap.id;
-
-            const membersRef = collection(db, "groups", groupId, "members");
-            const membersSnap = await getDocs(membersRef);
-            const isMember = membersSnap.docs.some(m => m.id === currentUserId);
-
-            if (isMember) {
-                const groupDiv = createGroupElement(groupId, group.name);
-                groupList.appendChild(groupDiv);
-            }
+            const groupDiv = createGroupElement(groupId, group.name);
+            groupList.appendChild(groupDiv);
         }
     }
 
@@ -74,24 +69,13 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const groupId = crypto.randomUUID();
-        const groupRef = doc(db, "groups", groupId);
-
-        await setDoc(groupRef, {
-            name: groupName.value.trim(),
-            createdBy: currentUserId,
-            createdAt: Date.now()
-        });
-
-        const memberRef = doc(db, "groups", groupId, "members", currentUserId);
-        const userDoc = await getDoc(doc(db, "userprofiles", currentUserId));
-        const userProfile = userDoc.exists() ? userDoc.data() : {};
-        await setDoc(memberRef, {
-            username: userProfile.username || "",
-            email: userProfile.email || "",
-            profilePicture: userProfile.profilePicture || "",
-            joinedAt: Date.now()
-        });
+        const newGroup = await addDoc(collection(db, "groups"), {
+                name: groupName.value.trim(),
+                createdBy: currentUserId,
+                createdAt: Date.now(),
+                members: [currentUserId]
+            });
+        const groupId = newGroup.id
 
         const groupDiv = createGroupElement(groupId, groupName.value.trim());
         groupList.appendChild(groupDiv);
