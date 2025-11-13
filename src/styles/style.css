@@ -11,6 +11,8 @@
 
   --light-primary-button-bg-color: #204c85;
   --light-secondary-button-bg-color: #483e74;
+  --light-deactive-button-bg-color: #848484;
+  --light-danger-button-bg-color: #921f3c;
 
   --light-primary-border-color: #1d7ece;
   --light-hover-border-color: #483e74;
@@ -29,8 +31,9 @@ body {
   --gradient-bg-color: var(--light-gradient-bg-color);
 
   --primary-button-bg-color: var(--light-primary-button-bg-color);
-
   --secondary-button-bg-color: var(--light-secondary-button-bg-color);
+  --deactive-button-bg-color: var(--light-deactive-button-bg-color);
+  --danger-button-bg-color: var(--light-danger-button-bg-color);
 
   --primary-border-color: var(--light-primary-border-color);
   --hover-border-color: var(--light-hover-border-color);
@@ -42,4 +45,6 @@ body {
   background-color: var(--bg-color);
 }
 
-/* button */
+.formOverflowScroll {
+  @apply overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent;
+}

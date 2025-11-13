@@ -46,6 +46,51 @@
               Username
             </p>
             <p id="card-email" class="text-sm text-gray-700">Email</p>
+            <button
+              id="choose-avatar-btn"
+              class="w-[180px] h-[45px] cursor-pointer bg-gradient-to-r from-[var(--light-secondary-button-bg-color)] border-[1.5px] border-slate-400 to-[var(--light-primary-button-bg-color)] text-white px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300 mt-3"
+            >
+              Choose Avatar
+            </button>
+          </div>
+        </div>
+        <!-- Avatar Popup -->
+        <div
+          id="avatar-selector"
+          class="fixed top-0 left-0 w-full h-full bg-black/50 hidden z-50 flex justify-center items-center"
+        >
+          <div
+            class="bg-white p-6 rounded-xl relative flex flex-col items-center"
+          >
+            <div
+              id="close-avatar-selector"
+              class="p-2 rounded-full hover:text-gray-500 absolute top-2 right-2 cursor-pointer"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M18 6L6 18" />
+                <path d="M6 6l12 12" />
+              </svg>
+            </div>
+
+            <h2 class="text-lg font-semibold mb-4">Select Your Avatar</h2>
+
+            <div id="avatar-grid" class="grid grid-cols-3 gap-4 mb-4"></div>
+            <button
+              id="confirm-avatar"
+              class="bg-gradient-to-r from-[var(--light-secondary-button-bg-color)] border-[1.5px] border-slate-400 to-[var(--light-primary-button-bg-color)] text-white px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300"
+            >
+              Confirm
+            </button>
           </div>
         </div>
 
@@ -114,5 +159,6 @@
     <!-- Active: gray-300 | Hover: gray-400 | Disabled: gray-500 -->
     <bottom-nav active="3"></bottom-nav>
     <script type="module" src="src/components/Profilepage/profile.js"></script>
+    <script type="module" src="src/components/Profilepage/avatar.js"></script>
   </body>
 </html>

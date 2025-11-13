@@ -1,6 +1,28 @@
-import { collection, getDocs, doc, deleteDoc, updateDoc } from "firebase/firestore";
+import { collection, getDoc, getDocs, doc, deleteDoc, updateDoc, arrayRemove, query, where } from "firebase/firestore";
 import { db, auth } from "../../firebaseConfig.js";
 import { onAuthStateChanged } from "firebase/auth";
+import { showPopup, hidePopup } from "/src/utils.js";
+
+async function deleteGroup(groupRef) {
+    const tasks_q = query(
+        collection(db, "tasks"),
+        where("ownerID", "==", groupRef.id)
+    );
+    const tasksSnap = await getDocs(tasks_q);
+    tasksSnap.forEach(async task => {
+        await deleteDoc(task.ref);
+    });
+    await deleteDoc(groupRef)
+}
+
+async function removeMember(groupRef, memberId) {
+    await updateDoc(groupRef, {
+        members: arrayRemove(memberId)
+    });
+    if ((await getDoc(groupRef)).data().members.length === 0) {
+        await deleteGroup(groupRef);
+    }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     const popup = document.getElementById("editGroupPopup");
@@ -8,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const cancelBtn = document.getElementById("cancelEditBtn");
     const membersList = document.getElementById("groupMembersList");
     const leaveBtn = document.getElementById("leaveGroup");
-    const saveBtn = document.getElementById("saveEditBtn")
     const currentGroupId = localStorage.getItem("todoGroupID");
 
     let currentUserId = null;
@@ -21,44 +42,50 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     editBtn.addEventListener("click", async () => {
-        popup.classList.remove("hidden");
-        setTimeout(() => popup.classList.remove("translate-y-full"), 10);
+        showPopup(popup)
 
         membersList.innerHTML = "";
+        
+        const groupRef = doc(db, "groups", currentGroupId);
+        const groupSnapshot = await getDoc(groupRef);
+        const groupData = groupSnapshot.data()
 
-        const membersRef = collection(db, "groups", currentGroupId, "members");
-        const snapshot = await getDocs(membersRef);
+        groupNameInput.value = groupData.name
 
-        snapshot.forEach((docSnap) => {
-            const member = docSnap.data();
+        const groupMembers = groupData.members;
+        
+        groupMembers.forEach(async (memberId) => {
+            const memberRef = doc(db, "userprofiles", memberId);
+            const memberSnapshot = await getDoc(memberRef);
+            const member = memberSnapshot.data();
+            
+            const memberElement = document.createElement("li");
+            memberElement.className =
+            "flex items-center justify-between gap-2 p-2 border rounded";
+            membersList.appendChild(memberElement);
 
-            const li = document.createElement("li");
-            li.className =
-                "flex items-center justify-between gap-2 p-2 border rounded";
-
+            // User
             const span = document.createElement("span");
-            span.textContent = member.username || member.email || docSnap.id;
+            span.textContent = member.username || member.email;
+            memberElement.appendChild(span);
 
+            // Remove user button
             const btn = document.createElement("button");
-            btn.type = "button";
-            btn.textContent = "Remove";
-            btn.className =
-                "px-3 py-2 text-sm rounded-full bg-[#921f3c] text-white hover:bg-[var(--secondary-button-bg-color)]";
-
-            btn.addEventListener("click", async () => {
-                const memberRef = doc(db, "groups", currentGroupId, "members", docSnap.id);
-                await deleteDoc(memberRef);
-
-                li.remove();
-            });
-
-            li.appendChild(span);
-            li.appendChild(btn);
-            membersList.appendChild(li);
+            if (memberId !== currentUserId) {
+                btn.type = "button";
+                memberElement.appendChild(btn);
+                btn.textContent = "Remove";
+                btn.className =
+                    "px-3 py-2 text-sm rounded-full text-white bg-[var(--danger-button-bg-color)] hover:bg-[var(--secondary-button-bg-color)] hover:scale-105";
+                btn.addEventListener("click", async () => {
+                    await removeMember(groupRef, memberId)
+                });
+            }
         });
     });
 
-    saveBtn.addEventListener("click", async (e) => {
+    groupNameChangeForm.addEventListener("submit", async (e) => {
+        e.preventDefault()
         const newName = groupNameInput.value.trim();
         if (!newName) {
             return;
@@ -70,15 +97,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     cancelBtn.addEventListener("click", () => {
-        popup.classList.add("translate-y-full");
-        setTimeout(() => popup.classList.add("hidden"), 300);
+        hidePopup(popup)
     });
 
     leaveBtn.addEventListener("click", async () => {
-
-        const memberRef = doc(db, "groups", currentGroupId, "members", currentUserId);
-        await deleteDoc(memberRef);
-
-        window.location.href = "sharepage_Groups.html"
+        await removeMember(doc(db, "groups", currentGroupId), currentUserId);
+        window.location.href = "/sharepage_Groups.html"
+        alert("Left the group")
     });
 });

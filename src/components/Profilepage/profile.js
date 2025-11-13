@@ -1,9 +1,10 @@
-// profile.js
 import { auth, db } from "../../firebaseConfig.js";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { doc, setDoc, getDoc, updateDoc, onSnapshot } from "firebase/firestore";
+import { setupAvatar } from "./avatar.js";
 
 // DOM Elements
+const profileImage = document.getElementById("profileImage");
 const usernameInput = document.getElementById("username");
 const emailInput = document.getElementById("email");
 const pronounsInput = document.getElementById("pronouns");
@@ -15,6 +16,9 @@ const errorMsg = document.getElementById("error-msg");
 const cardUsername = document.getElementById("card-username");
 const cardEmail = document.getElementById("card-email");
 
+let currentUserId = null;
+let isEditing = false;
+
 // Update card username in real time
 usernameInput.addEventListener("input", () => {
   if (cardUsername) {
@@ -22,10 +26,6 @@ usernameInput.addEventListener("input", () => {
   }
 });
 
-let currentUserId = null;
-let isEditing = false;
-
-// Set form editable state
 function setFormEditable(editable) {
   usernameInput.disabled = !editable;
   pronounsInput.disabled = !editable;
@@ -45,9 +45,12 @@ function listenUserProfile(userId, userEmail) {
     pronounsInput.value = data.pronouns || "";
     emailInput.value = userEmail || "";
 
-    // Update profile card display
     if (cardUsername) cardUsername.textContent = data.username || "Username";
     if (cardEmail) cardEmail.textContent = userEmail || "Email";
+
+    if (profileImage && data.profilePicture) {
+      profileImage.src = data.profilePicture;
+    }
   });
 }
 
@@ -71,7 +74,6 @@ async function saveProfile() {
       pronouns,
     });
     alert("Profile updated!");
-
     setFormEditable(false);
     isEditing = false;
   } catch (err) {
@@ -91,7 +93,6 @@ saveBtn.addEventListener("click", (e) => {
   }
 });
 
-// Logout
 logoutBtn.addEventListener("click", async () => {
   await signOut(auth);
   window.location.href = "/login.html";
@@ -113,7 +114,6 @@ onAuthStateChanged(auth, async (user) => {
   emailInput.style.backgroundColor = "#f0f0f0";
   emailInput.style.pointerEvents = "none";
 
-  // Initialize Firestore document if it doesn't exist
   const userDocRef = doc(db, "userprofiles", currentUserId);
   const docSnap = await getDoc(userDocRef);
   if (!docSnap.exists()) {
@@ -122,7 +122,7 @@ onAuthStateChanged(auth, async (user) => {
       {
         username: user.displayName || "",
         pronouns: "",
-        profilePicture: "",
+        profilePicture: "/images/person.png",
         email: userEmail,
       },
       { merge: true }
@@ -131,4 +131,8 @@ onAuthStateChanged(auth, async (user) => {
 
   listenUserProfile(currentUserId, userEmail);
   setFormEditable(false);
+
+  setupAvatar(profileImage, currentUserId, (selectedAvatar) => {
+    console.log("Selected avatar:", selectedAvatar);
+  });
 });

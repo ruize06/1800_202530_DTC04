@@ -1,21 +1,9 @@
-import { addPopupEventListeners } from '/src/utils.js'
+import { addPopupEventListeners, hidePopup, showPopup } from '/src/utils.js'
 import { onAuthReady } from '/src/authentication.js';
 import { db, auth } from "/src/firebaseConfig.js";
-import { onSnapshot, collection, getDoc, getDocs, addDoc, setDoc, doc, query, where, deleteDoc } from "firebase/firestore";
+import { onSnapshot, collection, getDoc, getDocs, addDoc, setDoc, doc, query, where, deleteDoc, updateDoc } from "firebase/firestore";
 
-function hidePopup(popupElement, transitionSpeed = 300) {
-    popupElement?.classList.toggle("translate-y-full", true);
-    setTimeout(() => {
-        popupElement?.classList.toggle("hidden", true);
-    }, transitionSpeed);
-}
-
-function showPopup(popupElement) {
-    popupElement?.classList.toggle("hidden", false);
-    setTimeout(() => {
-        popupElement?.classList.toggle("translate-y-full", false);
-    }, 0);
-}
+import { createShareTaskForm, cancelShareTaskForm, updateSearchResults, shareTasksFromForm } from '/src/components/Tasks/share-task.js';
 
 async function addTaskFromForm(event, ownerID) {
     event.preventDefault();
@@ -51,10 +39,8 @@ function editTaskFromForm(event, ownerID) {
     var task_details = new FormData(event.target);
     task_details = Object.fromEntries([...task_details.entries()]);
     // task_details.description = document.getElementsByName("description")[0].value.replace(/\n/g, '<br>')
-    task_details.ownerID = ownerID
-
     const task_doc = doc(db, "tasks", event.target.taskID)
-    setDoc(task_doc, task_details)
+    updateDoc(task_doc, task_details)
 
     cancelEditTaskForm()
 }
@@ -95,7 +81,9 @@ function renderTasks(tasks) {
 
     tasks.forEach((task) => {
         var task_box = document.createElement("task-box");
+        var share_button = document.createElement("share-button");
         task_list.appendChild(task_box);
+        task_box.appendChild(share_button)
         task_box.id = task.id
         onSnapshot(doc(db, "tasks", task.id), (docSnap) => {
             if (docSnap.exists()) {
@@ -104,8 +92,13 @@ function renderTasks(tasks) {
                 const edit_task_form_cancel = document.getElementById("edit-task-form-cancel")
                 const edit_task_form_container = document.getElementById("edit-task-form-container")
                 addPopupEventListeners(
-                    task_box, edit_task_form_cancel, edit_task_form_container,
+                    task_box.getElementsByClassName("task-box")[0], edit_task_form_cancel, edit_task_form_container,
                     createEditTaskForm, cancelEditTaskForm);
+                const share_task_form_cancel = document.getElementById("share-task-form-cancel")
+                const share_task_form_container = document.getElementById("share-task-form-container")
+                addPopupEventListeners(
+                    task_box.getElementsByClassName("share-icon")[0], share_task_form_cancel, share_task_form_container,
+                    createShareTaskForm, cancelShareTaskForm);
 
                 var taskJSON = docSnap.data();
 
@@ -130,6 +123,10 @@ function setup() {
 
     const edit_task_form = document.getElementById("edit-task-form");
     const delete_task_button = edit_task_form["delete"];
+    const share_task_search_form = document.getElementById("share-task-search-form");
+    const share_task_search_bar = share_task_search_form["searchGroups"]
+    const share_task_results_div = document.getElementById("shareSearchResultsDiv")
+    const share_task_submit_form = document.getElementById("share-task-form")
 
     onAuthReady(async (user) => {
         const searchParams = new URLSearchParams(window.location.search)
@@ -145,18 +142,23 @@ function setup() {
                     if (docSnap.exists()) {
                         const editGroup = document.getElementById("editGroup")
                         const addMember = document.getElementById("addMember")
-                        document.getElementById("topNavTitle").innerText = docSnap.data()["name"];
+                        const groupData = docSnap.data()
+
+                        document.getElementById("topNavTitle").innerText = groupData.name;
                         editGroup.classList.remove('hidden');
                         addMember.classList.remove('hidden');
-                    } else console.warn("Group doesn't exist")
+                    } else {
+                        alert("Group doesn't exist");
+                        // window.location.href = "/sharepage_Groups.html"
+                    }
                 })
                 break;
             default:
                 console.warn("No todo type specified")
         }
         if (!todoListOwnerID) {
-            console.warn("No group ID found");
-            window.location.href = "/main.html";
+            alert("No group ID found");
+            window.location.href = "/sharepage_Groups.html";
         }
         const tasks_q = query(collection(db, "tasks"), where("ownerID", "==", todoListOwnerID));
         var tasks = await getDocs(tasks_q)
@@ -167,9 +169,18 @@ function setup() {
             createAddTaskForm, cancelAddTaskForm);
         // // Open task form
         // Post task to server when add_task_form is submitted
-        add_task_form?.addEventListener("submit", (e) => { addTaskFromForm(e, todoListOwnerID) });
-        edit_task_form?.addEventListener("submit", (e) => { editTaskFromForm(e, todoListOwnerID) });
+        add_task_form?.addEventListener("submit", (e) => {
+            addTaskFromForm(e, todoListOwnerID)});
+        edit_task_form?.addEventListener("submit", (e) => {
+            editTaskFromForm(e, todoListOwnerID)});
         delete_task_button?.addEventListener("click", deleteTaskFromForm);
+        share_task_search_bar?.addEventListener("input", (e) => {
+            updateSearchResults(e, share_task_search_bar, share_task_results_div)})
+        share_task_search_form?.addEventListener("submit", (e) => {
+            updateSearchResults(e, share_task_search_bar, share_task_results_div)})
+        share_task_submit_form?.addEventListener("submit", (e) => {
+            shareTasksFromForm(e)
+        })
         // #end-a
 
         // #a Render tasks to the task list
