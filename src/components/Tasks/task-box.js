@@ -20,7 +20,7 @@ class TaskBox extends HTMLElement{
         this.classList.add("flex", "flex-row", "max-w-full", "space-x-4")
         this.innerHTML = `
             <div
-                class="task-box shadow-lg flex flex-row justify-between grow max-h-fit hover:scale-105 hover:[&_.task-description]:inline rounded-xl p-4 transition-transform duration-250">
+                class="task-box shadow-lg flex flex-row justify-between grow hover:scale-105 hover:[&_.task-description]:inline rounded-xl p-4 transition-transform duration-250">
 
                 <div class="task-description-container flex flex-row space-x-4 max-w-[70%]">
                     <div class="task-icon-container flex-none">
@@ -34,7 +34,7 @@ class TaskBox extends HTMLElement{
                     </div>
                 </div>
 
-                <div class="task-details-container flex gap-2 font-bold">
+                <div class="task-details-container flex flex-col md:flex-row gap-2 font-bold">
                     <div class="task-date hidden">
                         <span class="task-day"></span> /
                         <span class="task-month"></span> /

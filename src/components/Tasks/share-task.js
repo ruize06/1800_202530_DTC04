@@ -1,5 +1,5 @@
 import { collection, query, where, getDocs, addDoc, getDoc, doc } from "firebase/firestore";
-import { db } from "/src/firebaseConfig.js"
+import { auth, db } from "/src/firebaseConfig.js"
 import { showPopup, hidePopup, arrayRemove, customClone } from "/src/utils.js";
 import { onAuthReady } from "/src/authentication.js";
 
@@ -65,8 +65,10 @@ export function createShareTaskForm(event) {
     const _to_share_task = event.target.closest("task-box")
     var _task_box = customClone(_to_share_task, _tasks_to_share);
     _task_box.setAttribute("disabled", true)
-    _task_box.classList.add("scale-75")
+    _task_box.classList.add("scale-70")
+    _task_box.classList.add("pointer-events-none")
 }
+
 
 export function cancelShareTaskForm() {
     const _share_form_container = document.getElementById("share-task-form-container");
@@ -83,21 +85,28 @@ export function cancelShareTaskForm() {
 
 export async function shareTasksFromForm(event) {
     event.preventDefault()
-    const _addedGroups = document.getElementById("shareSearchResultsDiv").added
-    if (_addedGroups.length === 0) {
-        alert("No groups have been added yet!")
-        return;
-    }
-    const _shareTasksDiv = document.getElementById("tasksToShareDiv")
-    const _tasksCollection = collection(db, "tasks")
-    for (let task of _shareTasksDiv.children) {
-        const taskSnap = await getDoc(doc(_tasksCollection, task.id))
-        for (let groupID of _addedGroups) {
-            var taskData = taskSnap.data()
-            taskData.ownerID = groupID
-            addDoc(_tasksCollection, taskData)
+    onAuthReady(async (user) => {
+        const _addedGroups = document.getElementById("shareSearchResultsDiv").added
+        const addToOwnCheck = document.getElementById("saveToOwn")
+            if (addToOwnCheck.checked) {
+                _addedGroups.push(user.uid)
+                console.log(_addedGroups)
+            }
+            
+            if (_addedGroups.length === 0) {
+                alert("No groups have been added yet!")
+            return
         }
-    }
-    cancelShareTaskForm()
-    alert("Shared!")
+        const _shareTasksDiv = document.getElementById("tasksToShareDiv")
+        const _tasksCollection = collection(db, "tasks")
+        for (let task of _shareTasksDiv.children) {
+            const taskSnap = await getDoc(doc(_tasksCollection, task.id))
+            for (let groupID of _addedGroups) {
+                var taskData = taskSnap.data()
+                taskData.ownerID = groupID
+                addDoc(_tasksCollection, taskData)
+            }
+        }
+        cancelShareTaskForm()
+    })
 }
