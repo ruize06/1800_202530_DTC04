@@ -9,8 +9,8 @@ class SearchAddResult extends HTMLElement {
     
     render() {
         this.innerHTML = `
-        <div class="bg-[var(--bg-color)] px-3 py-2 rounded-full flex justify-between items-center shadow-lg">
-            <h1 class="searchResultTitle text-[var(--text-color)] text-xl font-semibold">
+        <div class="bg-[var(--bg-color)] px-3 py-2 rounded-full flex justify-between items-center shadow-sm max-w-full mx-auto">
+            <h1 class="searchResultTitle text-[var(--text-color)] md:text-xl font-semibold text-nowrap overflow-hidden text-ellipsis">
             </h1>
             <button class="searchResultAddButton px-3 py-1 rounded-full text-sm text-[var(--contrast-text-color)] bg-[var(--primary-button-bg-color)] hover:bg-[var(--secondary-button-bg-color)]">
             </button>

@@ -140,13 +140,16 @@ function setup() {
                 todoListOwnerID = localStorage.getItem("todoGroupID");
                 onSnapshot(doc(db, "groups", todoListOwnerID), (docSnap) => {
                     if (docSnap.exists()) {
-                        const editGroup = document.getElementById("editGroup")
-                        const addMember = document.getElementById("addMember")
+                        const editGroup = document.getElementById("editGroup");
+                        const addMember = document.getElementById("addMember");
                         const groupData = docSnap.data()
 
                         document.getElementById("topNavTitle").innerText = groupData.name;
                         editGroup.classList.remove('hidden');
                         addMember.classList.remove('hidden');
+
+                        const addToOwnCheck = document.getElementById("saveToOwnDiv");
+                        addToOwnCheck.classList.remove("hidden");
                     } else {
                         alert("Group doesn't exist");
                         // window.location.href = "/sharepage_Groups.html"
