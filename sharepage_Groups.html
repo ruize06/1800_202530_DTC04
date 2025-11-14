@@ -13,7 +13,7 @@
     <title>Orbit - Share</title>
 </head>
 
-<body class="w-[100%] h-[100%]">
+<body class="w-full h-full p-0 m-0 overflow-x-hidden">
     <nav class="max-w-7xl mx-auto border-b border-gray-200">
         <div class="relative flex items-center p-12">
             <h1 class="absolute left-1/2 -translate-x-1/2 text-2xl font-semibold text-[--text-color]">
@@ -42,30 +42,46 @@
         </section>
     </main>
 
+
+
     <!-- Add Group Popup -->
-    <div id="addGroupPopup" class="bg-gray-500 p-6 h-[600px] w-full fixed bottom-0 z-10 rounded-t-2xl hidden">
-        <div class="flex items-center justify-between">
-            <h1 class="text-xl font-bold mb-4">Create New Group</h1>
-            <button id="cancelGroupBtn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 5 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="icon icon-tabler icons-tabler-outline icon-tabler-x">
+    <div id="addGroupPopup" class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full md:max-w-[768px]
+            bg-[var(--secondary-bg-color)] text-[var(--text-color)] rounded-t-xl px-8 pb-8 shadow-lg
+            translate-y-full min-h-[595.865px] transition-transform duration-300 z-10 ease-in-out hidden">
+
+        <div
+            class="sticky flex flex-row items-center justify-between top-0 bg-inherit py-4 border-b border-[var(--primary-border-color)]">
+            <p class="text-3xl font-bold">Create a New Group</p>
+            <!-- Cancel Button -->
+            <div id="cancelGroupBtn" class="p-4 rounded-full hover:text-gray-500">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path d="M18 6l-12 12" />
                     <path d="M6 6l12 12" />
                 </svg>
-            </button>
+            </div>
         </div>
 
-        <input id="addGroupName" type="text" class="w-full p-2 border rounded mb-1" placeholder="Group Name" />
+        <form class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none 
+               [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)] 
+                min-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 
+               [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both">
 
-        <div id="noGroupName" class="hidden mb-1">
-            <h1 class="text-red-400">Please enter your group name</h1>
-        </div>
-
-        <button id="saveGroupBtn" class="bg-cyan-500 rounded-full p-2">
-            Submit
-        </button>
+            <div class="flex flex-col gap-2 mb-4">
+                <div class="flex justify-between">
+                    <input id="addGroupName" class="task-input border-b text-xl w-[80%]" type="text" name="title"
+                        placeholder="Enter your group's name" maxlength="64" />
+                    <div id="noGroupName" class="hidden mb-1">
+                        <h1 class="text-red-600">Please enter your group name</h1>
+                    </div>
+                    <button id="saveGroupBtn" type="button"
+                        class="px-6 rounded-full bg-[var(--primary-button-bg-color)] text-white hover:bg-[var(--secondary-button-bg-color)]">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </form>
     </div>
 
     <bottom-nav active="2"></bottom-nav>

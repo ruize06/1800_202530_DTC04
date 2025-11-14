@@ -1,6 +1,7 @@
 import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
 import { db, auth } from "../../firebaseConfig.js";
 import { onAuthStateChanged } from "firebase/auth";
+import { showPopup, hidePopup } from "/src/utils.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     const popup = document.getElementById('addGroupPopup');
@@ -22,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         groupDiv.appendChild(nameTag);
 
-        groupDiv.addEventListener('click', async() => {
+        groupDiv.addEventListener('click', async () => {
             localStorage.setItem("todoGroupID", groupId);
             window.location.href = `/todo.html?type=group`;
         });
@@ -47,11 +48,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     addGroupBtn.addEventListener('click', () => {
-        popup.classList.remove('hidden');
+        showPopup(popup)
     });
 
     cancelBtn.addEventListener('click', () => {
-        popup.classList.add('hidden');
+        hidePopup(popup)
     });
 
     onAuthStateChanged(auth, (user) => {
@@ -70,11 +71,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const newGroup = await addDoc(collection(db, "groups"), {
-                name: groupName.value.trim(),
-                createdBy: currentUserId,
-                createdAt: Date.now(),
-                members: [currentUserId]
-            });
+            name: groupName.value.trim(),
+            createdBy: currentUserId,
+            createdAt: Date.now(),
+            members: [currentUserId]
+        });
         const groupId = newGroup.id
 
         const groupDiv = createGroupElement(groupId, groupName.value.trim());
