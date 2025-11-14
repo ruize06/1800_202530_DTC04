@@ -31,23 +31,33 @@
       <h1 id="topNavTitle" class="absolute left-1/2 -translate-x-1/2 text-2xl font-semibold text-[--text-color]">
         Your Tasks
       </h1>
-      <button id="addMember" class="mr-auto hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 -2 24 24" fill="none" stroke="#115268"
+      <a href="sharepage_Groups.html" id="backBtn" class="hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 -2 24 24" fill="none" stroke="#115268"
           stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
-          <path d="M16 19h6" />
-          <path d="M19 16v6" />
-          <path d="M6 21v-2a4 4 0 0 1 4 -4h4" />
+          <path d="M5 12l14 0" />
+          <path d="M5 12l6 6" />
+          <path d="M5 12l6 -6" />
         </svg>
-      </button>
-      <button id="editGroup" class="ml-auto hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 -2 24 24" fill="none" stroke="#115268"
-          stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
-          <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
-          <path d="M16 5l3 3" />
-        </svg>
-      </button>
+      </a>
+      <div class="ml-auto">
+        <button id="addMember" class="hidden mr-[12px]">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 -2 24 24" fill="none"
+            stroke="#115268" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+            <path d="M16 19h6" />
+            <path d="M19 16v6" />
+            <path d="M6 21v-2a4 4 0 0 1 4 -4h4" />
+          </svg>
+        </button>
+        <button id="editGroup" class="hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 -2 24 24" fill="none"
+            stroke="#115268" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+            <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+            <path d="M16 5l3 3" />
+          </svg>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -271,7 +281,7 @@
   <!-- Edit Group Popup -->
   <div id="editGroupPopup" class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full md:max-w-[768px]
             bg-[var(--secondary-bg-color)] text-[var(--text-color)] rounded-t-xl px-8 pb-8 shadow-lg
-            translate-y-full h-[680px] transition-transform duration-300 z-10 ease-in-out hidden">
+            translate-y-full min-h-[595.865px] transition-transform duration-300 z-10 ease-in-out hidden">
     <div
       class="sticky flex flex-row items-center justify-between top-0 bg-inherit py-4 border-b border-[var(--primary-border-color)]">
       <p class="text-3xl font-bold">Edit Group</p>
@@ -286,7 +296,7 @@
       </div>
     </div>
     <form id="groupNameChangeForm"
-      class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)] max-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both">
+      class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)] h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both">
       <div class="flex flex-col gap-2 mb-4">
         <label for="title">Group Name</label>
         <div class="flex justify-between">
@@ -316,7 +326,7 @@
   <!-- Add Member Popup -->
   <div id="addMemberPopup" class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full md:max-w-[768px]
             bg-[var(--secondary-bg-color)] text-[var(--text-color)] rounded-t-xl px-8 pb-8 shadow-lg
-            translate-y-full h-[680px] transition-transform duration-300 z-10 ease-in-out hidden">
+            translate-y-full min-h-[595.865px] transition-transform duration-300 z-10 ease-in-out hidden">
 
     <div
       class="sticky flex flex-row items-center justify-between top-0 bg-inherit py-4 border-b border-[var(--primary-border-color)]">
@@ -334,7 +344,7 @@
 
     <div class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none 
                [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)] 
-               max-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 
+                min-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 
                [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both">
 
       <div class="flex flex-col gap-2 mb-4">
