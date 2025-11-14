@@ -142,11 +142,13 @@ function setup() {
                     if (docSnap.exists()) {
                         const editGroup = document.getElementById("editGroup");
                         const addMember = document.getElementById("addMember");
+                        const backBtn = document.getElementById("backBtn")
                         const groupData = docSnap.data()
 
                         document.getElementById("topNavTitle").innerText = groupData.name;
                         editGroup.classList.remove('hidden');
                         addMember.classList.remove('hidden');
+                        backBtn.classList.remove('hidden')
 
                         const addToOwnCheck = document.getElementById("saveToOwnDiv");
                         addToOwnCheck.classList.remove("hidden");
@@ -173,14 +175,18 @@ function setup() {
         // // Open task form
         // Post task to server when add_task_form is submitted
         add_task_form?.addEventListener("submit", (e) => {
-            addTaskFromForm(e, todoListOwnerID)});
+            addTaskFromForm(e, todoListOwnerID)
+        });
         edit_task_form?.addEventListener("submit", (e) => {
-            editTaskFromForm(e, todoListOwnerID)});
+            editTaskFromForm(e, todoListOwnerID)
+        });
         delete_task_button?.addEventListener("click", deleteTaskFromForm);
         share_task_search_bar?.addEventListener("input", (e) => {
-            updateSearchResults(e, share_task_search_bar, share_task_results_div)})
+            updateSearchResults(e, share_task_search_bar, share_task_results_div)
+        })
         share_task_search_form?.addEventListener("submit", (e) => {
-            updateSearchResults(e, share_task_search_bar, share_task_results_div)})
+            updateSearchResults(e, share_task_search_bar, share_task_results_div)
+        })
         share_task_submit_form?.addEventListener("submit", (e) => {
             shareTasksFromForm(e)
         })
