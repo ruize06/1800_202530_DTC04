@@ -1,7 +1,7 @@
 import { addPopupEventListeners, hidePopup, showPopup } from '/src/utils.js'
 import { onAuthReady } from '/src/authentication.js';
 import { db, auth } from "/src/firebaseConfig.js";
-import { onSnapshot, collection, getDoc, getDocs, addDoc, setDoc, doc, query, where, deleteDoc, updateDoc } from "firebase/firestore";
+import { onSnapshot, collection, getDoc, getDocs, addDoc, setDoc, doc, query, where, deleteDoc, updateDoc, QueryEndAtConstraint } from "firebase/firestore";
 
 import { createShareTaskForm, cancelShareTaskForm, updateSearchResults, shareTasksFromForm } from '/src/components/Tasks/share-task.js';
 
@@ -135,10 +135,14 @@ function setup() {
         switch (searchParams.get("type")) {
             case 'user':
                 todoListOwnerID = user.uid;
+                document.querySelector("bottom-nav").setAttribute("active", 1);
                 break;
             case 'group':
                 todoListOwnerID = localStorage.getItem("todoGroupID");
+                document.querySelector("bottom-nav").setAttribute("active", 2);
                 onSnapshot(doc(db, "groups", todoListOwnerID), (docSnap) => {
+                    todoListOwnerID = localStorage.getItem("todoGroupID");
+                    console.log(todoListOwnerID)
                     if (docSnap.exists()) {
                         const editGroup = document.getElementById("editGroup");
                         const addMember = document.getElementById("addMember");
@@ -162,8 +166,8 @@ function setup() {
                 console.warn("No todo type specified")
         }
         if (!todoListOwnerID) {
-            alert("No group ID found");
-            window.location.href = "/sharepage_Groups.html";
+            console.warn("No group ID found");
+            // window.location.href = "/sharepage_Groups.html";
         }
         const tasks_q = query(collection(db, "tasks"), where("ownerID", "==", todoListOwnerID));
         var tasks = await getDocs(tasks_q)
