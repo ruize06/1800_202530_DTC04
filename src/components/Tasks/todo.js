@@ -1,7 +1,7 @@
 import { addPopupEventListeners, hidePopup, showPopup } from '/src/utils.js'
 import { onAuthReady } from '/src/authentication.js';
 import { db, auth } from "/src/firebaseConfig.js";
-import { onSnapshot, collection, getDoc, getDocs, addDoc, setDoc, doc, query, where, deleteDoc, updateDoc } from "firebase/firestore";
+import { onSnapshot, collection, getDoc, getDocs, addDoc, setDoc, doc, query, where, deleteDoc, updateDoc, QueryEndAtConstraint } from "firebase/firestore";
 
 import { createShareTaskForm, cancelShareTaskForm, updateSearchResults, shareTasksFromForm } from '/src/components/Tasks/share-task.js';
 
@@ -135,9 +135,11 @@ function setup() {
         switch (searchParams.get("type")) {
             case 'user':
                 todoListOwnerID = user.uid;
+                document.querySelector("bottom-nav").setAttribute("active", 1);
                 break;
             case 'group':
                 todoListOwnerID = localStorage.getItem("todoGroupID");
+                document.querySelector("bottom-nav").setAttribute("active", 2);
                 onSnapshot(doc(db, "groups", todoListOwnerID), (docSnap) => {
                     todoListOwnerID = localStorage.getItem("todoGroupID");
                     console.log(todoListOwnerID)
