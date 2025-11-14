@@ -271,7 +271,7 @@
   <!-- Edit Group Popup -->
   <div id="editGroupPopup" class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full md:max-w-[768px]
             bg-[var(--secondary-bg-color)] text-[var(--text-color)] rounded-t-xl px-8 pb-8 shadow-lg
-            translate-y-full h-[680px] transition-transform duration-300 z-10 ease-in-out hidden">
+            translate-y-full min-h-[595.865px] transition-transform duration-300 z-10 ease-in-out hidden">
     <div
       class="sticky flex flex-row items-center justify-between top-0 bg-inherit py-4 border-b border-[var(--primary-border-color)]">
       <p class="text-3xl font-bold">Edit Group</p>
@@ -286,7 +286,7 @@
       </div>
     </div>
     <form id="groupNameChangeForm"
-      class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)] max-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both">
+      class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)] h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both">
       <div class="flex flex-col gap-2 mb-4">
         <label for="title">Group Name</label>
         <div class="flex justify-between">
@@ -316,7 +316,7 @@
   <!-- Add Member Popup -->
   <div id="addMemberPopup" class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full md:max-w-[768px]
             bg-[var(--secondary-bg-color)] text-[var(--text-color)] rounded-t-xl px-8 pb-8 shadow-lg
-            translate-y-full h-[680px] transition-transform duration-300 z-10 ease-in-out hidden">
+            translate-y-full min-h-[595.865px] transition-transform duration-300 z-10 ease-in-out hidden">
 
     <div
       class="sticky flex flex-row items-center justify-between top-0 bg-inherit py-4 border-b border-[var(--primary-border-color)]">
@@ -334,7 +334,7 @@
 
     <form class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none 
                [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)] 
-               max-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 
+                min-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 
                [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both">
 
       <div class="flex flex-col gap-2 mb-4">
