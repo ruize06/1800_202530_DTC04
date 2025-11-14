@@ -34,7 +34,7 @@ class TaskBox extends HTMLElement{
                     </div>
                 </div>
 
-                <div class="task-details-container flex flex-col md:flex-row gap-2 font-bold">
+                <div class="task-details-container flex flex-col md:flex-row items-end gap-2 font-bold">
                     <div class="task-date hidden">
                         <span class="task-day"></span> /
                         <span class="task-month"></span> /

@@ -19,6 +19,10 @@ async function removeMember(groupRef, memberId) {
     await updateDoc(groupRef, {
         members: arrayRemove(memberId)
     });
+    const membersList = document.getElementById("groupMembersList");
+    for (let element of membersList.children) {
+        if (element.id == memberId) membersList.removeChild(element);
+    }
     if ((await getDoc(groupRef)).data().members.length === 0) {
         await deleteGroup(groupRef);
     }
@@ -60,6 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const member = memberSnapshot.data();
             
             const memberElement = document.createElement("li");
+            memberElement.id  = memberId
             memberElement.className =
             "flex items-center justify-between gap-2 p-2 border rounded";
             membersList.appendChild(memberElement);

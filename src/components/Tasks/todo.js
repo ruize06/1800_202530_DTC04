@@ -139,6 +139,8 @@ function setup() {
             case 'group':
                 todoListOwnerID = localStorage.getItem("todoGroupID");
                 onSnapshot(doc(db, "groups", todoListOwnerID), (docSnap) => {
+                    todoListOwnerID = localStorage.getItem("todoGroupID");
+                    console.log(todoListOwnerID)
                     if (docSnap.exists()) {
                         const editGroup = document.getElementById("editGroup");
                         const addMember = document.getElementById("addMember");
@@ -160,8 +162,8 @@ function setup() {
                 console.warn("No todo type specified")
         }
         if (!todoListOwnerID) {
-            alert("No group ID found");
-            window.location.href = "/sharepage_Groups.html";
+            console.warn("No group ID found");
+            // window.location.href = "/sharepage_Groups.html";
         }
         const tasks_q = query(collection(db, "tasks"), where("ownerID", "==", todoListOwnerID));
         var tasks = await getDocs(tasks_q)
