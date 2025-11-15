@@ -158,7 +158,7 @@ function setup() {
                         addToOwnCheck.classList.remove("hidden");
                     } else {
                         alert("Group doesn't exist");
-                        // window.location.href = "/sharepage_Groups.html"
+                        window.location.href = "/sharepage_Groups.html"
                     }
                 })
                 break;
@@ -166,8 +166,8 @@ function setup() {
                 console.warn("No todo type specified")
         }
         if (!todoListOwnerID) {
-            console.warn("No group ID found");
-            // window.location.href = "/sharepage_Groups.html";
+            alert("No group ID found");
+            window.location.href = "/sharepage_Groups.html";
         }
         const tasks_q = query(collection(db, "tasks"), where("ownerID", "==", todoListOwnerID));
         var tasks = await getDocs(tasks_q)
