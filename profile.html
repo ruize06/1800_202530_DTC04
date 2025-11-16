@@ -9,23 +9,16 @@
 
     <!-- Web Components -->
     <script type="module" src="/src/components/Navbar/nav-item.js"></script>
+    <script type="module" src="/src/components/Navbar/top-nav.js"></script>
     <script type="module" src="/src/components/Navbar/bottom-nav.js"></script>
 
     <title>Orbit - Profile</title>
   </head>
 
   <body class="w-full h-full bg-[--bg-color]">
-    <nav class="max-w-7xl mx-auto border-b border-gray-200">
-      <div class="relative flex items-center p-12">
-        <h1
-          class="absolute left-1/2 -translate-x-1/2 text-2xl font-semibold text-[--text-color]"
-        >
-          Profile
-        </h1>
-      </div>
-    </nav>
+    <top-nav title="Profile"></top-nav>
 
-    <div class="max-w-[1024px] mx-auto pb-32 px-8 mt-10 md:px-0">
+    <div class="max-w-[1024px] mx-auto pb-32 px-8 pt-24 md:px-0">
       <div
         class="flex flex-col justify-center items-center md:flex-row md:gap-12 w-full"
       >

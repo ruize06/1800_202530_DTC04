@@ -9,23 +9,18 @@
     <link href="/src/styles/style.css" rel="stylesheet" />
 
     <script type="module" src="/src/components/Navbar/nav-item.js"></script>
+    <script type="module" src="/src/components/Navbar/top-nav.js"></script>
     <script type="module" src="/src/components/Navbar/bottom-nav.js"></script>
 
     <title>Orbit - Home</title>
   </head>
 
-  <body class="w-full h-full p-0 m-0 overflow-x-hidden pb-28">
-    <nav class="max-w-7xl mx-auto border-b border-gray-200">
-      <div class="relative flex items-center p-12">
-        <h1 class="absolute left-1/2 -translate-x-1/2 text-2xl font-semibold">
-          Home
-        </h1>
-      </div>
-    </nav>
+  <body class="w-full h-full p-0 m-0 overflow-x-hidden pb-44">
+    <top-nav title="Home"></top-nav>
 
     <!-- Dashboard Container -->
     <div
-      class="flex-1 max-w-5xl mx-auto p-6 flex flex-col md:flex-row gap-6 mt-3"
+      class="flex-1 max-w-5xl mx-auto p-6 flex flex-col md:flex-row gap-6 pt-26"
     >
       <!-- Left Dashboard -->
       <div
@@ -57,6 +52,7 @@
       </div>
     </div>
     <bottom-nav active="0"></bottom-nav>
+
     <script type="module" src="src/components/Main/main.js"></script>
   </body>
 </html>
