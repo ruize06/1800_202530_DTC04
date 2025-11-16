@@ -74,11 +74,22 @@ onAuthReady(async (currentUser) => {
       const count = groupTaskCounts[groupID];
       const groupName = groupMap[groupID] || "Unknown Group";
 
-      const p = document.createElement("p");
-      p.textContent = `${count} new task${
+      const a = document.createElement("a");
+      a.textContent = `${count} task${
         count !== 1 ? "s" : ""
       } from ${groupName}`;
-      newTasksContainer.appendChild(p);
+      a.className = `
+    block w-full text-left px-4 py-2 bg-[var(--secondary-bg-color)] text-black rounded-lg mb-3
+    hover:bg-blue-200 hover:shadow cursor-pointer transition
+  `;
+
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        localStorage.setItem("todoGroupID", groupID);
+        window.location.href = "todo.html?type=group";
+      });
+
+      newTasksContainer.appendChild(a);
     }
   });
 });
