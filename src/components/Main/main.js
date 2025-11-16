@@ -1,40 +1,59 @@
 import { onAuthReady } from "/src/authentication.js";
 import { db } from "/src/firebaseConfig.js";
-import { collection, query, where, onSnapshot } from "firebase/firestore";
+import {
+  collection,
+  query,
+  where,
+  onSnapshot,
+  getDocs,
+} from "firebase/firestore";
 
-//Today's Goals Tasks
-onAuthReady((currentUser) => {
+//Today's Goals Tasks (Personal and Group)
+onAuthReady(async (currentUser) => {
   const tasksCollection = collection(db, "tasks");
-  const userTasksQuery = query(
-    tasksCollection,
-    where("ownerID", "==", currentUser.uid)
-  );
+  const groupsCollection = collection(db, "groups");
 
   const tasksCountElement = document.getElementById("todays-goal-tasks-count");
+  const groupTasksCountElement = document.getElementById(
+    "todays-goal-group-count"
+  );
 
-  function updateTodaysTasks(querySnapshot) {
+  const groupsSnapshot = await getDocs(
+    query(groupsCollection, where("members", "array-contains", currentUser.uid))
+  );
+  const groupIDs = groupsSnapshot.docs.map((doc) => doc.id);
+
+  onSnapshot(tasksCollection, (snapshot) => {
     const today = new Date();
     const yyyy = today.getFullYear();
     const mm = String(today.getMonth() + 1).padStart(2, "0");
     const dd = String(today.getDate()).padStart(2, "0");
     const todayStr = `${yyyy}-${mm}-${dd}`;
 
-    const todayTasks = querySnapshot.docs.filter(
-      (doc) => doc.data().date === todayStr
-    );
+    let personalCount = 0;
+    let groupCount = 0;
 
-    const taskCount = todayTasks.length;
+    snapshot.docs.forEach((doc) => {
+      const data = doc.data();
+      if (data.date === todayStr) {
+        if (data.ownerID === currentUser.uid) {
+          personalCount++;
+        } else if (groupIDs.includes(data.ownerID)) {
+          groupCount++;
+        }
+      }
+    });
 
-    if (taskCount === 0) {
-      tasksCountElement.textContent = "No tasks for today";
-    } else {
-      tasksCountElement.textContent = `${taskCount} task${
-        taskCount !== 1 ? "s" : ""
-      } from your list`;
-    }
-  }
+    tasksCountElement.textContent =
+      personalCount === 0
+        ? "No tasks for today"
+        : `${personalCount} task${
+            personalCount !== 1 ? "s" : ""
+          } from your list`;
 
-  onSnapshot(userTasksQuery, (querySnapshot) => {
-    updateTodaysTasks(querySnapshot);
+    groupTasksCountElement.textContent =
+      groupCount === 0
+        ? "No tasks from your groups"
+        : `${groupCount} task${groupCount !== 1 ? "s" : ""} from your groups`;
   });
 });
