@@ -14,7 +14,7 @@
     <title>Orbit - Home</title>
   </head>
 
-  <body class="w-[100%] h-[100%] bg-gray-50">
+  <body class="w-full h-full p-0 m-0 overflow-x-hidden pb-28">
     <nav class="max-w-7xl mx-auto border-b border-gray-200">
       <div class="relative flex items-center p-12">
         <h1 class="absolute left-1/2 -translate-x-1/2 text-2xl font-semibold">
@@ -29,41 +29,33 @@
     >
       <!-- Left Dashboard -->
       <div
-        class="bg-white rounded-xl p-6 w-full md:w-2/3 border-2 border-gray-300"
+        class="bg-linear-to-tr from-[var(--secondary-bg-color)] to-[var(--gradient-bg-color)] rounded-xl p-6 w-full md:w-2/3"
       >
         <h2 class="text-lg font-semibold mb-4">Your Week</h2>
       </div>
 
       <!-- Right Dashboards -->
-      <div class="flex w-full md:w-1/3 flex-row md:flex-col gap-6">
-        <div
-          class="w-1/2 md:w-full bg-white rounded-xl p-6 border-2 border-gray-300"
-        >
-          <h2 class="text-lg font-semibold mb-4">Today's Goals</h2>
+      <div class="flex w-full md:w-1/3 flex-col gap-6">
+        <div class="md:w-full bg-[var(--secondary-bg-color)] rounded-xl p-6">
+          <h2 class="text-lg font-semibold mb-4">My Tasks Today</h2>
           <p id="todays-goal-tasks-count" class="text-base text-black mb-2">
             0 task from your list
           </p>
 
-          <p id="todays-goal-group-count" class="text-base text-gray-500">
+          <p id="todays-goal-group-count" class="text-base text-black">
             0 tasks from your groups
           </p>
         </div>
 
-        <div
-          class="w-1/2 md:w-full bg-white rounded-xl p-6 border-2 border-gray-300"
-        >
-          <h2 class="text-lg font-semibold mb-4">New</h2>
+        <div class="md:w-full bg-[var(--gradient-bg-color)] rounded-xl p-6">
+          <h2 class="text-lg font-semibold mb-4">Shared Tasks Today</h2>
+          <div
+            id="new-tasks-container"
+            class="flex flex-col gap-1 text-black"
+          ></div>
         </div>
       </div>
     </div>
-
-    <!-- Bottom Nav -->
-
-    <!-- Bottom Nav -->
-    <!-- Background -->
-    <!-- #115268 -->
-    <!-- Buttons -->
-    <!-- Active: gray-300 | Hover: gray-400 | Disabled: gray-500 -->
     <bottom-nav active="0"></bottom-nav>
     <script type="module" src="src/components/Main/main.js"></script>
   </body>

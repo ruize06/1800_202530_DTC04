@@ -8,7 +8,7 @@ import {
   getDocs,
 } from "firebase/firestore";
 
-//Today's Goals Tasks (Personal and Group)
+//Today's Goals Tasks (Personal and Group + New Tasks per Group)
 onAuthReady(async (currentUser) => {
   const tasksCollection = collection(db, "tasks");
   const groupsCollection = collection(db, "groups");
@@ -17,11 +17,17 @@ onAuthReady(async (currentUser) => {
   const groupTasksCountElement = document.getElementById(
     "todays-goal-group-count"
   );
+  const newTasksContainer = document.getElementById("new-tasks-container");
 
   const groupsSnapshot = await getDocs(
     query(groupsCollection, where("members", "array-contains", currentUser.uid))
   );
   const groupIDs = groupsSnapshot.docs.map((doc) => doc.id);
+
+  const groupMap = {};
+  groupsSnapshot.docs.forEach((doc) => {
+    groupMap[doc.id] = doc.data().name;
+  });
 
   onSnapshot(tasksCollection, (snapshot) => {
     const today = new Date();
@@ -32,6 +38,7 @@ onAuthReady(async (currentUser) => {
 
     let personalCount = 0;
     let groupCount = 0;
+    const groupTaskCounts = {};
 
     snapshot.docs.forEach((doc) => {
       const data = doc.data();
@@ -40,10 +47,15 @@ onAuthReady(async (currentUser) => {
           personalCount++;
         } else if (groupIDs.includes(data.ownerID)) {
           groupCount++;
+          if (!groupTaskCounts[data.ownerID]) {
+            groupTaskCounts[data.ownerID] = 0;
+          }
+          groupTaskCounts[data.ownerID]++;
         }
       }
     });
 
+    // Today's Goal
     tasksCountElement.textContent =
       personalCount === 0
         ? "No tasks for today"
@@ -55,5 +67,18 @@ onAuthReady(async (currentUser) => {
       groupCount === 0
         ? "No tasks from your groups"
         : `${groupCount} task${groupCount !== 1 ? "s" : ""} from your groups`;
+
+    // New
+    newTasksContainer.innerHTML = "";
+    for (const groupID in groupTaskCounts) {
+      const count = groupTaskCounts[groupID];
+      const groupName = groupMap[groupID] || "Unknown Group";
+
+      const p = document.createElement("p");
+      p.textContent = `${count} new task${
+        count !== 1 ? "s" : ""
+      } from ${groupName}`;
+      newTasksContainer.appendChild(p);
+    }
   });
 });
