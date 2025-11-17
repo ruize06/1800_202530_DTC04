@@ -19,6 +19,7 @@ onAuthReady(async (currentUser) => {
   );
   const newTasksContainer = document.getElementById("new-tasks-container");
 
+  // Get all groups the current user is part of
   const groupsSnapshot = await getDocs(
     query(groupsCollection, where("members", "array-contains", currentUser.uid))
   );
@@ -68,8 +69,18 @@ onAuthReady(async (currentUser) => {
         ? "No tasks from your groups"
         : `${groupCount} task${groupCount !== 1 ? "s" : ""} from your groups`;
 
-    // New
+    // Group Shared Tasks
     newTasksContainer.innerHTML = "";
+
+    if (groupCount === 0) {
+      const emptyMessage = document.createElement("p");
+      emptyMessage.textContent = "No shared tasks today";
+      emptyMessage.className =
+        "text-center text-black bg-[var(--secondary-bg-color)] py-4 rounded-lg";
+      newTasksContainer.appendChild(emptyMessage);
+      return;
+    }
+
     for (const groupID in groupTaskCounts) {
       const count = groupTaskCounts[groupID];
       const groupName = groupMap[groupID] || "Unknown Group";
@@ -79,7 +90,7 @@ onAuthReady(async (currentUser) => {
         count !== 1 ? "s" : ""
       } from ${groupName}`;
       a.className = `
-    block w-full text-left px-4 py-2 bg-[var(--secondary-bg-color)] text-black rounded-lg mb-3
+    block w-full text-left px-4 py-2 bg-[var(--secondary-bg-color)] text-black rounded-lg mb-3 shadow-md
     hover:bg-blue-200 hover:shadow cursor-pointer transition
   `;
 
