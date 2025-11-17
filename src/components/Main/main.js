@@ -18,8 +18,9 @@ const chartOptions = {
           clip: true,
         },
       },
+      responsive: true,
       scales: {
-        y: { display: false },
+        y: { display: false, suggestedMax: 8 },
         x: { grid: { display: false } }
       }
 };
@@ -52,6 +53,18 @@ onAuthReady((currentUser) => {
 
   const tasksCountElement = document.getElementById("todays-goal-tasks-count");
 
+  function getDatesTasks (date, querySnapshot) {
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, "0");
+    const dd = String(date.getDate()).padStart(2, "0");
+    const dateStr = `${yyyy}-${mm}-${dd}`;
+
+    const dateTasks = querySnapshot.docs.filter(
+      (doc) => doc.data().date === dateStr
+    );
+    return dateTasks;
+  }
+
   function updateTodaysTasks(querySnapshot) {
     const today = new Date();
     const yyyy = today.getFullYear();
@@ -74,7 +87,24 @@ onAuthReady((currentUser) => {
     }
   }
 
+  function updateWeeksTasksChart(querySnapshot) {
+    const date = new Date();
+    const weekday = date.getDay();
+    date.setDate(date.getDate() - weekday)
+
+    var weekTasksCount = [];
+    for (let i=0; i<7; i++) {
+      date.setDate(date.getDate() + 1);
+      const taskCount = getDatesTasks(date, querySnapshot).length;
+      weekTasksCount.push(taskCount);
+    }
+    console.log(weekTasksCount);
+    weekChart.data.datasets[0].data = weekTasksCount;
+    weekChart.update();
+  }
+
   onSnapshot(userTasksQuery, (querySnapshot) => {
     updateTodaysTasks(querySnapshot);
+    updateWeeksTasksChart(querySnapshot);
   });
 });
