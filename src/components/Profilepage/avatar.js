@@ -2,7 +2,6 @@ import { db } from "../../firebaseConfig.js";
 import { doc, updateDoc } from "firebase/firestore";
 
 export function setupAvatar(profileImage, userId, onAvatarSelect) {
-  
   //DOM Elements
   const chooseBtn = document.getElementById("choose-avatar-btn");
   const avatarSelector = document.getElementById("avatar-selector");
@@ -15,7 +14,7 @@ export function setupAvatar(profileImage, userId, onAvatarSelect) {
     "/images/planet1.png",
     "/images/planet2.png",
     "/images/planet3.png",
-    "/images/planet4.png",
+    "/images/sun.png",
     "/images/planet5.png",
     "/images/planet6.png",
     "/images/planet7.png",

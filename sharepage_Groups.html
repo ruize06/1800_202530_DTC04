@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -9,85 +8,108 @@
     <link href="/src/styles/style.css" rel="stylesheet" />
 
     <script type="module" src="/src/components/Navbar/nav-item.js"></script>
+    <script type="module" src="/src/components/Navbar/top-nav.js"></script>
     <script type="module" src="/src/components/Navbar/bottom-nav.js"></script>
     <title>Orbit - Share</title>
-</head>
+  </head>
 
-<body class="w-full h-full p-0 m-0 overflow-x-hidden">
-    <nav class="max-w-7xl mx-auto border-b border-gray-200">
-        <div class="relative flex items-center p-12">
-            <h1 class="absolute left-1/2 -translate-x-1/2 text-2xl font-semibold text-[--text-color]">
-                Share
-            </h1>
+  <body class="w-full h-full p-0 m-0 overflow-x-hidden">
+    <top-nav title="Share"></top-nav>
+
+    <main class="mb-[150px] max-w-[95%] md:max-w-[70%] mx-auto pt-24">
+      <section>
+        <!-- Create New Group Button -->
+        <div
+          id="addGroupBtn"
+          class="mt-[30px] flex items-center gap-2 cursor-pointer border-[1.5px] border-slate-400 text-zinc-600 px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300 justify-center w-[340px] mx-auto"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#52525b"
+            stroke-width="1"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z"
+            />
+            <path d="M15 12h-6" />
+            <path d="M12 9v6" />
+          </svg>
+          <h1>Create New Group</h1>
         </div>
-    </nav>
 
-    <main class="mb-[150px] max-w-[95%] md:max-w-[70%] mx-auto">
-        <section>
-            <!-- Create New Group Button -->
-            <div id="addGroupBtn" class="mt-[30px] flex items-center gap-2 cursor-pointer border-[1.5px] border-slate-400 text-zinc-600 px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl
-                    transition-all duration-300 justify-center w-[340px] mx-auto">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                    stroke="#52525b" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
-                    <path d="M15 12h-6" />
-                    <path d="M12 9v6" />
-                </svg>
-                <h1>Create New Group</h1>
-            </div>
-
-            <!-- Group List -->
-            <div id="groupList" class="my-5 gap-2 p-2 font-bold flex flex-col">
-            </div>
-        </section>
+        <!-- Group List -->
+        <div
+          id="groupList"
+          class="my-5 gap-2 p-2 font-bold flex flex-col"
+        ></div>
+      </section>
     </main>
 
-
-
     <!-- Add Group Popup -->
-    <div id="addGroupPopup" class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full md:max-w-[768px]
-            bg-[var(--secondary-bg-color)] text-[var(--text-color)] rounded-t-xl px-8 pb-8 shadow-lg
-            translate-y-full min-h-[595.865px] transition-transform duration-300 z-10 ease-in-out hidden">
-
-        <div
-            class="sticky flex flex-row items-center justify-between top-0 bg-inherit py-4 border-b border-[var(--primary-border-color)]">
-            <p class="text-3xl font-bold">Create a New Group</p>
-            <!-- Cancel Button -->
-            <div id="cancelGroupBtn" class="p-4 rounded-full hover:text-gray-500">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M18 6l-12 12" />
-                    <path d="M6 6l12 12" />
-                </svg>
-            </div>
+    <div
+      id="addGroupPopup"
+      class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full md:max-w-[768px] bg-[var(--secondary-bg-color)] text-[var(--text-color)] rounded-t-xl px-8 pb-8 shadow-lg translate-y-full min-h-[595.865px] transition-transform duration-300 z-10 ease-in-out hidden"
+    >
+      <div
+        class="sticky flex flex-row items-center justify-between top-0 bg-inherit py-4 border-b border-[var(--primary-border-color)]"
+      >
+        <p class="text-3xl font-bold">Create a New Group</p>
+        <!-- Cancel Button -->
+        <div id="cancelGroupBtn" class="p-4 rounded-full hover:text-gray-500">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M18 6l-12 12" />
+            <path d="M6 6l12 12" />
+          </svg>
         </div>
+      </div>
 
-        <form class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none 
-               [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)] 
-                min-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 
-               [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both">
-
-            <div class="flex flex-col gap-2 mb-4">
-                <div class="flex justify-between">
-                    <input id="addGroupName" class="task-input border-b text-xl w-[80%]" type="text" name="title"
-                        placeholder="Enter your group's name" maxlength="64" />
-                    <button id="saveGroupBtn" type="button"
-                        class="px-6 rounded-full bg-[var(--primary-button-bg-color)] text-white hover:bg-[var(--secondary-button-bg-color)]">
-                        Submit
-                    </button>
-                </div>
-                <div id="noGroupName" class="hidden mb-1">
-                    <h1 class="text-red-700">Please enter your group name</h1>
-                </div>
-            </div>
-        </form>
+      <form
+        class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)] min-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both"
+      >
+        <div class="flex flex-col gap-2 mb-4">
+          <div class="flex justify-between">
+            <input
+              id="addGroupName"
+              class="task-input border-b text-xl w-[80%]"
+              type="text"
+              name="title"
+              placeholder="Enter your group's name"
+              maxlength="64"
+            />
+            <button
+              id="saveGroupBtn"
+              type="button"
+              class="px-6 rounded-full bg-[var(--primary-button-bg-color)] text-white hover:bg-[var(--secondary-button-bg-color)]"
+            >
+              Submit
+            </button>
+          </div>
+          <div id="noGroupName" class="hidden mb-1">
+            <h1 class="text-red-700">Please enter your group name</h1>
+          </div>
+        </div>
+      </form>
     </div>
 
     <bottom-nav active="2"></bottom-nav>
     <!-- <script type="module" src="src/components/Sharepage/edit-group.js"></script> -->
     <script type="module" src="src/components/Sharepage/add-group.js"></script>
     <script type="module" src="src/components/Tasks/todo.js"></script>
-</body>
-
+  </body>
 </html>
