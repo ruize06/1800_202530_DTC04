@@ -1,6 +1,46 @@
 import { onAuthReady } from "/src/authentication.js";
 import { db } from "/src/firebaseConfig.js";
 import { collection, query, where, onSnapshot } from "firebase/firestore";
+import { Chart } from "chart.js/auto";
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+
+const chartElement = document.getElementById("weeklyTasksChart")
+const style =  window.getComputedStyle(document.body)
+const chartDays = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"]
+const chartOptions = {
+      animation: false,
+      plugins: {
+        legend: { display: false },
+        datalabels: {
+          color: style.getPropertyValue("--text-color"),
+          anchor: "end",
+          align: "start",
+          clip: true,
+        },
+      },
+      scales: {
+        y: { display: false },
+        x: { grid: { display: false } }
+      }
+};
+
+const weekChart = new Chart(
+  chartElement, {
+    type: 'bar',
+    data: {
+      labels: chartDays,
+      datasets: [{
+        label: "Tasks this week",
+        data: [0, 0, 0, 0, 0, 0, 0],
+        backgroundColor: style.getPropertyValue("--secondary-bg-color"),
+        borderColor: style.getPropertyValue("--primary-border-color"),
+        borderWidth: 1,
+      }]
+    },
+    plugins: [ChartDataLabels],
+    options: chartOptions
+  }
+);
 
 //Today's Goals Tasks
 onAuthReady((currentUser) => {
