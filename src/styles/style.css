@@ -48,3 +48,7 @@ body {
 .formOverflowScroll {
   @apply overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent;
 }
+
+.inputWebkitInvert {
+  @apply [&::-webkit-calendar-picker-indicator]:invert;
+}
