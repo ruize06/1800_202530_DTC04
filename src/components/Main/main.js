@@ -67,14 +67,7 @@ onAuthReady((currentUser) => {
 
   function updateTodaysTasks(querySnapshot) {
     const today = new Date();
-    const yyyy = today.getFullYear();
-    const mm = String(today.getMonth() + 1).padStart(2, "0");
-    const dd = String(today.getDate()).padStart(2, "0");
-    const todayStr = `${yyyy}-${mm}-${dd}`;
-
-    const todayTasks = querySnapshot.docs.filter(
-      (doc) => doc.data().date === todayStr
-    );
+    const todayTasks = getDatesTasks(today, querySnapshot)
 
     const taskCount = todayTasks.length;
 
