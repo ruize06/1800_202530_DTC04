@@ -1,10 +1,9 @@
-export function showAlert(message, type = "info") {
+export function showAlert(message, type = "success") {
   const typeClasses = {
     success:
       "from-[var(--light-secondary-button-bg-color)] to-[var(--light-primary-button-bg-color)] text-white",
     error: "from-red-400 to-red-600 text-white",
     warning: "from-yellow-300 to-yellow-400 text-black",
-    info: "from-blue-400 to-blue-600 text-white",
   };
 
   // overlay
