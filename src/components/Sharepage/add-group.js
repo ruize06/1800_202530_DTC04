@@ -1,7 +1,7 @@
 import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
 import { db, auth } from "../../firebaseConfig.js";
 import { onAuthStateChanged } from "firebase/auth";
-import { showPopup, hidePopup } from "/src/utils.js";
+import { showPopup, hidePopup, addPopupEventListeners } from "/src/utils.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     const popup = document.getElementById('addGroupPopup');
@@ -47,24 +47,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    addGroupBtn.addEventListener('click', () => {
-        showPopup(popup)
-    });
+    function createCreateGroupForm() {
+        showPopup(popup);
+        popup.focus()
+    }
 
-    cancelBtn.addEventListener('click', () => {
-        hidePopup(popup)
-    });
+    function cancelCreateGroupForm() {
+        hidePopup(popup);
+    }
 
-    onAuthStateChanged(auth, (user) => {
-        if (!user) {
-            window.location.href = "/login.html";
-            return;
-        }
-        currentUserId = user.uid;
-        loadGroups();
-    });
-
-    saveBtn.addEventListener('click', async () => {
+    async function createGroupFromForm() {
         if (!groupName.value.trim()) {
             noGroupName.classList.remove('hidden');
             return;
@@ -83,10 +75,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         groupName.value = "";
         noGroupName.classList.add('hidden');
-        popup.classList.add('hidden');
+        cancelCreateGroupForm();
+    }
+    onAuthStateChanged(auth, (user) => {
+        currentUserId = user.uid;
+        loadGroups();
     });
+
+    addPopupEventListeners(addGroupBtn, cancelBtn, popup, createCreateGroupForm, cancelCreateGroupForm);
+
+    saveBtn.addEventListener('click', createGroupFromForm);
+
 });
-
-
 
 
