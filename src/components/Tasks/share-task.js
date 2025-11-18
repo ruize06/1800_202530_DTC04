@@ -1,5 +1,5 @@
 import { collection, query, where, getDocs, addDoc, getDoc, doc } from "firebase/firestore";
-import { auth, db } from "/src/firebaseConfig.js"
+import { db } from "/src/firebaseConfig.js"
 import { showPopup, hidePopup, arrayRemove, customClone } from "/src/utils.js";
 import { onAuthReady } from "/src/authentication.js";
 
@@ -104,6 +104,7 @@ export async function shareTasksFromForm(event) {
             for (let groupID of _addedGroups) {
                 var taskData = taskSnap.data()
                 taskData.ownerID = groupID
+                taskData.completed = false
                 addDoc(_tasksCollection, taskData)
             }
         }

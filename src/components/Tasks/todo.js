@@ -1,38 +1,10 @@
 import { addPopupEventListeners, hidePopup, showPopup } from '/src/utils.js'
 import { onAuthReady } from '/src/authentication.js';
-import { db, auth } from "/src/firebaseConfig.js";
+import { db } from "/src/firebaseConfig.js";
 import { onSnapshot, collection, getDoc, getDocs, addDoc, setDoc, doc, query, where, deleteDoc, updateDoc, QueryEndAtConstraint } from "firebase/firestore";
 
 import { createShareTaskForm, cancelShareTaskForm, updateSearchResults, shareTasksFromForm } from '/src/components/Tasks/share-task.js';
-
-async function addTaskFromForm(event, ownerID) {
-    event.preventDefault();
-    var task_details = new FormData(event.target);
-    task_details = Object.fromEntries([...task_details.entries()]);
-    // task_details.description = document.getElementsByName("description")[0].value.replace(/\n/g, '<br>')
-
-    task_details.ownerID = ownerID
-
-    const tasks_collection = collection(db, "tasks")
-    const docref = await addDoc(tasks_collection, task_details)
-    const doc = await getDoc(docref);
-    renderTasks([doc]);
-
-    cancelAddTaskForm()
-}
-
-function createAddTaskForm() {
-    var _task_form = document.getElementById("add-task-form");
-    var _task_form_container = document.getElementById("add-task-form-container");
-    _task_form?.reset();
-    showPopup(_task_form_container);
-    _task_form_container.focus();
-}
-
-function cancelAddTaskForm() {
-    var _task_form_container = document.getElementById("add-task-form-container");
-    hidePopup(_task_form_container);
-}
+import { createAddTaskForm, cancelAddTaskForm, addTaskFromForm } from '/src/components/Tasks/add-task.js';
 
 function editTaskFromForm(event, ownerID) {
     event.preventDefault();
@@ -82,12 +54,20 @@ function renderTasks(tasks) {
     tasks.forEach((task) => {
         var task_box = document.createElement("task-box");
         var share_button = document.createElement("share-button");
+        var complete_button = document.createElement("complete-button");
         task_list.appendChild(task_box);
+        task_box.prepend(complete_button)
         task_box.appendChild(share_button)
         task_box.id = task.id
         onSnapshot(doc(db, "tasks", task.id), (docSnap) => {
             if (docSnap.exists()) {
                 task_box = document.getElementById(docSnap.id)
+                const complete_button = task_box.querySelector("complete-button")
+                complete_button.addEventListener("click", (e) => {
+                    updateDoc(doc(db, "tasks", e.target.closest("task-box").id), {
+                        completed: complete_button.getAttribute("checked")
+                    })
+                })
 
                 const edit_task_form_cancel = document.getElementById("edit-task-form-cancel")
                 const edit_task_form_container = document.getElementById("edit-task-form-container")
@@ -107,6 +87,7 @@ function renderTasks(tasks) {
                 task_box.setAttribute("color", taskJSON["color"]);
                 task_box.setAttribute("time", taskJSON["time"]);
                 task_box.setAttribute("date", taskJSON["date"]);
+                complete_button.setAttribute("checked", taskJSON["completed"]);
             } else {
                 console.log("removed task")
                 document.getElementById(docSnap.id).remove()
