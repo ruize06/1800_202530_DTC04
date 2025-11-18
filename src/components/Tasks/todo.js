@@ -46,6 +46,23 @@ function cancelEditTaskForm() {
     hidePopup(_task_form_container);
 }
 
+function updateStats() {
+    const _todo_message = document.getElementById("tasksTodoNumber");
+    const _done_message = document.getElementById("completedTasksNumber");
+    const _all_message = document.getElementById("allTasksNumber");
+    const _none_done_message = document.getElementById("noCompletedTasksMessage");
+
+    const _todo = document.getElementById("my-tasks-container").children.length;
+    const _done = document.getElementById("completed-list").children.length - 1;
+
+    _todo_message.innerHTML = _todo;
+    _done_message.innerHTML = _done;
+    _all_message.innerHTML = _todo + _done;
+
+    if (_done == 0) _none_done_message.classList.remove("hidden");
+    else _none_done_message.classList.add("hidden");
+}
+
 function renderTasks(tasks) {
     // Fetch tasks JSON from server then pass the list into tasks
     // For each task, create a <task-box> element and append it to the task list container
@@ -80,10 +97,12 @@ function renderTasks(tasks) {
                 task_box.setAttribute("date", taskJSON["date"]);
                 complete_button.setAttribute("checked", taskJSON["completed"]);
                
-                complete_button.addEventListener("click", async (e) => {
-                    await updateDoc(doc(db, "tasks", e.target.closest("task-box").id), {
-                        completed: complete_button.getAttribute("checked")
-                    })
+                complete_button.addEventListener("click", (e) => {
+                    setTimeout(async () => {
+                        await updateDoc(doc(db, "tasks", e.target.closest("task-box").id), {
+                            completed: complete_button.getAttribute("checked")
+                        })
+                    }, 400)
                 })
 
                 const edit_task_form_cancel = document.getElementById("edit-task-form-cancel")
@@ -97,10 +116,11 @@ function renderTasks(tasks) {
                     task_box.getElementsByClassName("share-icon")[0], share_task_form_cancel, share_task_form_container,
                     createShareTaskForm, cancelShareTaskForm
                 );
-
+                updateStats()
             } else {
                 console.log("removed task")
                 document.getElementById(docSnap.id).remove()
+                updateStats()
             }
         })
     })
@@ -190,16 +210,19 @@ function setup() {
             shareTasksFromForm(e)
         })
         show_completed_button.addEventListener("click", e => {
+            updateStats()
             if (completed_container.classList.contains('completed-list')) {
-                completed_container.classList.remove('hidden')
+                show_completed_button.innerHTML = "Hide Completed";
+                completed_container.classList.remove('hidden');
                 setTimeout(() => {
-                    completed_container.classList.remove('completed-list')
-                    completed_container.classList.add('completed-list-open')
+                    completed_container.classList.remove('completed-list');
+                    completed_container.classList.add('completed-list-open');
                 }, 0)
             } else {
-                completed_container.classList.remove('completed-list-open')
-                completed_container.classList.add('completed-list')
-                setTimeout(() => {completed_container.classList.add('hidden')}, 200)
+                show_completed_button.innerHTML = "Show Completed";
+                completed_container.classList.remove('completed-list-open');
+                completed_container.classList.add('completed-list');
+                setTimeout(() => {completed_container.classList.add('hidden')}, 200);
             }
         })
         // #end-a

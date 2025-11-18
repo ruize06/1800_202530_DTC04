@@ -68,18 +68,19 @@
     <!-- Stats -->
     <div class="bg-linear-to-tr from-[var(--secondary-bg-color)] to-[var(--gradient-bg-color)] rounded-xl p-4">
       <div
-        class="flex flex-col md:flex-row space-y-6 items-center justify-between py-4 border-b border-[var(--primary-border-color)]">
-        <div class="flex flex-row space-x-8 items-center font-bold text-xl">
+        class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 justify-between py-4 border-b border-[var(--primary-border-color)]">
+        <div class="flex flex-row justify-between space-x-4 items-center font-bold text-xl text-center">
           <h1>Tasks: <span id="tasksTodoNumber"></span></h1>
           <h1>Completed: <span id="completedTasksNumber"></span></h1>
           <h1>All: <span id="allTasksNumber"></span></h1>
         </div>
         <button id="showCompleted"
           class="max-w-fit max-h-fit px-4 py-2 shadow-lg rounded-full text-[var(--contrast-text-color)] bg-[var(--primary-button-bg-color)] hover:bg-[var(--secondary-button-bg-color)]">
-          Completed
+          Show Completed
         </button>
       </div>
-      <div id="completed-list" class="completed-list hidden flex flex-col px-8 py-8 gap-6 max-w-full overflow-hidden">
+      <div id="completed-list" class="completed-list hidden flex flex-col px-8 py-8 gap-6 max-w-full">
+        <p id="noCompletedTasksMessage">Nothing here yet...</p>
         <!-- Completed tasks dynamically added here -->
       </div>
     </div>

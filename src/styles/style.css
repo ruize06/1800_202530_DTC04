@@ -55,11 +55,12 @@ body {
 
 .completed-list {
     max-height: 0;
-    transition: max-height 200ms ease-out;
+    transition: max-height 200ms;
     overflow: hidden;
 }
 
 .completed-list-open {
-    max-height: 500px;
-    transition: max-height 200ms ease-in;
+    max-height: 450px;
+    transition: max-height 200ms;
+    overflow-y: scroll;
 }

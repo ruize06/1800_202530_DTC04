@@ -17,7 +17,7 @@ class TaskBox extends HTMLElement{
     }
 
     render() {
-        this.classList.add("flex", "flex-row", "max-w-full", "space-x-4")
+        this.className = "flex flex-row max-w-full space-x-4"
         this.innerHTML = `
             <div
                 class="task-box shadow-lg flex flex-col md:flex-row justify-between grow hover:scale-105 hover:[&_.task-description]:inline rounded-xl p-4 transition-transform duration-250">
