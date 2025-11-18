@@ -1,5 +1,6 @@
 import { db } from "../../firebaseConfig.js";
 import { doc, updateDoc } from "firebase/firestore";
+import { showAlert } from "../Popups/alert.js";
 
 export function setupAvatar(profileImage, userId, onAvatarSelect) {
   //DOM Elements
@@ -65,7 +66,7 @@ export function setupAvatar(profileImage, userId, onAvatarSelect) {
 
   confirmBtn.addEventListener("click", async () => {
     if (!selectedAvatar) {
-      alert("Please select an avatar!");
+      showAlert("Please select an avatar!", "warning");
       return;
     }
 
@@ -81,10 +82,10 @@ export function setupAvatar(profileImage, userId, onAvatarSelect) {
         await updateDoc(doc(db, "userprofiles", userId), {
           profilePicture: selectedAvatar,
         });
-        alert("Avatar saved!");
+        showAlert("Avatar saved!", "success");
       } catch (err) {
         console.error("Failed to save avatar:", err);
-        alert("Failed to save avatar. Please try again later.");
+        showAlert("Failed to save avatar. Please try again later.", "error");
       }
     }
 

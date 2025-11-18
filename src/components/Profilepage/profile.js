@@ -2,6 +2,7 @@ import { auth, db } from "../../firebaseConfig.js";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { doc, setDoc, getDoc, updateDoc, onSnapshot } from "firebase/firestore";
 import { setupAvatar } from "./avatar.js";
+import { showAlert } from "../Popups/alert.js";
 
 // DOM Elements
 const profileImage = document.getElementById("profileImage");
@@ -73,12 +74,12 @@ async function saveProfile() {
       username,
       pronouns,
     });
-    alert("Profile updated!");
+    showAlert("Profile updated!", "success");
     setFormEditable(false);
     isEditing = false;
   } catch (err) {
     console.error("Failed to update profile:", err);
-    alert("Failed to update profile. Please try again later.");
+    showAlert("Failed to update profile. Please try again later.", "error");
   }
 }
 
