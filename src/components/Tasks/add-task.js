@@ -13,9 +13,9 @@ export async function addTaskFromForm(event, ownerID) {
     const tasks_collection = collection(db, "tasks")
     const docref = await addDoc(tasks_collection, task_details)
     const doc = await getDoc(docref);
-    renderTasks([doc]);
 
     cancelAddTaskForm()
+    return [doc];
 }
 
 export function createAddTaskForm() {
