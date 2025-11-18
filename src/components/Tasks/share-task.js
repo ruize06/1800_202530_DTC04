@@ -124,6 +124,7 @@ export async function shareTasksFromForm(event) {
       for (let groupID of _addedGroups) {
         var taskData = taskSnap.data();
         taskData.ownerID = groupID;
+        taskData.completed = false;
         await addDoc(_tasksCollection, taskData);
       }
     }
