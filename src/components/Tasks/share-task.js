@@ -103,7 +103,8 @@ export function cancelShareTaskForm() {
 export async function shareTasksFromForm(event) {
   event.preventDefault();
   onAuthReady(async (user) => {
-    const _addedGroups = document.getElementById("shareSearchResultsDiv").added;
+    const _resultsDiv = document.getElementById("shareSearchResultsDiv");
+    const _addedGroups = _resultsDiv.added;
     const addToOwnCheck = document.getElementById("saveToOwn");
     if (addToOwnCheck.checked) {
       _addedGroups.push(user.uid);
@@ -111,7 +112,9 @@ export async function shareTasksFromForm(event) {
     }
 
     if (_addedGroups.length === 0) {
+      _resultsDiv.addedRecent = true;
       showAlert("No groups have been added yet!", "warning");
+      _resultsDiv.addedRecent = true;
       return;
     }
     const _shareTasksDiv = document.getElementById("tasksToShareDiv");
