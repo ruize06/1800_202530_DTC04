@@ -3,7 +3,7 @@ export function showAlert(message, type = "success") {
     success:
       "from-[var(--light-secondary-button-bg-color)] to-[var(--light-primary-button-bg-color)] text-white",
     error: "from-red-400 to-red-600 text-white",
-    warning: "from-yellow-300 to-yellow-400 text-black",
+    warning: "from-amber-200 to-amber-300 text-black",
   };
 
   // overlay
