@@ -142,6 +142,8 @@ function setup() {
     const show_completed_button = document.getElementById("showCompleted");
     const completed_container = document.getElementById('completed-list');
 
+    updateStats()
+
     onAuthReady(async (user) => {
         const searchParams = new URLSearchParams(window.location.search)
         var todoListOwnerID = null;
