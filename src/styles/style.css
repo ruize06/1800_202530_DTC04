@@ -52,3 +52,15 @@ body {
 .inputWebkitInvert {
   @apply [&::-webkit-calendar-picker-indicator]:invert;
 }
+
+.completed-list {
+    max-height: 0;
+    transition: max-height 200ms;
+    overflow: hidden;
+}
+
+.completed-list-open {
+    max-height: 450px;
+    transition: max-height 200ms;
+    overflow-y: scroll;
+}
