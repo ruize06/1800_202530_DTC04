@@ -213,6 +213,8 @@ function setup() {
             updateStats()
             if (completed_container.classList.contains('completed-list')) {
                 show_completed_button.innerHTML = "Hide Completed";
+                show_completed_button.classList.add("bg-[var(--secondary-button-bg-color)]")
+                show_completed_button.classList.remove("bg-[var(--primary-button-bg-color)]")
                 completed_container.classList.remove('hidden');
                 setTimeout(() => {
                     completed_container.classList.remove('completed-list');
@@ -220,6 +222,8 @@ function setup() {
                 }, 0)
             } else {
                 show_completed_button.innerHTML = "Show Completed";
+                show_completed_button.classList.add("bg-[var(--primary-button-bg-color)]")
+                show_completed_button.classList.remove("bg-[var(--secondary-button-bg-color)]")
                 completed_container.classList.remove('completed-list-open');
                 completed_container.classList.add('completed-list');
                 setTimeout(() => {completed_container.classList.add('hidden')}, 200);
