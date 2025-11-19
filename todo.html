@@ -86,14 +86,14 @@
         <!-- Completed tasks dynamically added here -->
       </div>
     </div>
-    <div id="my-tasks-container" class="flex flex-col px-8 pt-8 pb-28 gap-6 max-w-full">
+    <div id="my-tasks-container" class="flex flex-col px-8 pt-8 pb-64 gap-6 max-w-full">
       <!-- Tasks dynamically added here -->
     </div>
   </main>
 
   <!-- #a Add New Task -->
   <!-- Add task button -->
-  <div class="fixed bottom-36 right-8 md:right-[8vw] z-1">
+  <div class="fixed bottom-32 right-8 md:right-[calc((100vw-756px)/2)] z-1 max-w-full">
     <button id="add-task-button"
       class="w-16 h-16 hover:scale-105 active:scale-120 shadow-lg hover:shadow-xl bg-[var(--light-primary-button-bg-color)] hover:bg-[var(--light-secondary-button-bg-color)] text-white rounded-full flex items-center justify-center transition-all duration-250">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8 stroke-current" fill="none"
@@ -106,7 +106,7 @@
 
   <!-- Add task form -->
   <div id="add-task-form-container" tabindex="-1"
-    class="bg-[var(--secondary-bg-color)] text-[var(--text-color)] outline-none **:focus:outline-none fixed z-2 bottom-0 md:left-1/2 md:-translate-x-1/2 translate-y-full w-full md:max-w-[768px] rounded-t-xl px-8 pb-8 transition-all duration-300">
+    class="bg-[var(--secondary-bg-color)] text-[var(--text-color)] outline-none **:focus:outline-none fixed z-3 bottom-0 md:left-1/2 md:-translate-x-1/2 translate-y-full w-full md:max-w-[768px] rounded-t-xl px-8 pb-8 transition-all duration-300">
     <div
       class="sticky flex flex-row items-center justify-between top-0 bg-inherit py-4 border-b border-[var(--primary-border-color)]">
       <p class="text-3xl font-bold">Create Your Task</p>

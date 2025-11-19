@@ -83,9 +83,9 @@ function renderTasks(tasks) {
                 var taskJSON = docSnap.data();
             
                 if (taskJSON["completed"] == true || taskJSON["completed"] == "true") {
-                    completed_list.appendChild(task_box)
+                    completed_list.prepend(task_box)
                 } else {
-                    task_list.appendChild(task_box);
+                    task_list.prepend(task_box);
                 }
                 task_box.prepend(complete_button)
                 task_box.appendChild(share_button)
@@ -173,7 +173,7 @@ function setup() {
                         const addToOwnCheck = document.getElementById("saveToOwnDiv");
                         addToOwnCheck.classList.remove("hidden");
                     } else {
-                        alert("Group doesn't exist");
+                        console.warn("No gorup found")
                         window.location.href = "/sharepage_Groups.html"
                     }
                 })
@@ -182,7 +182,7 @@ function setup() {
                 console.warn("No todo type specified")
         }
         if (!todoListOwnerID) {
-            alert("No group ID found");
+            console.warn("No group ID found");
             window.location.href = "/sharepage_Groups.html";
         }
         const tasks_q = query(collection(db, "tasks"), where("ownerID", "==", todoListOwnerID));

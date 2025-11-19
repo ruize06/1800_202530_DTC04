@@ -2,25 +2,23 @@ import {
   collection,
   getDocs,
   doc,
-  setDoc,
   getDoc,
   query,
   where,
   updateDoc,
   arrayUnion,
-  arrayRemove,
-  onSnapshot,
 } from "firebase/firestore";
 import { db, auth } from "../../firebaseConfig.js";
 import { onAuthStateChanged } from "firebase/auth";
 import {
   hidePopup,
   showPopup,
-  arrayRemove as util_arrayRemove,
+  addPopupEventListeners,
 } from "/src/utils.js";
 import { showAlert } from "../Popups/alert.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+
   const popup = document.getElementById("addMemberPopup");
   const addMemberBtn = document.getElementById("addMember");
   const cancelBtn = document.getElementById("cancelBtn");
