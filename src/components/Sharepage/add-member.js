@@ -84,12 +84,12 @@ document.addEventListener("DOMContentLoaded", () => {
           _addButton.disabled = true
         } else _searchResult.setAttribute("added", false);
 
-        _addButton.addEventListener("click", () => {
+        _addButton.addEventListener("click", async () => {
             if (match.id in currentMembers) {
               _addButton.disabled = true;
             } else {
               _searchResult.setAttribute("added", true);
-              updateDoc(groupRef, {
+              await updateDoc(groupRef, {
                 members: arrayUnion(match.id),
               });
               currentMembers[match.id] = user;
