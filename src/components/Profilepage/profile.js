@@ -99,7 +99,9 @@ logoutBtn.addEventListener("click", async () => {
   window.location.href = "/login.html";
 });
 
+// ----------------------------
 // Initialize user profile
+// ----------------------------
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
     window.location.href = "/login.html";
@@ -115,20 +117,17 @@ onAuthStateChanged(auth, async (user) => {
   emailInput.style.backgroundColor = "#f0f0f0";
   emailInput.style.pointerEvents = "none";
 
-  const userDocRef = doc(db, "userprofiles", currentUserId);
-  const docSnap = await getDoc(userDocRef);
-  if (!docSnap.exists()) {
-    await setDoc(
-      userDocRef,
-      {
-        username: user.displayName || "",
-        pronouns: "",
-        profilePicture: "/images/person.png",
-        email: userEmail,
-      },
-      { merge: true }
-    );
-  }
+  // const userDocRef = doc(db, "userprofiles", currentUserId);
+  // const docSnap = await getDoc(userDocRef);
+
+  // if (!docSnap.exists()) {
+  //   await setDoc(userDocRef, {
+  //     username: user.displayName || "",
+  //     pronouns: "",
+  //     profilePicture: "/images/person.png",
+  //     email: userEmail,
+  //   });
+  // }
 
   listenUserProfile(currentUserId, userEmail);
   setFormEditable(false);
