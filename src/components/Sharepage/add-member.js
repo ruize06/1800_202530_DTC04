@@ -18,7 +18,6 @@ import {
 import { showAlert } from "../Popups/alert.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-
   const popup = document.getElementById("addMemberPopup");
   const addMemberBtn = document.getElementById("addMember");
   const cancelBtn = popup.querySelector(".cancelButton");
@@ -44,6 +43,18 @@ document.addEventListener("DOMContentLoaded", () => {
     return members;
   }
 
+  async function createAddMembersForm () {
+    showPopup(popup);
+    popup.focus();
+    currentMembers = await loadMembers(groupId);
+    searchResults.innerHTML = "";
+    searchInput.value = "";
+  }
+
+  function cancelAddMembersForm () {
+    hidePopup(popup);
+  }
+
   async function updateUserSearchResults() {
     const queryText = searchInput.value.trim().toLowerCase();
     searchResults.innerHTML = "";
@@ -65,15 +76,17 @@ document.addEventListener("DOMContentLoaded", () => {
         const user = match.data();
         var _searchResult = document.createElement("search-add-result");
         searchResults.append(_searchResult);
+        const _addButton = _searchResult.querySelector(".searchResultAddButton");
         _searchResult.setAttribute("title", user.username);
-        _searchResult.setAttribute("added", match.id in currentMembers);
-        _searchResult
-          .getElementsByClassName("searchResultAddButton")[0]
-          .addEventListener("click", () => {
+
+        if (match.id in currentMembers) {
+          _searchResult.setAttribute("added", true);
+          _addButton.disabled = true
+        } else _searchResult.setAttribute("added", false);
+
+        _addButton.addEventListener("click", () => {
             if (match.id in currentMembers) {
-              _searchResult.getElementsByClassName(
-                "searchResultAddButton"
-              )[0].disabled = true;
+              _addButton.disabled = true;
             } else {
               _searchResult.setAttribute("added", true);
               updateDoc(groupRef, {
@@ -91,10 +104,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   onAuthStateChanged(auth, async (user) => {
-    if (!user) {
-      window.location.href = "/login.html";
-      return;
-    }
     currentUserId = user.uid;
     currentMembers = await loadMembers(groupId);
 
@@ -102,13 +111,5 @@ document.addEventListener("DOMContentLoaded", () => {
     searchInput.addEventListener("input", updateUserSearchResults);
   });
 
-  addMemberBtn.addEventListener("click", async () => {
-    showPopup(popup);
-    currentMembers = await loadMembers(groupId);
-    updateUserSearchResults();
-  });
-
-  cancelBtn.addEventListener("click", () => {
-    hidePopup(popup);
-  });
+  addPopupEventListeners(addMemberBtn, cancelBtn, popup, createAddMembersForm, cancelAddMembersForm);
 });

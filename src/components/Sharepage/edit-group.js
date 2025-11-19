@@ -1,7 +1,7 @@
 import { collection, getDoc, getDocs, doc, deleteDoc, updateDoc, arrayRemove, query, where } from "firebase/firestore";
 import { db, auth } from "../../firebaseConfig.js";
 import { onAuthStateChanged } from "firebase/auth";
-import { showPopup, hidePopup, confirmationPopup } from "/src/utils.js";
+import { showPopup, hidePopup, confirmationPopup, addPopupEventListeners } from "/src/utils.js";
 
 
 async function deleteGroup(groupRef) {
@@ -46,8 +46,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    editBtn.addEventListener("click", async () => {
+    async function createEditTaskForm () {
         showPopup(popup)
+        popup.focus()
 
         membersList.innerHTML = "";
 
@@ -93,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
         });
-    });
+    }
 
     groupNameChangeForm.addEventListener("submit", async (e) => {
         e.preventDefault()
@@ -107,9 +108,9 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Group name updated to:", newName);
     });
 
-    cancelBtn.addEventListener("click", () => {
+    function cancelEditTaskForm() {
         hidePopup(popup)
-    });
+    }
 
     leaveBtn.addEventListener("click", () => {
         const groupRef = doc(db, "groups", currentGroupId);
@@ -122,4 +123,5 @@ document.addEventListener("DOMContentLoaded", () => {
             },
         });
     });
+    addPopupEventListeners(editBtn, cancelBtn, popup, createEditTaskForm, cancelEditTaskForm)
 });
