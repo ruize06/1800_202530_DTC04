@@ -105,13 +105,13 @@ function renderTasks(tasks) {
                     }, 400)
                 })
 
-                const edit_task_form_cancel = document.getElementById("edit-task-form-cancel")
                 const edit_task_form_container = document.getElementById("edit-task-form-container")
+                const edit_task_form_cancel = edit_task_form_container.querySelector(".cancelButton")
                 addPopupEventListeners(
                     task_box.getElementsByClassName("task-box")[0], edit_task_form_cancel, edit_task_form_container,
                     createEditTaskForm, cancelEditTaskForm);
-                const share_task_form_cancel = document.getElementById("share-task-form-cancel")
                 const share_task_form_container = document.getElementById("share-task-form-container")
+                const share_task_form_cancel = share_task_form_container.querySelector(".cancelButton")
                 addPopupEventListeners(
                     task_box.getElementsByClassName("share-icon")[0], share_task_form_cancel, share_task_form_container,
                     createShareTaskForm, cancelShareTaskForm
@@ -129,8 +129,8 @@ function renderTasks(tasks) {
 function setup() {
     const add_button = document.getElementById("add-task-button");
     const add_task_form = document.getElementById("add-task-form");
-    const add_task_form_cancel = document.getElementById("add-task-form-cancel");
     const add_task_form_container = document.getElementById("add-task-form-container");
+    const add_task_form_cancel = add_task_form_container.querySelector(".cancelButton");
 
     const edit_task_form = document.getElementById("edit-task-form");
     const delete_task_button = edit_task_form["delete"];

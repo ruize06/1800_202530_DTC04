@@ -32,7 +32,7 @@ async function removeMember(groupRef, memberId) {
 document.addEventListener("DOMContentLoaded", () => {
     const popup = document.getElementById("editGroupPopup");
     const editBtn = document.getElementById("editGroup");
-    const cancelBtn = document.getElementById("cancelEditBtn");
+    const cancelBtn = popup.querySelector(".cancelButton");
     const membersList = document.getElementById("groupMembersList");
     const leaveBtn = document.getElementById("leaveGroup");
     const currentGroupId = localStorage.getItem("todoGroupID");

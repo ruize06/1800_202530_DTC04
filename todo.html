@@ -15,6 +15,8 @@
   <script type="module" src="/src/components/Tasks/share-button.js"></script>
   <script type="module" src="/src/components/Tasks/complete-button.js"></script>
   <script type="module" src="/src/components/Search/search-add-result.js"></script>
+  <script type="module" src="src\components\Popups\popup-form-header.js"></script>
+
 
   <!-- Scripts -->
   <script defer type="module" src="/src/components/Tasks/todo.js"></script>
@@ -107,20 +109,7 @@
   <!-- Add task form -->
   <div id="add-task-form-container" tabindex="-1"
     class="bg-[var(--secondary-bg-color)] text-[var(--text-color)] outline-none **:focus:outline-none fixed z-3 bottom-0 md:left-1/2 md:-translate-x-1/2 translate-y-full w-full md:max-w-[768px] rounded-t-xl px-8 pb-8 transition-all duration-300">
-    <div
-      class="sticky flex flex-row items-center justify-between top-0 bg-inherit py-4 border-b border-[var(--primary-border-color)]">
-      <p class="text-3xl font-bold">Create Your Task</p>
-      <!-- Cancel Button -->
-      <div id="add-task-form-cancel" class="p-4 rounded-full hover:text-gray-500">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-          class="icon icon-tabler icons-tabler-outline icon-tabler-x">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M18 6l-12 12" />
-          <path d="M6 6l12 12" />
-        </svg>
-      </div>
-    </div>
+    <popup-form-header title="Create a Task"></popup-form-header>
 
     <!-- Form -->
     <form id="add-task-form" class="[&_label]:font-bold [&_label]:text-xl
@@ -171,20 +160,7 @@
   <!-- Edit task form -->
   <div id="edit-task-form-container" tabindex="-1"
     class="bg-[var(--secondary-bg-color)] outline-none **:focus:outline-none text-[--contrast-text-color] fixed z-2 bottom-0 md:left-1/2 md:-translate-x-1/2 translate-y-full w-full md:max-w-[768px] rounded-t-xl px-8 pb-8 transition-all duration-300">
-    <div
-      class="sticky flex flex-row items-center justify-between top-0 bg-inherit py-4 border-b border-[var(--primary-border-color)]">
-      <p class="text-3xl font-bold">Edit Your Task</p>
-      <!-- Cancel Button -->
-      <div id="edit-task-form-cancel" class="p-4 rounded-full hover:text-gray-500">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-          class="icon icon-tabler icons-tabler-outline icon-tabler-x">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M18 6l-12 12" />
-          <path d="M6 6l12 12" />
-        </svg>
-      </div>
-    </div>
+    <popup-form-header title="Your Task"></popup-form-header>
 
     <!-- Form -->
     <form id="edit-task-form" class="
@@ -246,20 +222,7 @@
   <div id="share-task-form-container" tabindex="-1" class="bg-[var(--secondary-bg-color)] outline-none **:focus:outline-none text-[--contrast-text-color]
            fixed z-2 bottom-0 md:left-1/2 md:-translate-x-1/2 translate-y-full
            w-full md:max-w-[768px] rounded-t-xl px-8 py-8 transition-all duration-300">
-    <div
-      class="sticky flex flex-row items-center justify-between top-0 bg-inherit py-2 border-b border-[var(--primary-border-color)]">
-      <p class="text-3xl font-bold">Share Task</p>
-      <!-- Cancel Button -->
-      <div id="share-task-form-cancel" class="p-4 rounded-full hover:text-gray-500">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-          class="icon icon-tabler icons-tabler-outline icon-tabler-x">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M18 6l-12 12" />
-          <path d="M6 6l12 12" />
-        </svg>
-      </div>
-    </div>
+    <popup-form-header title="Share Your Task"></popup-form-header>
 
     <div class="pt-8 px-4 space-y-4 flex flex-col justify-between h-[60vh] formOverflowScroll">
       <!-- Form -->
@@ -302,19 +265,7 @@
   <div id="editGroupPopup" class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full md:max-w-[768px]
             bg-[var(--secondary-bg-color)] text-[var(--text-color)] rounded-t-xl px-8 pb-8 shadow-lg
             translate-y-full min-h-[595.865px] transition-transform duration-300 z-10 ease-in-out hidden">
-    <div
-      class="sticky flex flex-row items-center justify-between top-0 bg-inherit py-4 border-b border-[var(--primary-border-color)]">
-      <p class="text-3xl font-bold">Edit Group</p>
-      <!-- Cancel Button -->
-      <div id="cancelEditBtn" class="p-4 rounded-full hover:text-gray-500">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
-          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M18 6l-12 12" />
-          <path d="M6 6l12 12" />
-        </svg>
-      </div>
-    </div>
+    <popup-form-header title="Your Group"></popup-form-header>
     <form id="groupNameChangeForm"
       class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)] h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both">
       <div class="flex flex-col gap-2 mb-4">
@@ -347,20 +298,7 @@
   <div id="addMemberPopup" class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full md:max-w-[768px]
             bg-[var(--secondary-bg-color)] text-[var(--text-color)] rounded-t-xl px-8 pb-8 shadow-lg
             translate-y-full min-h-[595.865px] transition-transform duration-300 z-10 ease-in-out hidden">
-
-    <div
-      class="sticky flex flex-row items-center justify-between top-0 bg-inherit py-4 border-b border-[var(--primary-border-color)]">
-      <p class="text-3xl font-bold">Search Users</p>
-      <!-- Cancel Button -->
-      <div id="cancelBtn" class="p-4 rounded-full hover:text-gray-500">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
-          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M18 6l-12 12" />
-          <path d="M6 6l12 12" />
-        </svg>
-      </div>
-    </div>
+    <popup-form-header title="Add Member"></popup-form-header>
 
     <div class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none 
                [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)] 

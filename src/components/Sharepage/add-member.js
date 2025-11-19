@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const popup = document.getElementById("addMemberPopup");
   const addMemberBtn = document.getElementById("addMember");
-  const cancelBtn = document.getElementById("cancelBtn");
+  const cancelBtn = popup.querySelector(".cancelButton");
   const searchBtn = document.getElementById("searchBtn");
   const searchInput = document.getElementById("searchInput");
   const searchResults = document.getElementById("searchResults");

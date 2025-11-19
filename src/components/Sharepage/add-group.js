@@ -6,8 +6,8 @@ import { showPopup, hidePopup, addPopupEventListeners } from "/src/utils.js";
 document.addEventListener('DOMContentLoaded', () => {
     const popup = document.getElementById('addGroupPopup');
     const addGroupBtn = document.getElementById('addGroupBtn');
-    const cancelBtn = document.getElementById('cancelGroupBtn');
-    const saveBtn = document.getElementById('saveGroupBtn');
+    const cancelBtn = popup.querySelector(".cancelButton");
+    const createGroupForm = document.getElementById('createNewGroupForm');
     const groupList = document.getElementById('groupList');
     const groupName = document.getElementById('addGroupName');
     const noGroupName = document.getElementById('noGroupName');
@@ -56,7 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
         hidePopup(popup);
     }
 
-    async function createGroupFromForm() {
+    async function createGroupFromForm(e) {
+        e.preventDefault()
         if (!groupName.value.trim()) {
             noGroupName.classList.remove('hidden');
             return;
@@ -84,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     addPopupEventListeners(addGroupBtn, cancelBtn, popup, createCreateGroupForm, cancelCreateGroupForm);
 
-    saveBtn.addEventListener('click', createGroupFromForm);
+    createGroupForm.addEventListener('submit', createGroupFromForm);
 
 });
 
