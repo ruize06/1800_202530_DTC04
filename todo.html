@@ -69,27 +69,27 @@
     <!-- Tasks -->
     <!-- Stats -->
     <div
-      class="bg-linear-to-tr from-[var(--secondary-button-bg-color)] to-[var(--primary-button-bg-color)] rounded-xl p-4 text-[var(--contrast-text-color)]">
-      <div
-        class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 justify-between py-4 border-b border-[var(--primary-border-color)]">
-        <div class="flex flex-row justify-between space-x-4 items-center font-bold text-xl text-center">
-          <h1>Tasks: <span id="tasksTodoNumber"></span></h1>
-          <h1>Completed: <span id="completedTasksNumber"></span></h1>
-          <h1>All: <span id="allTasksNumber"></span></h1>
-        </div>
-        <button id="showCompleted" class="max-w-fit max-h-fit px-4 py-2 shadow-lg rounded-full border
-          text-[var(--contrast-text-color)] border-[var(--primary-border-color)] bg-[var(--primary-button-bg-color)]
-          hover:scale-105 active:scale-120 transition-transform duration-200">
-          Show Completed
-        </button>
-      </div>
-      <div id="completed-list" class="completed-list hidden flex flex-col px-8 py-8 gap-6 max-w-full">
-        <p id="noCompletedTasksMessage">Nothing here yet...</p>
-        <!-- Completed tasks dynamically added here -->
+      class="bg-linear-to-tr from-[var(--secondary-button-bg-color)] to-[var(--primary-button-bg-color)] rounded-xl p-4 text-[var(--contrast-text-color)] max-w-fit mx-auto">
+      <div class="flex flex-row justify-between space-x-4 items-center font-bold text-xl text-center">
+        <h1>Tasks: <span id="tasksTodoNumber"></span></h1>
+        <h1>Completed: <span id="completedTasksNumber"></span></h1>
+        <h1>All: <span id="allTasksNumber"></span></h1>
       </div>
     </div>
     <div id="my-tasks-container" class="flex flex-col px-8 pt-8 pb-64 gap-6 max-w-full">
       <!-- Tasks dynamically added here -->
+    </div>
+
+    <div class="max-w-full flex flex-col space-y-4 items-center hidden">
+      <button id="showCompleted" class="max-w-fit mx-auto max-h-fit px-4 py-2 shadow-lg rounded-full border
+        text-[var(--contrast-text-color)] border-[var(--primary-border-color)] bg-[var(--primary-button-bg-color)]
+        hover:scale-105 active:scale-120 transition-transform duration-200">
+        Show Completed
+      </button>
+      <div id="completed-list" class="completed-list hidden flex flex-col px-8 py-8 gap-6 max-w-full">
+        <p id="noCompletedTasksMessage">Nothing here yet...</p>
+        <!-- Completed tasks dynamically added here -->
+      </div>
     </div>
   </main>
 
