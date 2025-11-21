@@ -65,9 +65,9 @@ function updateWeeksTasksChart(querySnapshot) {
 
   var weekTasksCount = [];
   for (let i=0; i<7; i++) {
-    date.setDate(date.getDate() + 1);
     const taskCount = getDatesTasks(date, querySnapshot).length;
     weekTasksCount.push(taskCount);
+    date.setDate(date.getDate() + 1);
   }
   console.log(weekTasksCount);
   weekChart.data.datasets[0].data = weekTasksCount;
