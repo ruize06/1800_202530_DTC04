@@ -1,328 +1,519 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full p-0 m-0 box-border">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="/src/app.js"></script>
+    <link href="/src/styles/style.css" rel="stylesheet" />
 
-  <script type="module" src="/src/app.js"></script>
-  <link href="/src/styles/style.css" rel="stylesheet" />
+    <!-- Web Components -->
+    <script type="module" src="/src/components/Navbar/nav-item.js"></script>
+    <script type="module" src="/src/components/Navbar/bottom-nav.js"></script>
+    <script type="module" src="/src/components/Tasks/task-box.js"></script>
+    <script type="module" src="/src/components/Tasks/share-button.js"></script>
+    <script
+      type="module"
+      src="/src/components/Tasks/complete-button.js"
+    ></script>
+    <script
+      type="module"
+      src="/src/components/Search/search-add-result.js"
+    ></script>
+    <script
+      type="module"
+      src="src\components\Popups\popup-form-header.js"
+    ></script>
 
-  <!-- Web Components -->
-  <script type="module" src="/src/components/Navbar/nav-item.js"></script>
-  <script type="module" src="/src/components/Navbar/bottom-nav.js"></script>
-  <script type="module" src="/src/components/Tasks/task-box.js"></script>
-  <script type="module" src="/src/components/Tasks/share-button.js"></script>
-  <script type="module" src="/src/components/Tasks/complete-button.js"></script>
-  <script type="module" src="/src/components/Search/search-add-result.js"></script>
-  <script type="module" src="src\components\Popups\popup-form-header.js"></script>
+    <!-- Scripts -->
+    <script defer type="module" src="/src/components/Tasks/todo.js"></script>
+    <script
+      defer
+      type="module"
+      src="/src/components/Tasks/share-task.js"
+    ></script>
+    <script
+      defer
+      type="module"
+      src="/src/components/Sharepage/edit-group.js"
+    ></script>
+    <script
+      defer
+      type="module"
+      src="/src/components/Sharepage/add-member.js"
+    ></script>
 
+    <title>Orbit - To-Do</title>
+  </head>
 
-  <!-- Scripts -->
-  <script defer type="module" src="/src/components/Tasks/todo.js"></script>
-  <script defer type="module" src="/src/components/Tasks/share-task.js"></script>
-  <script defer type="module" src="/src/components/Sharepage/edit-group.js"></script>
-  <script defer type="module" src="/src/components/Sharepage/add-member.js"></script>
-
-  <title>Orbit - To-Do</title>
-</head>
-
-<body class="w-full h-full p-0 m-0 overflow-x-hidden">
-  <!-- Top Nav -->
-  <nav class="max-w-7xl mx-auto border-b border-gray-200">
-    <div class="relative flex items-center p-8">
-      <h1 id="topNavTitle" class="absolute left-1/2 -translate-x-1/2 text-2xl font-semibold text-[--text-color]">
-        Your Tasks
-      </h1>
-      <a href="sharepage_Groups.html" id="backBtn" class="hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 -2 24 24" fill="none" stroke="#115268"
-          stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12l14 0" />
-          <path d="M5 12l6 6" />
-          <path d="M5 12l6 -6" />
-        </svg>
-      </a>
-      <div class="ml-auto">
-        <button id="addMember" class="hidden mr-[12px]">
-          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 -2 24 24" fill="none"
-            stroke="#115268" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
-            <path d="M16 19h6" />
-            <path d="M19 16v6" />
-            <path d="M6 21v-2a4 4 0 0 1 4 -4h4" />
+  <body class="w-full h-full p-0 m-0 overflow-x-hidden">
+    <!-- Top Nav -->
+    <nav
+      class="fixed top-0 left-0 z-50 w-full bg-white border-b border-gray-200"
+    >
+      <div class="max-w-7xl mx-auto relative flex items-center p-8 h-16">
+        <!-- Back button -->
+        <a href="sharepage_Groups.html" id="backBtn" class="mr-3 hidden">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="30"
+            viewBox="0 -2 24 24"
+            fill="none"
+            stroke="#115268"
+            stroke-width="1.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 12l14 0" />
+            <path d="M5 12l6 6" />
+            <path d="M5 12l6 -6" />
           </svg>
-        </button>
-        <button id="editGroup" class="hidden">
-          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 -2 24 24" fill="none"
-            stroke="#115268" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
-            <path d="M6 21v-2a4 4 0 0 1 4 -4h3.5" />
-            <path d="M18.42 15.61a2.1 2.1 0 0 1 2.97 2.97l-3.39 3.42h-3v-3l3.42 -3.39z" />
-          </svg>
-        </button>
-      </div>
-    </div>
-  </nav>
+        </a>
 
-  <!-- Main -->
-  <main class="max-w-[758px] h-full mx-auto py-8">
-    <!-- Tasks -->
-    <!-- Stats -->
-    <div
-      class="bg-linear-to-tr from-[var(--secondary-button-bg-color)] to-[var(--primary-button-bg-color)] rounded-xl p-4 text-[var(--contrast-text-color)]">
-      <div
-        class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 justify-between py-4 border-b border-[var(--primary-border-color)]">
-        <div class="flex flex-row justify-between space-x-4 items-center font-bold text-xl text-center">
-          <h1>Tasks: <span id="tasksTodoNumber"></span></h1>
-          <h1>Completed: <span id="completedTasksNumber"></span></h1>
-          <h1>All: <span id="allTasksNumber"></span></h1>
-        </div>
-        <button id="showCompleted" class="max-w-fit max-h-fit px-4 py-2 shadow-lg rounded-full border
-          text-[var(--contrast-text-color)] border-[var(--primary-border-color)] bg-[var(--primary-button-bg-color)]
-          hover:scale-105 active:scale-120 transition-transform duration-200">
-          Show Completed
-        </button>
-      </div>
-      <div id="completed-list" class="completed-list hidden flex flex-col px-8 py-8 gap-6 max-w-full">
-        <p id="noCompletedTasksMessage">Nothing here yet...</p>
-        <!-- Completed tasks dynamically added here -->
-      </div>
-    </div>
-    <div id="my-tasks-container" class="flex flex-col px-8 pt-8 pb-64 gap-6 max-w-full">
-      <!-- Tasks dynamically added here -->
-    </div>
-  </main>
+        <!-- Centered Title -->
+        <h1
+          id="topNavTitle"
+          class="absolute left-1/2 -translate-x-1/2 text-2xl font-semibold text-[--text-color]"
+        >
+          Your Tasks
+        </h1>
 
-  <!-- #a Add New Task -->
-  <!-- Add task button -->
-  <div class="fixed bottom-32 right-8 md:right-[calc((100vw-756px)/2)] z-1 max-w-full">
-    <button id="add-task-button"
-      class="w-16 h-16 hover:scale-105 active:scale-120 shadow-lg hover:shadow-xl bg-[var(--light-primary-button-bg-color)] hover:bg-[var(--light-secondary-button-bg-color)] text-white rounded-full flex items-center justify-center transition-all duration-250">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8 stroke-current" fill="none"
-        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="12" y1="5" x2="12" y2="19"></line>
-        <line x1="5" y1="12" x2="19" y2="12"></line>
-      </svg>
-    </button>
-  </div>
+        <!-- Right side buttons -->
+        <div class="ml-auto flex items-center">
+          <button id="addMember" class="hidden mr-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="25"
+              height="25"
+              viewBox="0 -2 24 24"
+              fill="none"
+              stroke="#115268"
+              stroke-width="1.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+              <path d="M16 19h6" />
+              <path d="M19 16v6" />
+              <path d="M6 21v-2a4 4 0 0 1 4 -4h4" />
+            </svg>
+          </button>
 
-  <!-- Add task form -->
-  <div id="add-task-form-container" tabindex="-1"
-    class="bg-[var(--secondary-bg-color)] text-[var(--text-color)] outline-none **:focus:outline-none fixed z-3 bottom-0 md:left-1/2 md:-translate-x-1/2 translate-y-full w-full md:max-w-[768px] rounded-t-xl px-8 pb-8 transition-all duration-300">
-    <popup-form-header title="Create a Task"></popup-form-header>
-
-    <!-- Form -->
-    <form id="add-task-form" class="[&_label]:font-bold [&_label]:text-xl
-      [&_.task-input]:p-2 [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)]
-      max-h-[60vh] formOverflowScroll py-8 px-8 clear-both">
-      <!-- novalidate> -->
-
-      <div class="flex flex-col space-y-4">
-        <!-- Group/User -->
-        <!-- Title -->
-        <div class="flex flex-col gap-2">
-          <label for="title">Title</label>
-          <input class="task-input border-b text-xl" type="text" name="title" placeholder="Give your task a title"
-            maxlength="64" required />
-        </div>
-        <!-- Color -->
-        <div class="flex flex-col gap-2">
-          <label for="color">Color</label>
-          <input class="task-input border rounded-full p-0 h-12 w-24 [&::-webkit-color-swatch]:rounded-full"
-            type="color" name="color" value="#4bf3c0" />
-        </div>
-        <!-- Description -->
-        <div class="flex flex-col gap-2">
-          <label for="description">Description (optional)</label>
-          <textarea class="task-input border resize-none rounded-xl" name="description" placeholder="Add more details"
-            rows="6" cols="30"></textarea>
-        </div>
-        <!-- Date -->
-        <div class="flex flex-col gap-2 max-w-fit">
-          <label for="date">Date (optional)</label>
-          <input class="task-input border rounded-xl" type="date" name="date" />
-        </div>
-        <!-- Time -->
-        <div class="flex flex-col gap-2 max-w-fit">
-          <label for="time">Time (optional)</label>
-          <input class="task-input border rounded-xl" type="time" name="time" />
-        </div>
-      </div>
-
-      <!-- Submit Button -->
-      <input type="submit" name="submit" placeholder="Save"
-        class="text-xl text-white max-w-fit px-6 py-3 float-right clear-both rounded-full bg-[var(--primary-button-bg-color)] hover:bg-[var(--secondary-button-bg-color)] hover:scale-105 active:scale-120" />
-    </form>
-  </div>
-  <!-- #end-a -->
-
-  <!-- #a -->
-  <!-- Edit task form -->
-  <div id="edit-task-form-container" tabindex="-1"
-    class="bg-[var(--secondary-bg-color)] outline-none **:focus:outline-none text-[--contrast-text-color] fixed z-2 bottom-0 md:left-1/2 md:-translate-x-1/2 translate-y-full w-full md:max-w-[768px] rounded-t-xl px-8 pb-8 transition-all duration-300">
-    <popup-form-header title="Your Task"></popup-form-header>
-
-    <!-- Form -->
-    <form id="edit-task-form" class="
-            [&_label]:font-bold [&_label]:text-xl
-            [&_.task-input]:p-2 [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)]
-            max-h-[60vh] formOverflowScroll py-8 px-8 clear-both">
-      <!-- novalidate> -->
-
-      <div class="flex flex-col space-y-4">
-        <!-- Group/User -->
-        <!-- Title -->
-        <div class="flex flex-col gap-2">
-          <label for="title">Title</label>
-          <input class="task-input border-b-2 text-xl" type="text" name="title" placeholder="Give your task a title"
-            maxlength="64" required>
-        </div>
-        <!-- Color -->
-        <div class="flex flex-col gap-2">
-          <label for="color">Color</label>
-          <input class="task-input border-2 rounded-full p-0 h-12 w-24 [&::-webkit-color-swatch]:rounded-full"
-            type="color" name="color" value="#4bf3c0">
-        </div>
-        <!-- Description -->
-        <div class="flex flex-col gap-2">
-          <label for="description">Description</label>
-          <textarea class="task-input border-2 resize-none rounded-xl" name="description" placeholder="Add more details"
-            rows="3" cols="30" maxlength="1024"></textarea>
-        </div>
-        <!-- Date -->
-        <div class="flex flex-col gap-2 max-w-fit">
-          <label for="date">Date</label>
-          <input class="task-input border-2 rounded-xl" type="date" name="date">
-        </div>
-        <!-- Time -->
-        <div class="flex flex-col gap-2 max-w-fit">
-          <label for="time">Time</label>
-          <input class="task-input border rounded-xl " type="time" name="time">
-        </div>
-
-        <!-- Submit buttons -->
-        <div class="flex flex-row justify-between">
-          <!-- Delete Button -->
-          <input name="delete" type="button"
-            class="text-xl text-[var(--contrast-text-color)] max-w-fit px-6 py-3 rounded-full bg-red-500 hover:bg-red-600 hover:scale-105 active:scale-120"
-            value="Delete">
-
-          <!-- Submit Button -->
-          <input type="submit" name="submit" placeholder="Save"
-            class="text-xl text-[var(--contrast-text-color)] max-w-fit px-6 py-3 rounded-full bg-[var(--primary-button-bg-color)] hover:bg-[var(--secondary-button-bg-color)] hover:scale-105 active:scale-120">
-        </div>
-      </div>
-    </form>
-
-  </div>
-  <!-- #end-a -->
-
-  <!-- #a -->
-  <!-- Share task form -->
-  <div id="share-task-form-container" tabindex="-1" class="bg-[var(--secondary-bg-color)] outline-none **:focus:outline-none text-[--contrast-text-color]
-           fixed z-2 bottom-0 md:left-1/2 md:-translate-x-1/2 translate-y-full
-           w-full md:max-w-[768px] rounded-t-xl px-8 py-8 transition-all duration-300">
-    <popup-form-header title="Share Your Task"></popup-form-header>
-
-    <div class="pt-8 px-4 space-y-4 flex flex-col justify-between h-[60vh] formOverflowScroll">
-      <!-- Form -->
-      <form id="share-task-search-form" class="
-              [&_label]:font-bold [&_label]:text-xl
-              [&_.task-input]:p-2 [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)]
-              grow flex flex-col space-y-4">
-        <div class="flex items-center space-x-2 hidden" id="saveToOwnDiv">
-          <input type="checkbox" id="saveToOwn" name="saveToOwn" class="aspect-square w-5">
-          <label for="saveToOwn">Save to Your Tasks</label>
-        </div>
-        <!-- Search Groups -->
-        <div class="flex flex-col gap-2">
-          <label for="searchGroups">Search Groups</label>
-          <input type="text" name="searchGroups" class="task-input border rounded-xl"
-            placeholder="Find a group to share to">
-        </div>
-        <!-- Results -->
-        <div id="shareSearchResultsDiv"
-          class="flex flex-col overflow-y-scroll max-h-[65%] p-2 space-y-2 text-[var(--text-color)]">
-        </div>
-      </form>
-
-      <div class="flex flex-col space-y-4">
-        <!-- Sharing these tasks -->
-        <div class="formOverflowScroll flex flex-col space-y-2 min-h-fit max-h-[20vh] max-w-full" id="tasksToShareDiv">
-        </div>
-        <!-- Submit Share -->
-        <form id="share-task-form" class="max-w-fit mx-auto">
-          <!-- Submit Share -->
-          <input type="submit" name="submit" value="Share"
-            class="md:text-xl text-[var(--contrast-text-color)] max-w-fit px-6 py-2 rounded-full bg-[var(--primary-button-bg-color)] hover:bg-[var(--secondary-button-bg-color)] hover:scale-105 active:scale-115">
-        </form>
-      </div>
-    </div>
-  </div>
-  <!-- #end-a -->
-
-  <!-- Edit Group Popup -->
-  <div id="editGroupPopup" tabindex="-1" class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full md:max-w-[768px]
-            bg-[var(--secondary-bg-color)] text-[var(--text-color)] rounded-t-xl px-8 pb-8 shadow-lg
-            translate-y-full min-h-[595.865px] transition-transform duration-300 z-2 ease-in-out hidden">
-    <popup-form-header title="Your Group"></popup-form-header>
-    <form id="groupNameChangeForm"
-      class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)] h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both">
-      <div class="flex flex-col gap-2 mb-4">
-        <label for="title">Group Name</label>
-        <div class="flex justify-between">
-          <input id="groupNameInput" class="task-input border-b text-xl w-[80%]" type="text" name="title"
-            placeholder="Change your group name" maxlength="64" required />
-          <input id="saveEditBtn" type="submit" value="Save"
-            class="px-6 rounded-full bg-[var(--primary-button-bg-color)] text-white hover:bg-[var(--secondary-button-bg-color)]">
-        </div>
-      </div>
-
-      <!-- Group Members List -->
-      <div class="flex items-center justify-between mb-4">
-        <h1 class="text-xl font-bold">Group Members</h1>
-      </div>
-
-      <ul id="groupMembersList"
-        class="space-y-2 h-[300px] overflow-y-scroll mb-4 border p-3 rounded border-[var(--deactive-border-color)]">
-      </ul>
-
-      <button id="leaveGroup" type="button"
-        class="bg-[#921f3c] hover:bg-[var(--secondary-button-bg-color)] text-white p-2 w-full rounded-full mt-3">
-        Leave group
-      </button>
-    </form>
-  </div>
-
-  <!-- Add Member Popup -->
-  <div id="addMemberPopup" tabindex="-1" class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full md:max-w-[768px]
-            bg-[var(--secondary-bg-color)] text-[var(--text-color)] rounded-t-xl px-8 pb-8 shadow-lg
-            translate-y-full min-h-[595.865px] transition-transform duration-300 z-2 ease-in-out hidden">
-    <popup-form-header title="Add Member"></popup-form-header>
-
-    <div class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none 
-                [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)] 
-                min-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 
-                [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both">
-
-      <div class="flex flex-col gap-2 mb-4">
-        <div class="flex justify-between">
-          <input id="searchInput" class="task-input border-b text-xl w-[80%]" type="text" name="title"
-            placeholder="Enter username" maxlength="64" />
-          <button id="searchBtn" type="button"
-            class="px-6 rounded-full bg-[var(--primary-button-bg-color)] text-white hover:bg-[var(--secondary-button-bg-color)]">
-            Search
+          <button id="editGroup" class="hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="25"
+              height="25"
+              viewBox="0 -2 24 24"
+              fill="none"
+              stroke="#115268"
+              stroke-width="1.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+              <path d="M6 21v-2a4 4 0 0 1 4 -4h3.5" />
+              <path
+                d="M18.42 15.61a2.1 2.1 0 0 1 2.97 2.97l-3.39 3.42h-3v-3l3.42 -3.39z"
+              />
+            </svg>
           </button>
         </div>
       </div>
+    </nav>
 
-      <ul id="searchResults" class="flex flex-col gap-2 mb-4"></ul>
+    <!-- Main -->
+    <main class="max-w-[758px] h-full mx-auto py-8 pt-26">
+      <!-- Tasks -->
+      <!-- Stats -->
+      <div
+        class="bg-linear-to-tr from-[var(--secondary-button-bg-color)] to-[var(--primary-button-bg-color)] rounded-xl p-4 text-[var(--contrast-text-color)]"
+      >
+        <div
+          class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 justify-between py-4 border-b border-[var(--primary-border-color)]"
+        >
+          <div
+            class="flex flex-row justify-between space-x-4 items-center font-bold text-xl text-center"
+          >
+            <h1>Tasks: <span id="tasksTodoNumber"></span></h1>
+            <h1>Completed: <span id="completedTasksNumber"></span></h1>
+            <h1>All: <span id="allTasksNumber"></span></h1>
+          </div>
+          <button
+            id="showCompleted"
+            class="max-w-fit max-h-fit px-4 py-2 shadow-lg rounded-full border text-[var(--contrast-text-color)] border-[var(--primary-border-color)] bg-[var(--primary-button-bg-color)] hover:scale-105 active:scale-120 transition-transform duration-200"
+          >
+            Show Completed
+          </button>
+        </div>
+        <div
+          id="completed-list"
+          class="completed-list hidden flex flex-col px-8 py-8 gap-6 max-w-full"
+        >
+          <p id="noCompletedTasksMessage">Nothing here yet...</p>
+          <!-- Completed tasks dynamically added here -->
+        </div>
+      </div>
+      <div
+        id="my-tasks-container"
+        class="flex flex-col px-8 pt-8 pb-64 gap-6 max-w-full"
+      >
+        <!-- Tasks dynamically added here -->
+      </div>
+    </main>
 
+    <!-- #a Add New Task -->
+    <!-- Add task button -->
+    <div
+      class="fixed bottom-32 right-8 md:right-[calc((100vw-756px)/2)] z-1 max-w-full"
+    >
+      <button
+        id="add-task-button"
+        class="w-16 h-16 hover:scale-105 active:scale-120 shadow-lg hover:shadow-xl bg-[var(--light-primary-button-bg-color)] hover:bg-[var(--light-secondary-button-bg-color)] text-white rounded-full flex items-center justify-center transition-all duration-250"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          class="w-8 h-8 stroke-current"
+          fill="none"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+      </button>
     </div>
-  </div>
 
-  <!-- Bottom Nav -->
-  <bottom-nav></bottom-nav>
-</body>
+    <!-- Add task form -->
+    <div
+      id="add-task-form-container"
+      tabindex="-1"
+      class="bg-[var(--secondary-bg-color)] text-[var(--text-color)] outline-none **:focus:outline-none fixed z-3 bottom-0 md:left-1/2 md:-translate-x-1/2 translate-y-full w-full md:max-w-[768px] rounded-t-xl px-8 pb-8 transition-all duration-300"
+    >
+      <popup-form-header title="Create a Task"></popup-form-header>
 
+      <!-- Form -->
+      <form
+        id="add-task-form"
+        class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)] max-h-[60vh] formOverflowScroll py-8 px-8 clear-both"
+      >
+        <!-- novalidate> -->
+
+        <div class="flex flex-col space-y-4">
+          <!-- Group/User -->
+          <!-- Title -->
+          <div class="flex flex-col gap-2">
+            <label for="title">Title</label>
+            <input
+              class="task-input border-b text-xl"
+              type="text"
+              name="title"
+              placeholder="Give your task a title"
+              maxlength="64"
+              required
+            />
+          </div>
+          <!-- Color -->
+          <div class="flex flex-col gap-2">
+            <label for="color">Color</label>
+            <input
+              class="task-input border rounded-full p-0 h-12 w-24 [&::-webkit-color-swatch]:rounded-full"
+              type="color"
+              name="color"
+              value="#4bf3c0"
+            />
+          </div>
+          <!-- Description -->
+          <div class="flex flex-col gap-2">
+            <label for="description">Description (optional)</label>
+            <textarea
+              class="task-input border resize-none rounded-xl"
+              name="description"
+              placeholder="Add more details"
+              rows="6"
+              cols="30"
+            ></textarea>
+          </div>
+          <!-- Date -->
+          <div class="flex flex-col gap-2 max-w-fit">
+            <label for="date">Date (optional)</label>
+            <input
+              class="task-input border rounded-xl"
+              type="date"
+              name="date"
+            />
+          </div>
+          <!-- Time -->
+          <div class="flex flex-col gap-2 max-w-fit">
+            <label for="time">Time (optional)</label>
+            <input
+              class="task-input border rounded-xl"
+              type="time"
+              name="time"
+            />
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <input
+          type="submit"
+          name="submit"
+          placeholder="Save"
+          class="text-xl text-white max-w-fit px-6 py-3 float-right clear-both rounded-full bg-[var(--primary-button-bg-color)] hover:bg-[var(--secondary-button-bg-color)] hover:scale-105 active:scale-120"
+        />
+      </form>
+    </div>
+    <!-- #end-a -->
+
+    <!-- #a -->
+    <!-- Edit task form -->
+    <div
+      id="edit-task-form-container"
+      tabindex="-1"
+      class="bg-[var(--secondary-bg-color)] outline-none **:focus:outline-none text-[--contrast-text-color] fixed z-2 bottom-0 md:left-1/2 md:-translate-x-1/2 translate-y-full w-full md:max-w-[768px] rounded-t-xl px-8 pb-8 transition-all duration-300"
+    >
+      <popup-form-header title="Your Task"></popup-form-header>
+
+      <!-- Form -->
+      <form
+        id="edit-task-form"
+        class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)] max-h-[60vh] formOverflowScroll py-8 px-8 clear-both"
+      >
+        <!-- novalidate> -->
+
+        <div class="flex flex-col space-y-4">
+          <!-- Group/User -->
+          <!-- Title -->
+          <div class="flex flex-col gap-2">
+            <label for="title">Title</label>
+            <input
+              class="task-input border-b-2 text-xl"
+              type="text"
+              name="title"
+              placeholder="Give your task a title"
+              maxlength="64"
+              required
+            />
+          </div>
+          <!-- Color -->
+          <div class="flex flex-col gap-2">
+            <label for="color">Color</label>
+            <input
+              class="task-input border-2 rounded-full p-0 h-12 w-24 [&::-webkit-color-swatch]:rounded-full"
+              type="color"
+              name="color"
+              value="#4bf3c0"
+            />
+          </div>
+          <!-- Description -->
+          <div class="flex flex-col gap-2">
+            <label for="description">Description</label>
+            <textarea
+              class="task-input border-2 resize-none rounded-xl"
+              name="description"
+              placeholder="Add more details"
+              rows="3"
+              cols="30"
+              maxlength="1024"
+            ></textarea>
+          </div>
+          <!-- Date -->
+          <div class="flex flex-col gap-2 max-w-fit">
+            <label for="date">Date</label>
+            <input
+              class="task-input border-2 rounded-xl"
+              type="date"
+              name="date"
+            />
+          </div>
+          <!-- Time -->
+          <div class="flex flex-col gap-2 max-w-fit">
+            <label for="time">Time</label>
+            <input
+              class="task-input border rounded-xl"
+              type="time"
+              name="time"
+            />
+          </div>
+
+          <!-- Submit buttons -->
+          <div class="flex flex-row justify-between">
+            <!-- Delete Button -->
+            <input
+              name="delete"
+              type="button"
+              class="text-xl text-[var(--contrast-text-color)] max-w-fit px-6 py-3 rounded-full bg-red-500 hover:bg-red-600 hover:scale-105 active:scale-120"
+              value="Delete"
+            />
+
+            <!-- Submit Button -->
+            <input
+              type="submit"
+              name="submit"
+              placeholder="Save"
+              class="text-xl text-[var(--contrast-text-color)] max-w-fit px-6 py-3 rounded-full bg-[var(--primary-button-bg-color)] hover:bg-[var(--secondary-button-bg-color)] hover:scale-105 active:scale-120"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- #end-a -->
+
+    <!-- #a -->
+    <!-- Share task form -->
+    <div
+      id="share-task-form-container"
+      tabindex="-1"
+      class="bg-[var(--secondary-bg-color)] outline-none **:focus:outline-none text-[--contrast-text-color] fixed z-2 bottom-0 md:left-1/2 md:-translate-x-1/2 translate-y-full w-full md:max-w-[768px] rounded-t-xl px-8 py-8 transition-all duration-300"
+    >
+      <popup-form-header title="Share Your Task"></popup-form-header>
+
+      <div
+        class="pt-8 px-4 space-y-4 flex flex-col justify-between h-[60vh] formOverflowScroll"
+      >
+        <!-- Form -->
+        <form
+          id="share-task-search-form"
+          class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)] grow flex flex-col space-y-4"
+        >
+          <div class="flex items-center space-x-2 hidden" id="saveToOwnDiv">
+            <input
+              type="checkbox"
+              id="saveToOwn"
+              name="saveToOwn"
+              class="aspect-square w-5"
+            />
+            <label for="saveToOwn">Save to Your Tasks</label>
+          </div>
+          <!-- Search Groups -->
+          <div class="flex flex-col gap-2">
+            <label for="searchGroups">Search Groups</label>
+            <input
+              type="text"
+              name="searchGroups"
+              class="task-input border rounded-xl"
+              placeholder="Find a group to share to"
+            />
+          </div>
+          <!-- Results -->
+          <div
+            id="shareSearchResultsDiv"
+            class="flex flex-col overflow-y-scroll max-h-[65%] p-2 space-y-2 text-[var(--text-color)]"
+          ></div>
+        </form>
+
+        <div class="flex flex-col space-y-4">
+          <!-- Sharing these tasks -->
+          <div
+            class="formOverflowScroll flex flex-col space-y-2 min-h-fit max-h-[20vh] max-w-full"
+            id="tasksToShareDiv"
+          ></div>
+          <!-- Submit Share -->
+          <form id="share-task-form" class="max-w-fit mx-auto">
+            <!-- Submit Share -->
+            <input
+              type="submit"
+              name="submit"
+              value="Share"
+              class="md:text-xl text-[var(--contrast-text-color)] max-w-fit px-6 py-2 rounded-full bg-[var(--primary-button-bg-color)] hover:bg-[var(--secondary-button-bg-color)] hover:scale-105 active:scale-115"
+            />
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- #end-a -->
+
+    <!-- Edit Group Popup -->
+    <div
+      id="editGroupPopup"
+      tabindex="-1"
+      class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full md:max-w-[768px] bg-[var(--secondary-bg-color)] text-[var(--text-color)] rounded-t-xl px-8 pb-8 shadow-lg translate-y-full min-h-[595.865px] transition-transform duration-300 z-2 ease-in-out hidden"
+    >
+      <popup-form-header title="Your Group"></popup-form-header>
+      <form
+        id="groupNameChangeForm"
+        class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)] h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both"
+      >
+        <div class="flex flex-col gap-2 mb-4">
+          <label for="title">Group Name</label>
+          <div class="flex justify-between">
+            <input
+              id="groupNameInput"
+              class="task-input border-b text-xl w-[80%]"
+              type="text"
+              name="title"
+              placeholder="Change your group name"
+              maxlength="64"
+              required
+            />
+            <input
+              id="saveEditBtn"
+              type="submit"
+              value="Save"
+              class="px-6 rounded-full bg-[var(--primary-button-bg-color)] text-white hover:bg-[var(--secondary-button-bg-color)]"
+            />
+          </div>
+        </div>
+
+        <!-- Group Members List -->
+        <div class="flex items-center justify-between mb-4">
+          <h1 class="text-xl font-bold">Group Members</h1>
+        </div>
+
+        <ul
+          id="groupMembersList"
+          class="space-y-2 h-[300px] overflow-y-scroll mb-4 border p-3 rounded border-[var(--deactive-border-color)]"
+        ></ul>
+
+        <button
+          id="leaveGroup"
+          type="button"
+          class="bg-[#921f3c] hover:bg-[var(--secondary-button-bg-color)] text-white p-2 w-full rounded-full mt-3"
+        >
+          Leave group
+        </button>
+      </form>
+    </div>
+
+    <!-- Add Member Popup -->
+    <div
+      id="addMemberPopup"
+      tabindex="-1"
+      class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full md:max-w-[768px] bg-[var(--secondary-bg-color)] text-[var(--text-color)] rounded-t-xl px-8 pb-8 shadow-lg translate-y-full min-h-[595.865px] transition-transform duration-300 z-2 ease-in-out hidden"
+    >
+      <popup-form-header title="Add Member"></popup-form-header>
+
+      <div
+        class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)] min-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both"
+      >
+        <div class="flex flex-col gap-2 mb-4">
+          <div class="flex justify-between">
+            <input
+              id="searchInput"
+              class="task-input border-b text-xl w-[80%]"
+              type="text"
+              name="title"
+              placeholder="Enter username"
+              maxlength="64"
+            />
+            <button
+              id="searchBtn"
+              type="button"
+              class="px-6 rounded-full bg-[var(--primary-button-bg-color)] text-white hover:bg-[var(--secondary-button-bg-color)]"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+
+        <ul id="searchResults" class="flex flex-col gap-2 mb-4"></ul>
+      </div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <bottom-nav></bottom-nav>
+  </body>
 </html>
