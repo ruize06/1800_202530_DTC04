@@ -20,7 +20,7 @@ class TaskBox extends HTMLElement{
         this.className = "flex flex-row max-w-full space-x-4"
         this.innerHTML = `
             <div
-                class="task-box shadow-lg flex flex-col md:flex-row justify-between grow hover:scale-105 hover:[&_.task-description]:inline rounded-xl p-4 transition-transform duration-250">
+                class="task-box shadow-lg flex flex-col md:flex-row justify-between grow hover:scale-105 hover:[&_.task-description]:inline rounded-xl p-4 transition-all duration-250">
 
                 <div class="task-description-container flex flex-row space-x-4 md:max-w-[70%]">
                     <!-- no icon for now bc it takes too much space

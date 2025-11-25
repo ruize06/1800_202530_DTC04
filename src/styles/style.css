@@ -54,9 +54,6 @@ body {
 }
 
 .completed-list {
-    max-height: 0;
-    transition: max-height 200ms;
-    overflow: hidden;
 }
 
 .completed-list-open {
