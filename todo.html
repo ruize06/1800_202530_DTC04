@@ -65,7 +65,7 @@
   </nav>
 
   <!-- Main -->
-  <main class="max-w-[758px] h-full mx-auto py-8">
+  <main class="max-w-[758px] mx-auto pt-8 pb-48">
     <!-- Tasks -->
     <!-- Stats -->
     <div
@@ -76,14 +76,14 @@
         <h1>All: <span id="allTasksNumber"></span></h1>
       </div>
     </div>
-    <div id="my-tasks-container" class="flex flex-col px-8 pt-8 pb-64 gap-6 max-w-full">
+    <div id="my-tasks-container" class="flex flex-col px-8 pt-8 gap-6 max-w-full">
       <!-- Tasks dynamically added here -->
     </div>
 
-    <div class="max-w-full flex flex-col space-y-4 items-center hidden">
-      <button id="showCompleted" class="max-w-fit mx-auto max-h-fit px-4 py-2 shadow-lg rounded-full border
-        text-[var(--contrast-text-color)] border-[var(--primary-border-color)] bg-[var(--primary-button-bg-color)]
-        hover:scale-105 active:scale-120 transition-transform duration-200">
+    <div class="flex flex-col px-8 pt-8 gap-6 max-w-full">
+      <button id="showCompleted" class="max-w-fit mx-auto max-auto px-4 py-2 shadow-lg rounded-full border
+          text-[var(--contrast-text-color)] border-[var(--primary-border-color)] bg-[var(--primary-button-bg-color)]
+          hover:scale-105 active:scale-120 transition-transform duration-200">
         Show Completed
       </button>
       <div id="completed-list" class="completed-list hidden flex flex-col px-8 py-8 gap-6 max-w-full">

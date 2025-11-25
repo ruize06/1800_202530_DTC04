@@ -60,7 +60,4 @@ body {
 }
 
 .completed-list-open {
-    max-height: 450px;
-    transition: max-height 200ms;
-    overflow-y: scroll;
 }
