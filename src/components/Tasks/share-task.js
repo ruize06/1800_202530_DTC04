@@ -15,7 +15,7 @@ import { showAlert } from "../Popups/alert.js";
 export function updateSearchResults(event, searchInput, resultsDiv) {
   event.preventDefault();
   onAuthReady(async (user) => {
-    const query_text = searchInput.value;
+    const query_text = searchInput.value.toUpperCase().trim();
     if (query_text === "") {
       var search_query = query(
         collection(db, "groups"),
