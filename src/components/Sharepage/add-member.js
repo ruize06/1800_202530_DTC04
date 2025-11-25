@@ -56,13 +56,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function updateUserSearchResults() {
-    const queryText = searchInput.value.trim().toLowerCase();
+    const queryText = searchInput.value.trim().toUpperCase();
     searchResults.innerHTML = "";
 
     const usersRef = query(
       collection(db, "userprofiles"),
       where("username", ">=", queryText),
-      where("username", "<=", queryText + "~")
+      where("username", "<=", queryText + "\uf8ff")
     );
     const userMatches = await getDocs(usersRef);
 
