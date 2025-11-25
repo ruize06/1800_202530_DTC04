@@ -39,6 +39,7 @@ class BottomNav extends HTMLElement {
               class="bg-[var(--light-primary-button-bg-color)] p-2 md:scale-50 md:hover:scale-100 transition-transform duration-200 flex flex-row items-center hover:items-stretch justify-around space-x-2 md:space-x-8 md:max-w-fit md:max-h-fit mx-auto rounded-none md:rounded-full">
 
               <!-- Nav items -->
+              <!-- home -->
               <nav-item>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -49,18 +50,21 @@ class BottomNav extends HTMLElement {
                       <path d="M10 12h4v4h-4z" />
                   </svg>
               </nav-item>
+              <!-- todo list -->
               <nav-item>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                      class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-event">
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                      <path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
-                      <path d="M16 3l0 4" />
-                      <path d="M8 3l0 4" />
-                      <path d="M4 11l16 0" />
-                      <path d="M8 15h2v2h-2z" />
-                  </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-list-check">
+                  <path d="M12 5m-9.5 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M3.5 11.5l1.5 1.5l2.5 -2.5" />
+                  <path d="M3.5 17.5l1.5 1.5l2.5 -2.5" />
+                  <path d="M11 6l9 0" />
+                  <path d="M11 12l9 0" />
+                  <path d="M11 18l9 0" />
+                </svg>
               </nav-item>
+              <!-- groups -->
               <nav-item>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -74,6 +78,7 @@ class BottomNav extends HTMLElement {
                       <path d="M3 13v-1a2 2 0 0 1 2 -2h2" />
                   </svg>
               </nav-item>
+              <!-- profile -->
               <nav-item>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
