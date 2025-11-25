@@ -107,33 +107,25 @@ onAuthReady(async (currentUser) => {
     let personalCount = 0;
     let groupCount = 0;
     const groupTaskCounts = {};
-    const personalTasksQuerySnapshot = await getDocs(query(tasksCollection, where("ownerID", "==", currentUser.uid)));
+    const personalTasksQuerySnapshot = await getDocs(
+      query(
+        tasksCollection,
+        where("ownerID", "==", currentUser.uid),
+        where("completed", "!=", true)));
     personalCount = getDatesTasks(today, personalTasksQuerySnapshot).length;
     for (let groupID of groupIDs) {
-      const tasksQuerySnapshot = await getDocs(query(tasksCollection, where("ownerID", "==", groupID)));
+      const tasksQuerySnapshot = await getDocs(
+        query(
+          tasksCollection,
+          where("ownerID", "==", groupID),
+          where("completed", "!=", true)));
       let task_count = getDatesTasks(today, tasksQuerySnapshot).length;
       groupCount += task_count;
       groupTaskCounts[groupID] = task_count;
     }
     console.log("Group Count: " + groupCount)
-//  Old
-    // snapshot.docs.forEach((doc) => {
-    //   const data = doc.data();
-    //   if (data.date === todayStr) {
-    //     if (data.ownerID === currentUser.uid) {
-    //       personalCount++;
-    //     } else if (groupIDs.includes(data.ownerID)) {
-    //       groupCount++;
-    //       if (!groupTaskCounts[data.ownerID]) {
-    //         groupTaskCounts[data.ownerID] = 0;
-    //       }
-    //       groupTaskCounts[data.ownerID]++;
-    //     }
-    //   }
-    // });
 
     // Week's Goals ( Personal )
-    // TODO Make chart for groups and personal
     updateWeeksTasksChart(personalTasksQuerySnapshot);
 
     // Today's Goal
