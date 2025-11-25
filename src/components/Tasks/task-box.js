@@ -88,7 +88,9 @@ class TaskBox extends HTMLElement{
              * @param {string} newValue - string representing color code for bg background
              */
             this.getElementsByClassName("task-box")[0].style.backgroundColor = newValue;
-            this.getElementsByClassName("task-box")[0].style.color = isLightColor(newValue) ? "#000000": "#ffffff";
+            const textColor = isLightColor(newValue) ? "#000000": "#ffffff";
+            this.getElementsByClassName("task-box")[0].style.color = textColor;
+            this.style.textDecorationColor = textColor;
             
         } else if (name === "date" && newValue !== null && newValue != "null" && newValue != "") {
             /**

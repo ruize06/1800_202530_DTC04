@@ -84,10 +84,10 @@ function renderTasks(tasks) {
             
                 if (taskJSON["completed"] == true || taskJSON["completed"] == "true") {
                     completed_list.prepend(task_box)
-                    task_box.classList.add("line-through", "opacity-80");
+                    task_box.children[0].classList.add("line-through", "opacity-60");
                 } else {
                     task_list.prepend(task_box);
-                    task_box.classList.remove("line-through", "opacity-80");
+                    task_box.children[0].classList.remove("line-through", "opacity-60");
                 }
                 task_box.prepend(complete_button)
                 task_box.appendChild(share_button)
@@ -101,10 +101,10 @@ function renderTasks(tasks) {
                
                 complete_button.addEventListener("click", (event) => {
                     var _complete = complete_button.getAttribute("checked");
-                    var _task_box = event.target.closest("task-box");
+                    var _task_box = event.target.closest("task-box").children[1];
                     console.log(_complete)
                     if (_complete === true || _complete === "true") _task_box.classList.add("line-through", "opacity-80");
-                    else _task_box.classList.remove("line-through", "opacity-80");
+                    else _task_box.classList.remove("line-through", "opacity-60");
                     setTimeout(async () => {
                         await updateDoc(doc(db, "tasks", event.target.closest("task-box").id), {
                             completed: _complete
