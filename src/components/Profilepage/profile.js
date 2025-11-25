@@ -27,11 +27,23 @@ usernameInput.addEventListener("input", () => {
   }
 });
 
+// Change the color of input boxes when it is not editable
 function setFormEditable(editable) {
   usernameInput.disabled = !editable;
   pronounsInput.disabled = !editable;
+
   emailInput.readOnly = true;
-  emailInput.style.backgroundColor = "#f0f0f0";
+
+  if (!editable) {
+    usernameInput.style.backgroundColor = "#e5e5e5";
+    pronounsInput.style.backgroundColor = "#e5e5e5";
+  } else {
+    usernameInput.style.backgroundColor = "#f0f0f0";
+    pronounsInput.style.backgroundColor = "#f0f0f0";
+  }
+
+  emailInput.style.backgroundColor = "#e5e5e5";
+
   saveBtn.textContent = editable ? "Save Changes" : "Edit";
 }
 
@@ -46,7 +58,8 @@ function listenUserProfile(userId, userEmail) {
     pronounsInput.value = data.pronouns || "";
     emailInput.value = userEmail || "";
 
-    if (cardUsername) cardUsername.textContent = data.username || "Username";
+    if (cardUsername)
+      cardUsername.textContent = data.username || "Display Name";
     if (cardEmail) cardEmail.textContent = userEmail || "Email";
 
     if (profileImage && data.profilePicture) {
@@ -99,9 +112,7 @@ logoutBtn.addEventListener("click", async () => {
   window.location.href = "/login.html";
 });
 
-// ----------------------------
 // Initialize user profile
-// ----------------------------
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
     window.location.href = "/login.html";
@@ -114,20 +125,7 @@ onAuthStateChanged(auth, async (user) => {
   // Auto-fill email (read-only)
   emailInput.value = userEmail;
   emailInput.readOnly = true;
-  emailInput.style.backgroundColor = "#f0f0f0";
   emailInput.style.pointerEvents = "none";
-
-  // const userDocRef = doc(db, "userprofiles", currentUserId);
-  // const docSnap = await getDoc(userDocRef);
-
-  // if (!docSnap.exists()) {
-  //   await setDoc(userDocRef, {
-  //     username: user.displayName || "",
-  //     pronouns: "",
-  //     profilePicture: "/images/person.png",
-  //     email: userEmail,
-  //   });
-  // }
 
   listenUserProfile(currentUserId, userEmail);
   setFormEditable(false);

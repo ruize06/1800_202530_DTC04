@@ -17,9 +17,6 @@ export function setupAvatar(profileImage, userId, onAvatarSelect) {
     "/images/planet3.png",
     "/images/sun.png",
     "/images/planet5.png",
-    "/images/planet6.png",
-    "/images/planet7.png",
-    "/images/planet8.png",
   ];
 
   let selectedAvatar = null;
