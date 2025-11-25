@@ -263,7 +263,7 @@
     class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full md:max-w-[768px] bg-[var(--secondary-bg-color)] text-[var(--text-color)] rounded-t-xl px-8 pb-8 shadow-lg translate-y-full min-h-[595.865px] transition-transform duration-300 z-2 ease-in-out hidden">
     <popup-form-header title="Your Group"></popup-form-header>
     <form id="groupNameChangeForm"
-      class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)] h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both">
+      class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)] h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-2 md:px-8 clear-both">
       <div class="flex flex-col gap-2 mb-4">
         <label for="title">Group Name</label>
         <div class="flex justify-between">
@@ -280,7 +280,7 @@
       </div>
 
       <ul id="groupMembersList"
-        class="space-y-2 h-[300px] overflow-y-scroll mb-4 border p-3 rounded border-[var(--deactive-border-color)]">
+        class="space-y-2 max-h-fit overflow-y-scroll mb-4 border p-3 rounded border-[var(--deactive-border-color)]">
       </ul>
 
       <button id="leaveGroup" type="button"
@@ -296,7 +296,7 @@
     <popup-form-header title="Add Member"></popup-form-header>
 
     <div
-      class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)] min-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both">
+      class="[&_label]:font-bold [&_label]:text-xl [&_.task-input]:p-2 [&_*]:focus:outline-none [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)] min-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-2 md:px-8 clear-both">
       <div class="flex flex-col gap-2 mb-4">
         <div class="flex justify-between">
           <input id="searchInput" class="task-input border-b text-xl w-[80%]" type="text" name="title"
