@@ -31,7 +31,7 @@
   <nav class="fixed top-0 left-0 z-50 w-full bg-white border-b border-gray-200">
     <div class="max-w-7xl mx-auto relative flex items-center p-8 h-16">
       <!-- Back button -->
-      <a href="sharepage_Groups.html" id="backBtn" class="mr-3 hidden">
+      <a href="sharepage_Groups.html" id="backBtn" class="mr-3 hidden active:scale-110 hover:scale-105">
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 -2 24 24" fill="none" stroke="#115268"
           stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M5 12l14 0" />
@@ -47,7 +47,7 @@
 
       <!-- Right side buttons -->
       <div class="ml-auto flex items-center">
-        <button id="addMember" class="hidden mr-4">
+        <button id="addMember" class="hidden mr-4 active:scale-110 hover:scale-115 cursor-pointer">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 -2 24 24" fill="none"
             stroke="#115268" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
@@ -57,12 +57,17 @@
           </svg>
         </button>
 
-        <button id="editGroup" class="hidden">
-          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 -2 24 24" fill="none"
-            stroke="#115268" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
-            <path d="M6 21v-2a4 4 0 0 1 4 -4h3.5" />
-            <path d="M18.42 15.61a2.1 2.1 0 0 1 2.97 2.97l-3.39 3.42h-3v-3l3.42 -3.39z" />
+        <button id="editGroup" class="hidden rounded-full active:scale-115 hover:scale-105 cursor-pointer">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-users-group">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+            <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" />
+            <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+            <path d="M17 10h2a2 2 0 0 1 2 2v1" />
+            <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+            <path d="M3 13v-1a2 2 0 0 1 2 -2h2" />
           </svg>
         </button>
       </div>
