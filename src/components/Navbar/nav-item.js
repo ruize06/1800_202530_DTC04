@@ -13,7 +13,7 @@ class NavItem extends HTMLElement {
     render() {
         this.classList.toggle("text-[var(--deactive-button-bg-color)]", true);
         this.innerHTML = `
-        <div class = "hover:text-[var(--deactive-button-bg-color)] flex flex-col items-center justify-end cursor-pointer
+        <div class = "hover:text-[var(--active-border-color)] flex flex-col items-center justify-end cursor-pointer
                 rounded-full p-4 [&_svg]:w-[20vw] [&_svg]:max-w-[50px] [&_svg]:h-auto transition-all duration-200">
             ${this.content}
             <h3 class="text-sm font-semibold">
