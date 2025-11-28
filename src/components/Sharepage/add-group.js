@@ -13,15 +13,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const noGroupName = document.getElementById('noGroupName');
     let currentUserId = null;
 
-    function createGroupElement(groupId, groupNameText) {
+    function createGroupElement(groupId, groupNameText, groupTasksNumber) {
         const groupDiv = document.createElement('div');
-        groupDiv.className = "flex items-center bg-gray-200 p-3 rounded-full";
+        groupDiv.className = `
+            text-center from-[var(--secondary-bg-color)] to-[var(--gradient-bg-color)] bg-gradient-to-br
+            px-6 py-2 flex flex-row justify-between rounded-full shadow-lg hover:scale-105 transition-transform duration-200`;
 
         const nameTag = document.createElement('h1');
         nameTag.textContent = groupNameText;
         nameTag.className = "font-bold";
 
         groupDiv.appendChild(nameTag);
+
+        const tasksTag = document.createElement('h1');
+        tasksTag.textContent = `Tasks: ${groupTasksNumber || 0}`;
+        tasksTag.className = "font-semibold";
+
+        groupDiv.appendChild(tasksTag);
 
         groupDiv.addEventListener('click', async () => {
             localStorage.setItem("todoGroupID", groupId);
@@ -42,7 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
         for (const docSnap of snapshot.docs) {
             const group = docSnap.data();
             const groupId = docSnap.id;
-            const groupDiv = createGroupElement(groupId, group.name);
+            const tasksQuery = query(
+                collection(db, "tasks"),
+                where("ownerID", "==", groupId));
+            const tasks = await getDocs(tasksQuery);
+            const groupDiv = createGroupElement(groupId, group.name, tasks.docs.length);
             groupList.appendChild(groupDiv);
         }
     }
