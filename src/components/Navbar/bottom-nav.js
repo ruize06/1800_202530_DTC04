@@ -36,8 +36,8 @@ class BottomNav extends HTMLElement {
     this.innerHTML = `
       <nav class="w-full md:max-w-fit md:left-1/2 md:-translate-x-1/2 fixed bottom-0 md:bottom-4">
           <div id="bottom-nav-options"
-              class="bg-[var(--primary-button-bg-color)] shadow-lg
-              p-2 md:hover:px-6 md:max-w-fit md:max-h-fit mx-auto
+              class="bg-[var(--primary-button-bg-color)] shadow-lg border-t-2 md:border-2 border-[var(--secondary-bg-color)]
+              px-2 py-0 md:hover:px-6 md:max-w-fit md:max-h-fit mx-auto
               transition-transform duration-200
               md:scale-60 md:hover:scale-100
               md:[&_h3]:hidden md:hover:[&_h3]:block
@@ -46,7 +46,7 @@ class BottomNav extends HTMLElement {
               <!-- Nav items -->
               <!-- home -->
               <nav-item pagetitle="Home">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 24" fill="none"
                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                       class="icon icon-tabler icons-tabler-outline icon-tabler-home-2">
                       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -57,7 +57,7 @@ class BottomNav extends HTMLElement {
               </nav-item>
               <!-- todo list -->
               <nav-item pagetitle="Your List">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                   class="icon icon-tabler icons-tabler-outline icon-tabler-list-check">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -71,7 +71,7 @@ class BottomNav extends HTMLElement {
               </nav-item>
               <!-- groups -->
               <nav-item pagetitle="Groups">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 24" fill="none"
                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                       class="icon icon-tabler icons-tabler-outline icon-tabler-users-group">
                       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -85,7 +85,7 @@ class BottomNav extends HTMLElement {
               </nav-item>
               <!-- profile -->
               <nav-item pagetitle="Profile">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 24" fill="none"
                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                       class="icon icon-tabler icons-tabler-outline icon-tabler-user-circle">
                       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
