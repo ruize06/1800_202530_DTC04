@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function updateUserSearchResults() {
-    const queryText = searchInput.value.trim().toUpperCase();
+    const queryText = searchInput.value.trim()
     searchResults.innerHTML = "";
 
     const usersRef = query(
@@ -74,6 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
       searchResults.innerHTML = "";
       const groupRef = doc(db, "groups", groupId);
       userMatches.forEach((match) => {
+        if (match.id === currentUserId) return; // Skip adding yourself
         const user = match.data();
         var _searchResult = document.createElement("search-add-result");
         searchResults.append(_searchResult);
