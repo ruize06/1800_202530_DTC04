@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
     currentMembers = await loadMembers(groupId);
     searchResults.innerHTML = "";
     searchInput.value = "";
+    updateUserSearchResults(); 
   }
 
   function cancelAddMembersForm () {

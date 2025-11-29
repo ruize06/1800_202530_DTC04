@@ -218,7 +218,7 @@ function setup() {
         share_task_submit_form?.addEventListener("submit", (e) => {
             shareTasksFromForm(e)
         })
-        show_completed_button.addEventListener("click", e => {
+        show_completed_button.addEventListener("click", () => {
             updateStats()
             if (completed_container.classList.contains('completed-list')) {
                 show_completed_button.innerHTML = "Hide Completed";
