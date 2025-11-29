@@ -24,7 +24,9 @@ async function removeMember(groupRef, memberId) {
     for (let element of membersList.children) {
         if (element.id == memberId) membersList.removeChild(element);
     }
-    if ((await getDoc(groupRef)).data().members.length === 0) {
+    const groupDoc = await getDoc(groupRef);
+    console.log(groupDoc.data().members.length)
+    if (groupDoc.data().members.length === 0) {
         await deleteGroup(groupRef);
     }
 }
