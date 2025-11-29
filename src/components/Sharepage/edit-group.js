@@ -68,13 +68,22 @@ document.addEventListener("DOMContentLoaded", () => {
             const memberElement = document.createElement("li");
             memberElement.id = memberId
             memberElement.className =
-                "flex items-center justify-between gap-2 p-2 border rounded";
+                "bg-[var(--bg-color)] px-3 py-2 rounded-full flex justify-between items-center shadow-sm max-w-full mx-auto";
             membersList.appendChild(memberElement);
 
             // User
+            const userDiv = document.createElement("div");
+            userDiv.className = "flex items-center gap-4";
+
+            const userProfile = document.createElement("img");
+            userProfile.className =  "rounded-full w-10 h-10 object-cover";
+            userProfile.src = member.profilePicture || "/images/person.png";
+            userDiv.appendChild(userProfile);
+
             const span = document.createElement("span");
             span.textContent = member.username || member.email;
-            memberElement.appendChild(span);
+            userDiv.appendChild(span);
+            memberElement.appendChild(userDiv);
 
             // Remove user button
             const btn = document.createElement("button");

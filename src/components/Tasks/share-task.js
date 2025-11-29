@@ -36,14 +36,16 @@ export function updateSearchResults(event, searchInput, resultsDiv) {
     } else {
       resultsDiv.innerHTML = "";
       matches_snap.forEach((element) => {
+        if (element.id === localStorage.getItem("todoGroupID")) {
+          return; // Skip adding the current group
+        }
+
         const group_match = element.data();
         var _searchResult = document.createElement("search-add-result");
         resultsDiv.append(_searchResult);
         _searchResult.setAttribute("title", group_match.name);
-        _searchResult.setAttribute(
-          "added",
-          resultsDiv.added.includes(element.id)
-        );
+        _searchResult.setAttribute("img", group_match.profilePicture || "");
+        _searchResult.setAttribute( "added", resultsDiv.added.includes(element.id));
         _searchResult
           .getElementsByClassName("searchResultAddButton")[0]
           .addEventListener("click", () => {

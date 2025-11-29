@@ -79,6 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
         searchResults.append(_searchResult);
         const _addButton = _searchResult.querySelector(".searchResultAddButton");
         _searchResult.setAttribute("title", user.username);
+        _searchResult.setAttribute("img", user.profilePicture || "/images/person.png");
 
         if (match.id in currentMembers) {
           _searchResult.setAttribute("added", true);

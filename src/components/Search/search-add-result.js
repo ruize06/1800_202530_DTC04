@@ -1,7 +1,7 @@
 
 class SearchAddResult extends HTMLElement {
     static get observedAttributes() {
-        return ['title', 'added'];
+        return ['title', 'added', 'img'];
     }
     constructor () {
         super()
@@ -10,8 +10,11 @@ class SearchAddResult extends HTMLElement {
     render() {
         this.innerHTML = `
         <div class="bg-[var(--bg-color)] px-3 py-2 rounded-full flex justify-between items-center shadow-sm max-w-full mx-auto">
-            <h1 class="searchResultTitle text-[var(--text-color)] md:text-xl font-semibold text-nowrap overflow-hidden text-ellipsis">
-            </h1>
+            <div class="flex items-center space-x-4">
+                <img class="searchResultImg hidden rounded-full w-10 h-10 object-cover" src="" alt="Profile Image">
+                <h1 class="searchResultTitle text-[var(--text-color)] md:text-xl font-semibold text-nowrap overflow-hidden text-ellipsis">
+                </h1>
+            </div>
             <button class="searchResultAddButton px-3 py-1 rounded-full text-sm text-[var(--contrast-text-color)] bg-[var(--primary-button-bg-color)] hover:bg-[var(--secondary-button-bg-color)]">
             </button>
         </div>
@@ -37,6 +40,13 @@ class SearchAddResult extends HTMLElement {
                 _button.classList.remove("bg-[var(--deactive-button-bg-color)]")
                 _button.innerText = "Add"
             }
+        } else if (name === "img") {
+            if (newValue === null || newValue === undefined || newValue === "") {
+                this.getElementsByClassName("searchResultImg")[0].classList.add("hidden")
+            } else {
+                this.getElementsByClassName("searchResultImg")[0].classList.remove("hidden")
+            }
+            this.getElementsByClassName("searchResultImg")[0].src = newValue
         } else if (name === "title") {
             this.getElementsByClassName("searchResultTitle")[0].innerHTML = newValue
         }
