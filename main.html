@@ -1,57 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Web Components -->
+    <script type="module" src="/src/app.js"></script>
+    <link href="/src/styles/style.css" rel="stylesheet" />
+    <script type="module" src="/src/components/Navbar/nav-item.js"></script>
+    <script type="module" src="/src/components/Navbar/top-nav.js"></script>
+    <script type="module" src="/src/components/Navbar/bottom-nav.js"></script>
 
-  <!-- Web Components -->
-  <script type="module" src="/src/app.js"></script>
-  <link href="/src/styles/style.css" rel="stylesheet" />
-  <script type="module" src="/src/components/Navbar/nav-item.js"></script>
-  <script type="module" src="/src/components/Navbar/top-nav.js"></script>
-  <script type="module" src="/src/components/Navbar/bottom-nav.js"></script>
+    <script type="module" src="/src/components/Navbar/nav-item.js"></script>
+    <script type="module" src="/src/components/Navbar/bottom-nav.js"></script>
 
-  <script type="module" src="/src/components/Navbar/nav-item.js"></script>
-  <script type="module" src="/src/components/Navbar/bottom-nav.js"></script>
+    <title>Orbit - Home</title>
+  </head>
 
-  <title>Orbit - Home</title>
-</head>
+  <body class="w-full h-full p-0 m-0 overflow-x-hidden pb-40">
+    <top-nav title="Home"></top-nav>
 
-<body class="w-full h-full p-0 m-0 overflow-x-hidden pb-44">
-  <top-nav title="Home"></top-nav>
-
-  <!-- Dashboard Container -->
-  <div class="flex-1 max-w-5xl mx-auto p-6 flex flex-col md:flex-row gap-6 pt-26">
-    <!-- Left Dashboard -->
+    <!-- Dashboard Container -->
     <div
-      class="bg-linear-to-tr from-[var(--secondary-bg-color)] to-[var(--gradient-bg-color)] flex flex-col justify-between rounded-xl p-6 w-full md:w-2/3">
-      <h2 class="text-lg font-semibold mb-4">Your Week</h2>
-      <canvas id="weeklyTasksChart" class=""></canvas>
-    </div>
-
-    <!-- Right Dashboards -->
-    <div class="flex w-full md:w-1/3 flex-col gap-6">
-      <div class="md:w-full bg-[var(--secondary-bg-color)] rounded-xl p-6">
-        <h2 class="text-lg font-semibold mb-4">Today's Goals</h2>
-        <p id="todays-goal-tasks-count" class="text-base text-black mb-2">
-          0 task from your list
-        </p>
-
-        <p id="todays-goal-group-count" class="text-base text-black">
-          0 tasks from your groups
-        </p>
+      class="flex-1 max-w-5xl mx-auto p-6 flex flex-col md:flex-row gap-6 pt-26 h-400px"
+    >
+      <!-- Left Dashboard -->
+      <div
+        class="bg-linear-to-tr from-[var(--secondary-bg-color)] to-[var(--gradient-bg-color)] flex flex-col justify-between rounded-xl p-6 w-full md:w-[60%]"
+      >
+        <h2 class="text-lg font-semibold mb-4">Your Week</h2>
+        <canvas id="weeklyTasksChart" class=""></canvas>
       </div>
 
-      <div class="md:w-full bg-[var(--gradient-bg-color)] rounded-xl p-6">
-        <h2 class="text-lg font-semibold mb-4">Shared Tasks Today</h2>
-        <div id="new-tasks-container" class="flex flex-col gap-1 text-black"></div>
+      <!-- Right Dashboards -->
+      <div class="flex w-full md:w-[40%] flex-col gap-6 justify-between">
+        <div
+          class="md:w-full bg-[var(--secondary-bg-color)] rounded-xl p-6 md:h-[50%]"
+        >
+          <h2 class="text-lg font-semibold mb-4">Today's Goals</h2>
+          <p id="todays-goal-tasks-count" class="text-base text-black mb-2">
+            0 task from your list
+          </p>
+
+          <p id="todays-goal-group-count" class="text-base text-black">
+            0 tasks from your groups
+          </p>
+        </div>
+
+        <div
+          class="md:w-full bg-[var(--gradient-bg-color)] rounded-xl p-6 md:h-[50%]"
+        >
+          <h2 class="text-lg font-semibold mb-3">Today's Shared Tasks</h2>
+          <div
+            id="new-tasks-container"
+            class="px-1 py-1 flex flex-col gap-1 text-black max-h-24 overflow-y-scroll"
+          ></div>
+        </div>
       </div>
     </div>
-  </div>
-  <bottom-nav active="0"></bottom-nav>
+    <bottom-nav active="0"></bottom-nav>
 
-  <script type="module" src="src/components/Main/main.js"></script>
-</body>
-
+    <script type="module" src="src/components/Main/main.js"></script>
+  </body>
 </html>
