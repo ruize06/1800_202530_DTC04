@@ -111,14 +111,14 @@ onAuthReady(async (currentUser) => {
       query(
         tasksCollection,
         where("ownerID", "==", currentUser.uid),
-        where("completed", "!=", true)));
+        where("completed", "!=", "true")));
     personalCount = getDatesTasks(today, personalTasksQuerySnapshot).length;
     for (let groupID of groupIDs) {
       const tasksQuerySnapshot = await getDocs(
         query(
           tasksCollection,
           where("ownerID", "==", groupID),
-          where("completed", "!=", true)));
+          where("completed", "!=", "true")));
       let task_count = getDatesTasks(today, tasksQuerySnapshot).length;
       groupCount += task_count;
       groupTaskCounts[groupID] = task_count;
@@ -153,8 +153,8 @@ onAuthReady(async (currentUser) => {
       return;
     }
 
-for (const groupID in groupTaskCounts) {
-  const count = groupTaskCounts[groupID];
+  for (const groupID in groupTaskCounts) {
+    const count = groupTaskCounts[groupID];
       const groupName = groupMap[groupID] || "Unknown Group";
       
       const a = document.createElement("a");
@@ -162,19 +162,19 @@ for (const groupID in groupTaskCounts) {
         count !== 1 ? "s" : ""
       } from ${groupName}`;
       a.className = `
-      block w-full text-left px-4 py-2 bg-[var(--secondary-bg-color)] text-black rounded-lg mb-3 shadow-md
-    hover:bg-blue-200 hover:shadow cursor-pointer transition
-  `;
-  
-  a.addEventListener("click", (e) => {
-    e.preventDefault();
-    localStorage.setItem("todoGroupID", groupID);
-    window.location.href = "todo.html?type=group";
-      });
-      
+        block w-full text-left px-4 py-2 bg-[var(--secondary-bg-color)] text-black rounded-lg mb-3 shadow-md
+        hover:bg-blue-200 hover:shadow cursor-pointer transition
+      `;
+    
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      localStorage.setItem("todoGroupID", groupID);
+      window.location.href = "todo.html?type=group";
+    });
+        
       newTasksContainer.appendChild(a);
     }
-  });
+    });
   // onSnapshot(userTasksQuery, (querySnapshot) => {
   //   updateTodaysTasks(querySnapshot);
   //   updateWeeksTasksChart(querySnapshot);

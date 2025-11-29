@@ -8,6 +8,7 @@ export async function addTaskFromForm(event, ownerID) {
     task_details = Object.fromEntries([...task_details.entries()]);
 
     task_details.ownerID = ownerID
+    task_details.completed = "false";
 
     const tasks_collection = collection(db, "tasks")
     const docref = await addDoc(tasks_collection, task_details)

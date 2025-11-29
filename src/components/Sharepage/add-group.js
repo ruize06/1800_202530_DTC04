@@ -52,7 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const groupId = docSnap.id;
             const tasksQuery = query(
                 collection(db, "tasks"),
-                where("ownerID", "==", groupId));
+                where("ownerID", "==", groupId),
+                where("completed", "!=", "true"));
             const tasks = await getDocs(tasksQuery);
             const groupDiv = createGroupElement(groupId, group.name, tasks.docs.length);
             groupList.appendChild(groupDiv);
