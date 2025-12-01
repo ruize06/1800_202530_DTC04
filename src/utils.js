@@ -11,7 +11,7 @@ export function isLightColor(hexColor) {
       (0.0722 * rgb[2]) / 255;
     return luminance > 0.5;
   }
-  return false
+  return false;
 }
 
 export function arrayRemove(array, item) {
@@ -23,15 +23,15 @@ export function customClone(originalNode, attachNode) {
   var newNode = originalNode.cloneNode(true);
   attachNode.appendChild(newNode);
   for (let attr of originalNode.attributes) {
-    console.log(attr.name)
+    console.log(attr.name);
     newNode.setAttribute(attr.name, attr.value);
   }
   return newNode;
 }
 
 export function addEventListeners(target, events, callback) {
-  events.forEach(event => {
-    target.addEventListener(event, callback)
+  events.forEach((event) => {
+    target.addEventListener(event, callback);
   });
 }
 
@@ -49,10 +49,16 @@ export function showPopup(popupElement) {
   }, 0);
 }
 
-export function addPopupEventListeners(openButton, closeButton, popupElement, onOpen, onClose) {
+export function addPopupEventListeners(
+  openButton,
+  closeButton,
+  popupElement,
+  onOpen,
+  onClose
+) {
   /**
    * Create event listensers for a popup
-   * 
+   *
    * @param openButton (HTMLElement) - opens popup onclick
    * @param closeButton (HTMLElement) - closes popup onclick
    * @param popupElement (HTMLElement) - element to show/hide, usually a div
@@ -60,61 +66,69 @@ export function addPopupEventListeners(openButton, closeButton, popupElement, on
    * @param onClose (callableFunction) - callback function called when the menu is closed
    */
   // Open popup
-  const openFunc = (e) => { onOpen(e);/* showPopup(popupElement)*/ }
-  const closeFunc = (e) => { onClose(e);/* hidePopup(popupElement)*/ }
+  const openFunc = (e) => {
+    onOpen(e); /* showPopup(popupElement)*/
+  };
+  const closeFunc = (e) => {
+    onClose(e); /* hidePopup(popupElement)*/
+  };
   openButton?.addEventListener("click", openFunc);
   // Cancel popup
   closeButton?.addEventListener("click", closeFunc);
   if (popupElement?.getAttribute("listener") !== "true") {
-    popupElement?.setAttribute("listener", "true")
-    popupElement?.addEventListener(
-      "focusout", () => {
-        if (document.hasFocus()) popupElement.timer = setTimeout(closeFunc, 0);
-      });
-    popupElement?.addEventListener(
-      "focusin", () => {
-        clearTimeout(popupElement.timer);
-      });
+    popupElement?.setAttribute("listener", "true");
+    popupElement?.addEventListener("focusout", () => {
+      if (document.hasFocus()) popupElement.timer = setTimeout(closeFunc, 0);
+    });
+    popupElement?.addEventListener("focusin", () => {
+      clearTimeout(popupElement.timer);
+    });
   }
 }
 
 export function confirmationPopup({ message, onConfirm }) {
   const popup = document.createElement("div");
   popup.id = "confirmationPopup";
-  popup.className = `fixed bottom-1/2 left-1/2 -translate-x-1/2 w-full md:max-w-[50%] max-w-[90%]
-    bg-[var(--secondary-bg-color)] text-[var(--text-color)] rounded-xl px-8 pb-8 shadow-lg
-    translate-y-full transition-transform duration-300 z-30 ease-in-out hidden`;
-
-  popup.innerHTML = `
-    <!-- Header -->
-    <div class="sticky flex flex-row items-center justify-between top-0 bg-inherit py-4 border-b border-[var(--primary-border-color)]">
-      <p class="text-xl font-bold">${message}</p>
-    </div>
-    <div class="flex max-w-[90%] mx-auto justify-between pt-5">
-        <button id="confirmBtn" type="button"
-                class="px-6 py-2 rounded-full bg-[var(--danger-button-bg-color)] text-white 
-                       hover:bg-[var(--secondary-button-bg-color)] hover:scale-105">
-          Confirm
-        </button>
-        <button id="cancelBtn"
-                class="px-6 py-2 rounded-full bg-gray-500 text-white 
-                       hover:bg-gray-600 hover:scale-105">
-          Cancel
-        </button>
-      </div>
+  popup.className = `
+    fixed inset-0 flex justify-center items-center z-50
+    bg-black/50 px-4
+  `;
+  const popupContent = document.createElement("div");
+  popupContent.className = `
+    bg-gradient-to-r from-[var(--light-secondary-button-bg-color)]
+    to-[var(--light-primary-button-bg-color)]
+    text-white rounded-2xl px-6 py-6 shadow-2xl
+    w-full max-w-md flex flex-col gap-8
+    sm:px-8
   `;
 
+  popupContent.innerHTML = `
+    <p class="text-xl font-bold text-center">${message}</p>
+    <div class="flex justify-center gap-6 mt-4 w-full">
+      <button id="confirmBtn" type="button"
+              class="w-28 px-6 py-2 rounded-full bg-white text-black
+                     font-semibold shadow-lg hover:scale-115 hover:shadow-xl transition-all duration-300">
+        Confirm
+      </button>
+      <button id="cancelBtn"
+              class="w-28 px-6 py-2 rounded-full bg-white text-black
+                     font-semibold shadow-lg hover:scale-115 hover:shadow-xl transition-all duration-300">
+        Cancel
+      </button>
+    </div>
+  `;
+
+  popup.appendChild(popupContent);
   document.body.appendChild(popup);
 
-  popup.querySelector("#confirmBtn").addEventListener("click", () => {
+  popupContent.querySelector("#confirmBtn").addEventListener("click", () => {
     onConfirm?.();
-    hidePopup(popup);
+    popup.remove();
   });
 
-  popup.querySelector("#cancelBtn").addEventListener("click", () => {
-    hidePopup(popup);
+  popupContent.querySelector("#cancelBtn").addEventListener("click", () => {
+    popup.remove();
   });
 
-  showPopup(popup);
   return popup;
 }
