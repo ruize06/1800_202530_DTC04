@@ -76,7 +76,7 @@ Example:
 │   ├── firebaseConfig.js
 │   ├── loginSignup.js
 │   └── utils.js
-├── images/
+├── public/images/
 ├── index.html
 ├── login.html
 ├── main.html
