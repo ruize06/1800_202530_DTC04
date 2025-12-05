@@ -121,9 +121,12 @@ Tasks can be shared between lists, and each has customization options with colou
 
 ### Future Work
 
-- Implement map view and trailhead directions.
-- Add filtering and sorting options (e.g., by difficulty, distance).
-- Create a dark mode for better usability in low-light conditions.
+- Add streaks, badges, or points to motivate users to complete tasks consistently.
+- Enable attaching documents or images directly to tasks for more context.
+- Introduce permissions (e.g., admins, editors, viewers) for better collaboration.
+- Let users choose how and when they’re reminded for tasks, daily habits.
+- Provide charts showing productivity trends, group contributions, or completion rates.
+- Make Orbit accessible to non-English speakers with translations.
 
 ---
 
