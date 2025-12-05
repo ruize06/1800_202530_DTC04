@@ -2,7 +2,9 @@
 
 ## Overview
 
-Orbit is a client-side web application that aims to aid students with organization and planning. The app gives each user a personal to do list, and they can create groups with classmates and friends to always "Stay in Orbit" of each other. Tasks can be shared between lists, and each has customization options with colours, deadlines, and longer descriptions for maximum versatility when users are planning.
+Orbit is a client-side web application that aims to aid students with organization and planning. The app gives each user a personal to do list, and they can create groups with classmates and friends to always "Stay in Orbit" of each other.
+
+Tasks can be shared between lists, and each has customization options with colours, deadlines, and longer descriptions for maximum versatility when users are planning. Orbit also offers a dashboard with summaries of upcoming tasks for an easy look into one's week without looking through lists.
 
 ---
 

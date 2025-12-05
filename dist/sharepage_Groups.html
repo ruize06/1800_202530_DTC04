@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <title>Orbit - Share</title>
+  <script type="module" crossorigin src="/assets/sharepage_Groups-DbMX-d9B.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/style-gcIZDgIN.js">
+  <link rel="modulepreload" crossorigin href="/assets/bottom-nav-3YuBZoxf.js">
+  <link rel="modulepreload" crossorigin href="/assets/top-nav-DYIFfsg9.js">
+  <link rel="modulepreload" crossorigin href="/assets/popup-form-header-TXQSeuBU.js">
+  <link rel="stylesheet" crossorigin href="/assets/style-C-viovdf.css">
+</head>
+
+<body class="w-full h-full p-0 m-0 overflow-x-hidden">
+  <top-nav title="Share"></top-nav>
+
+  <main class="mb-[150px] max-w-[95%] md:max-w-[70%] mx-auto pt-24">
+    <section>
+      <!-- Create New Group Button -->
+      <div id="addGroupBtn"
+        class="mt-[30px] flex items-center gap-2 cursor-pointer border-[1.5px] border-slate-400 text-zinc-600 px-4 py-2 font-bold rounded-full shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300 justify-center w-[340px] mx-auto">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#52525b"
+          stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
+          <path d="M15 12h-6" />
+          <path d="M12 9v6" />
+        </svg>
+        <h1>Create New Group</h1>
+      </div>
+
+      <!-- Group List -->
+      <div id="groupList" class="my-4 gap-8 p-4 font-bold flex flex-col"></div>
+    </section>
+  </main>
+
+  <!-- Add Group Popup -->
+  <div id="addGroupPopup" tabindex="-1"
+    class="bg-[var(--secondary-bg-color)] text-[var(--text-color)] outline-none **:focus:outline-none fixed z-2 bottom-0 md:left-1/2 md:-translate-x-1/2 translate-y-full w-full md:max-w-[768px] rounded-t-xl px-8 pb-8 transition-all duration-300">
+    <popup-form-header title="Create a Group"></popup-form-header>
+
+    <form id="createNewGroupForm"
+      class="[&_label]:font-bold [&_label]:text-xl
+             [&_.task-input]:p-2 [&_*]:focus:outline-none [&_.task-input]:border-[var(--deactive-border-color)] [&_.task-input]:focus:border-[var(--active-border-color)]
+             min-h-[60vh] overflow-y-scroll [&::-webkit-scrollbar-thumb]:bg-gray-600/50 [&::-webkit-scrollbar]:bg-transparent py-8 px-8 clear-both">
+      <div class="flex flex-col gap-2 mb-4">
+        <label for="addGroupName">Group name</label>
+        <input name="groupName" id="addGroupName" class="task-input border-b text-xl" type="text" name="title"
+          placeholder="Give your group a name" maxlength="64" />
+        <div id="noGroupName" class="hidden mb-1">
+          <h1 class="text-red-700">Please give your group a name</h1>
+        </div>
+      </div>
+      <button id="saveGroupBtn" type="submit"
+        class="absolute bottom-16 right-16 px-6 py-3 rounded-full bg-[var(--primary-button-bg-color)] text-white hover:bg-[var(--secondary-button-bg-color)]">
+        Submit
+      </button>
+    </form>
+  </div>
+
+  <bottom-nav active="2"></bottom-nav>
+</body>
+
+</html>

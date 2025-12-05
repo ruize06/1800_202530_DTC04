@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <title>Orbit</title>
+    <meta name="comp1800 template" content="My 1800 App" />
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Other libraries go here -->
+
+  <script type="module" crossorigin src="/assets/login-tKR4Zkcn.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/style-gcIZDgIN.js">
+  <link rel="modulepreload" crossorigin href="/assets/site-navbar-3H4lVGoP.js">
+  <link rel="modulepreload" crossorigin href="/assets/authentication-DKrwougs.js">
+  <link rel="stylesheet" crossorigin href="/assets/style-C-viovdf.css">
+</head>
+
+
+<body style="
+      background-image: url(https://static.vecteezy.com/system/resources/previews/024/790/556/non_2x/seamless-night-sky-stars-pattern-sketch-moon-space-planets-and-hand-drawn-star-illustration-outer-space-symbols-decorative-texture-cosmic-wallpaper-wrapping-paper-textile-outline-design-vector.jpg);
+    ">
+    <div class="bg-black w-[100%] h-[100%] block opacity-70 fixed z-0"></div>
+    <div class="relative z-1">
+        <!------------------------------>
+        <!-- Your HTML Layout go here -->
+        <!------------------------------>
+
+        <!-- our own navbar goes here -->
+        <site-navbar>
+        </site-navbar>
+
+        <!-- Main content goes here -->
+        <main class="text-white mb-[35px] pt-[20%] sm:hidden">
+            <section class="max-w-[80%] mx-auto">
+                <h1 class="text-[#b494ff] font-bold text-3xl">
+                    Welcome to...
+                </h1>
+            </section>
+            <section class="text-center">
+                <div class="">
+                    <a href="index.html" class="relative inline-block group">
+                        <img src="./images/logo.svg" alt="Orbit Logo"
+                            class="h-29 w-auto transition-opacity duration-300 group-hover:opacity-0" />
+                    </a>
+                    <h1 class="text-lg font-extrabold text-[#89e1fe] tracking-wide animate-fade-in drop-shadow-md">
+                        Stay in sync. <span class="text-indigo-300">Stay in Orbit.</span>
+                    </h1>
+                </div>
+            </section>
+        </main>
+        <div class="container py-5 text-white px-3 mx-auto" style="max-width: 420px;">
+            <!-- Alerts -->
+            <div id="authAlert" class="alert alert-danger d-none" role="alert"></div>
+
+            <!-- Login -->
+            <div id="loginView" class="flex sm:min-h-[50vh] sm:mt-[70px] flex-col jusitfy-center">
+                <div class="hidden sm:inline">
+                    <h1 class="text-center text-2xl pb-3 font-bold">Login</h1>
+                </div>
+                <form id="loginForm" novalidate>
+                    <div class="mb-3">
+                        <input type="email" id="loginEmail"
+                            class="focus:outline-none w-full rounded-lg p-1 border-[1.5px] border-white"
+                            placeholder="Email" required />
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" id="loginPassword"
+                            class="focus:outline-none w-full rounded-lg p-1 border-[1.5px] border-white"
+                            placeholder="Password" required />
+                    </div>
+                    <button type="submit"
+                        class="w-full btn w-100 bg-[#77d2f1] text-black p-2 font-bold rounded-lg hover:scale-105 hover:shadow-2xl transition duration-300">Login</button>
+                </form>
+                <small class="mt-3 text-center">
+                    Don’t have an account?
+                    <a href="#" id="toSignup" class="text-blue-400 underline font-bold">Sign up</a>
+                </small>
+            </div>
+
+            <!-- Signup -->
+            <div id="signupView" class="hidden sm:min-h-[50vh] sm:mt-[70px]">
+                <div class="hidden sm:inline">
+                    <h1 class="text-center text-2xl pb-3 font-bold">Sign Up</h1>
+                </div>
+                <form id="signupForm" novalidate>
+                    <div class="mb-3">
+                        <input type="text" id="signupName"
+                            class="focus:outline-none w-full rounded-lg p-1 border-[1.5px] border-white"
+                            placeholder="First and Last Name" aria-label="Full name" required />
+                    </div>
+                    <div class="mb-3">
+                        <input type="email" id="signupEmail"
+                            class="focus:outline-none w-full rounded-lg p-1 border-[1.5px] border-white"
+                            placeholder="Email" required />
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" id="signupPassword"
+                            class="focus:outline-none w-full rounded-lg p-1 border-[1.5px] border-white"
+                            placeholder="Password" required />
+                    </div>
+                    <button type="submit"
+                        class="w-full btn w-100 bg-[#77d2f1] text-black p-2 font-bold rounded-lg hover:scale-105 hover:shadow-2xl transition duration-300">Create
+                        Account</button>
+                </form>
+                <div class="flex justify-center">
+                    <small class="mt-3 text-center">
+                        Already have an account?
+                        <a href="#" id="toLogin" class="text-blue-400 underline font-bold">Login</a>
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <!-- our own footer goes here -->
+        <site-footer>
+        </site-footer>
+
+        <!---------------------------------------------->
+        <!-- Your own JavaScript functions go here    -->
+        <!---------------------------------------------->
+
+        <!-- Firebase and authentication related scripts -->
+        <!-- The order of loading matters -->
+</body>
+
+</html>
