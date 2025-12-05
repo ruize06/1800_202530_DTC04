@@ -43,6 +43,7 @@ function renderTasks(tasks) {
 
                 var taskJSON = docSnap.data();
             
+                // Set completed state and move it to the bottom section if the task is done
                 if (taskJSON["completed"] == true || taskJSON["completed"] == "true") {
                     completed_list.prepend(task_box)
                     task_box.classList.add("line-through", "opacity-60");
@@ -142,7 +143,7 @@ function setup() {
                         const addToOwnCheck = document.getElementById("saveToOwnDiv");
                         addToOwnCheck.classList.remove("hidden");
                     } else {
-                        console.warn("No gorup found")
+                        console.warn("No group found")
                         window.location.href = "/sharepage_Groups.html"
                     }
                 })
