@@ -1,9 +1,13 @@
 # Orbit
 
+# Orbit
+
 ## Overview
 
 Orbit is a client-side web application that aims to aid students with organization and planning. The app gives each user a personal to do list, and they can create groups with classmates and friends to always "Stay in Orbit" of each other.
+Orbit is a client-side web application that aims to aid students with organization and planning. The app gives each user a personal to do list, and they can create groups with classmates and friends to always "Stay in Orbit" of each other.
 
+Tasks can be shared between lists, and each has customization options with colours, deadlines, and longer descriptions for maximum versatility when users are planning. Orbit also offers a dashboard with summaries of upcoming tasks for an easy look into one's week without looking through lists.
 Tasks can be shared between lists, and each has customization options with colours, deadlines, and longer descriptions for maximum versatility when users are planning. Orbit also offers a dashboard with summaries of upcoming tasks for an easy look into one's week without looking through lists.
 
 ---
@@ -20,6 +24,7 @@ Tasks can be shared between lists, and each has customization options with colou
 
 ## Technologies Used
 
+- **Frontend**: HTML, CSS/TailwindCSS, JavaScript
 - **Frontend**: HTML, CSS/TailwindCSS, JavaScript
 - **Build Tool**: [Vite](https://vitejs.dev/)
 - **Backend**: Firebase for hosting
@@ -41,6 +46,18 @@ Tasks can be shared between lists, and each has customization options with colou
 10. See your completed tasks by clicking on 'Show Completed' at the bottom of Your List
 11. Go to the Home page to see an overview of tasks that are upcoming today and this week
 12. Go to the Profile page to edit your account details like name and avatar.
+13. Open your browser and visit `https://orbit-4d26b.web.app/`.
+14. Go to Your List and click the '+' button to add a task to your list.
+15. Clicking on the task that appears allows you to edit the details.
+16. Go to Groups and create a shared to do list by click 'Create New Group'.
+17. Go into the new group and click the "add member" button (the first icon in the top right).
+18. Find other users to join and add them, anyone in here can see the group's tasks.
+19. Edit the group name/details or leave the group by clicking the members icon in the top right corner
+20. Go back to Your List and click the share icon next to the task you created to share it to your group
+21. Click on the circle to the left of your task to complete it
+22. See your completed tasks by clicking on 'Show Completed' at the bottom of Your List
+23. Go to the Home page to see an overview of tasks that are upcoming today and this week
+24. Go to the Profile page to edit your account details like name and avatar.
 
 ---
 
