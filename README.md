@@ -62,13 +62,15 @@ elmo-hikes/
 
 ## Contributors
 
-- **Alex Lu** - BCIT CST Student who loves hiking, reading, and has a passion for game development. Fun fact: Has re-read the Artemis Fowl series 5 times
-- **Ruize Sun** - BCIT CST Student with a passion for outdoor adventures and user-friendly applications. Fun fact: Can't solve a Rubik's Cubes at all.
-- **Meiqi Zhao** - BCIT CST student who likes baking and photography. Fun fact: I like watermelon, but do not like watermelon-flavored drinks.
+**Alex Lu** - BCIT CST Student who loves hiking, reading, and has a passion for game development.
+- **To do lists**: Created the core task management features like task creation, editing, completion, and sharing.
+- **Database Structure**: Implemented the  Firestore collections and connected them for tasks and groups.
+- **Navigation**: Built the features for navigating the site and searching for users/groups
+**Ruize Sun** - BCIT CST Student with a passion for outdoor adventures and user-friendly applications. Fun fact: Can't solve a Rubik's Cubes at all.
+**Meiqi Zhao** - BCIT CST student who likes baking and photography. Fun fact: I like watermelon, but do not like watermelon-flavored drinks.
 
 ## Acknowledgments
 
-- Trail data and images are for demonstration purposes only.
 - Icons sourced from [TablerIcons](https://tabler.io/) and images 
 
 ---
