@@ -2,9 +2,7 @@
 
 ## Overview
 
-Elmo Hikes is a client-side JavaScript web application that helps users discover and explore hiking trails. The app displays a curated list of hike trails, each with details such as name, location, difficulty, and an image. Users can browse the list and mark their favorite trails for easy access later.
-
-Developed for the COMP 1800 course, this project applies User-Centred Design practices and agile project management, and demonstrates integration with Firebase backend services for storing user favorites.
+Orbit is a client-side web application that aims to aid students with organization and planning. The app gives each user a personal to do list, and they can create groups with classmates and friends to always "Stay in Orbit" of each other. Tasks can be shared between lists, and each has customization options with colours, deadlines, and longer descriptions for maximum versatility when users are planning.
 
 ---
 
