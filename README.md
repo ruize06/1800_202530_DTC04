@@ -95,7 +95,7 @@ Tasks can be shared between lists, and each has customization options with colou
 ├── vite.config.js
 ├── package.json
 ├── package-lock.json
-├── README.md
+└── README.md
 ```
 
 - - -
@@ -114,7 +114,11 @@ Tasks can be shared between lists, and each has customization options with colou
 * **Sharepage**: Added groups that can be created and accessed from the sharepage.
 * **Group editing**: Added editing related to groups, like editing group name, removing members, leaving the group, and adding members to the group.
 
-**Meiqi Zhao** \- BCIT CST student who likes baking and photography\. Fun fact: I like watermelon\, but do not like watermelon\-flavored drinks\.
+**Meiqi Zhao** \- BCIT CST student who likes baking and photography\.
+* **Profile Page**: Developed core functionality allowing users to view and edit their profile information.
+* **Database Structure**: Implemented and connected Firestore collections to support profile data storage and retrieval.
+* **User Interaction Features**: Implemented alert popups to provide feedback when users add members or update profile information.
+
 
 
 ## Acknowledgments
