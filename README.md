@@ -71,7 +71,13 @@ elmo-hikes/
 
 ## Acknowledgments
 
+- Some code snippets adapted from:
+  - [MDN Web Docs](https://developer.mozilla.org/en-US/)
+  - [W3schools](https://www.w3schools.com/)
+  - [W3schools](https://www.w3schools.com/)
+  - Example code from **COMP1800** demos and instructions
 - Icons sourced from [TablerIcons](https://tabler.io/) and images 
+- Landing Page background from [Vecteezy](https://www.vecteezy.com/) -> [Image](https://static.vecteezy.com/system/resources/previews/024/790/556/non_2x/seamless-night-sky-stars-pattern-sketch-moon-space-planets-and-hand-drawn-star-illustration-outer-space-symbols-decorative-texture-cosmic-wallpaper-wrapping-paper-textile-outline-design-vector.jpg)
 
 ---
 
