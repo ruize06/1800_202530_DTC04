@@ -1,4 +1,4 @@
-# Elmo Hikes
+# Orbit
 
 ## Overview
 
@@ -10,9 +10,10 @@ Developed for the COMP 1800 course, this project applies User-Centred Design pra
 
 ## Features
 
-- Browse a list of curated hiking trails with images and details
-- Mark and unmark trails as favorites
-- View a personalized list of favorite hikes
+- Create, edit, and delete tasks in a personal to-do list
+- View tasks due today, this week, and tasks shared by groups
+- Create groups, invite members, and share tasks within groups
+- Customize your profile with display name, pronouns, and avatar
 - Responsive design for desktop and mobile
 
 ---
@@ -40,15 +41,53 @@ Example:
 ## Project Structure
 
 ```
-elmo-hikes/
+1800_202530_DTC04/
 ├── src/
-│   ├── main.js
-├── styles/
-│   └── style.css
-├── public/
+│   ├── components/
+│   │    ├──Main/
+│   │    │   └── main.js
+│   │    ├── Navbar/
+│   │    │   └── top-nav.js
+│   │    ├── Popups/
+│   │    │   ├── alert.js
+│   │    │   └── popup-form-header.js
+│   │    ├── Profilepage/
+│   │    │   ├── avatar.js
+│   │    │   └── profile.js
+│   │    ├── Search/
+│   │    │   └── search-add-result.js
+│   │    ├── Sharepage/
+│   │    │   ├── add-group.js
+│   │    │   ├── add-member.js
+│   │    │   └── edit-group.js
+│   │    ├── Tasks/
+│   │    │   ├── add-task.js
+│   │    │   ├── complete-button.js
+│   │    │   ├── share-button.js
+│   │    │   ├── share-task.js
+│   │    │   ├── task-box.js
+│   │    │   └── todo.js
+│   │    ├── site-footer.js
+│   │    └── site-navbar.js
+│   ├── styles/
+│   │   └── style.css
+│   ├── app.js
+│   ├── authentication.js
+│   ├── firebaseConfig.js
+│   ├── loginSignup.js
+│   └── utils.js
 ├── images/
 ├── index.html
+├── login.html
+├── main.html
+├── profile.html
+├── sharepage_Groups.html
+├── todo.html
+├── skeleton.html
+├── tailwind.config.js
+├── vite.config.js
 ├── package.json
+├── package-lock.json
 ├── README.md
 ```
 
