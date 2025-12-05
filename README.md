@@ -116,7 +116,10 @@ Tasks can be shared between lists, and each has customization options with colou
 
 ### Limitations
 
-- Limited trail details (e.g., no live trail conditions).
+- App cannot be used, and tasks cannot be accessed without an internet connection.
+- Reminders and alerts are not yet implemented, so users must check manually.
+- Groups can share tasks, but there is no real-time editing or commenting.
+- Orbit is web-only, there is no dedicated mobile or desktop apps.
 - Accessibility features can be further improved.
 
 ### Future Work
