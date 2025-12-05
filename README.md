@@ -82,7 +82,7 @@ Tasks can be shared between lists, and each has customization options with colou
 │   ├── firebaseConfig.js
 │   ├── loginSignup.js
 │   └── utils.js
-├── images/
+├── public/images/
 ├── index.html
 ├── login.html
 ├── main.html
@@ -108,7 +108,7 @@ Tasks can be shared between lists, and each has customization options with colou
 ## Acknowledgments
 
 - Trail data and images are for demonstration purposes only.
-- Icons sourced from [TablerIcons](https://tabler.io/) and images 
+- Icons sourced from [TablerIcons](https://tabler.io/) and images
 
 ---
 
