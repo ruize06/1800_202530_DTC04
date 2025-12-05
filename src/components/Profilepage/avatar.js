@@ -2,6 +2,13 @@ import { db } from "../../firebaseConfig.js";
 import { doc, updateDoc } from "firebase/firestore";
 import { showAlert } from "../Popups/alert.js";
 
+// ----------------------
+// Avatar Setup Function
+// ----------------------
+// profileImage: <img> element to update
+// userId: current logged-in user's ID
+// onAvatarSelect: optional callback when avatar is selected
+
 export function setupAvatar(profileImage, userId, onAvatarSelect) {
   //DOM Elements
   const chooseBtn = document.getElementById("choose-avatar-btn");
@@ -73,7 +80,7 @@ export function setupAvatar(profileImage, userId, onAvatarSelect) {
       onAvatarSelect(selectedAvatar);
     }
 
-    // Show the avatar selection menu
+    // Save avatar to Firestore (write)
     if (userId) {
       try {
         await updateDoc(doc(db, "userprofiles", userId), {
