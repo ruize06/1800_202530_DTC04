@@ -1,4 +1,4 @@
-# Elmo Hikes
+# Orbit
 
 ## Overview
 
@@ -19,9 +19,7 @@ Developed for the COMP 1800 course, this project applies User-Centred Design pra
 
 ## Technologies Used
 
-Example:
-
-- **Frontend**: HTML, CSS, JavaScript
+- **Frontend**: HTML, CSS/TailwindCSS, JavaScript
 - **Build Tool**: [Vite](https://vitejs.dev/)
 - **Backend**: Firebase for hosting
 - **Database**: Firestore
@@ -30,10 +28,18 @@ Example:
 
 ## Usage
 
-1. Open your browser and visit `http://localhost:3000`.
-2. Browse the list of hiking trails displayed on the main page.
-3. Click the heart icon (or similar) to mark a trail as a favorite.
-4. View your favorite hikes in the favorites section.
+1. Open your browser and visit `https://orbit-4d26b.web.app/`.
+2. Go to Your List and click the '+' button to add a task to your list.
+3. Clicking on the task that appears allows you to edit the details.
+4. Go to Groups and create a shared to do list by click 'Create New Group'.
+5. Go into the new group and click the "add member" button (the first icon in the top right).
+6. Find other users to join and add them, anyone in here can see the group's tasks.
+7. Edit the group name/details or leave the group by clicking the members icon in the top right corner
+8. Go back to Your List and click the share icon next to the task you created to share it to your group
+9. Click on the circle to the left of your task to complete it
+10. See your completed tasks by clicking on 'Show Completed' at the bottom of Your List
+11. Go to the Home page to see an overview of tasks that are upcoming today and this week
+12. Go to the Profile page to edit your account details like name and avatar.
 
 ---
 
@@ -63,8 +69,7 @@ elmo-hikes/
 ## Acknowledgments
 
 - Trail data and images are for demonstration purposes only.
-- Code snippets were adapted from resources such as [Stack Overflow](https://stackoverflow.com/) and [MDN Web Docs](https://developer.mozilla.org/).
-- Icons sourced from [FontAwesome](https://fontawesome.com/) and images from [Unsplash](https://unsplash.com/).
+- Icons sourced from [TablerIcons](https://tabler.io/) and images 
 
 ---
 
