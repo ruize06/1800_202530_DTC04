@@ -95,7 +95,7 @@ Tasks can be shared between lists, and each has customization options with colou
 ├── vite.config.js
 ├── package.json
 ├── package-lock.json
-├── README.md
+└── README.md
 ```
 
 - - -
@@ -107,8 +107,19 @@ Tasks can be shared between lists, and each has customization options with colou
 * **To do lists**: Created the core task management features like task creation, editing, completion, and sharing.
 * **Database Structure**: Implemented the Firestore collections and connected them for tasks and groups.
 * **Navigation**: Built the features for navigating the site and searching for users/groups
-**Ruize Sun** \- BCIT CST Student with a passion for outdoor adventures and user\-friendly applications\. Fun fact: Can't solve a Rubik's Cubes at all\.
-**Meiqi Zhao** \- BCIT CST student who likes baking and photography\. Fun fact: I like watermelon\, but do not like watermelon\-flavored drinks\.
+
+**Ruize Sun** \- BCIT CST Student with a passion for outdoor adventures and user\-friendly applications\.
+
+* **Landing Page**: Designed the desktop and mobile view for the landing page, implemented signup and login to the landing page.
+* **Sharepage**: Added groups that can be created and accessed from the sharepage.
+* **Group editing**: Added editing related to groups, like editing group name, removing members, leaving the group, and adding members to the group.
+
+**Meiqi Zhao** \- BCIT CST student who likes baking and photography\.
+* **Profile Page**: Developed core functionality allowing users to view and edit their profile information.
+* **Database Structure**: Implemented and connected Firestore collections to support profile data storage and retrieval.
+* **User Interaction Features**: Implemented alert popups to provide feedback when users add members or update profile information.
+
+
 
 ## Acknowledgments
 
