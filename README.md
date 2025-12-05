@@ -21,7 +21,6 @@ Tasks can be shared between lists, and each has customization options with colou
 ## Technologies Used
 
 - **Frontend**: HTML, CSS/TailwindCSS, JavaScript
-- **Frontend**: HTML, CSS/TailwindCSS, JavaScript
 - **Build Tool**: [Vite](https://vitejs.dev/)
 - **Backend**: Firebase for hosting
 - **Database**: Firestore
