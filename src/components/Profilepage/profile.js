@@ -20,7 +20,8 @@ const cardEmail = document.getElementById("card-email");
 let currentUserId = null;
 let isEditing = false;
 
-// Update card username in real time
+// Real-time input update
+// Updates the profile card username as user types in the input field
 usernameInput.addEventListener("input", () => {
   if (cardUsername) {
     cardUsername.textContent = usernameInput.value.trim() || "Username";
@@ -51,6 +52,7 @@ function setFormEditable(editable) {
 function listenUserProfile(userId, userEmail) {
   const userDocRef = doc(db, "userprofiles", userId);
 
+  // Firestore real-time listener (read)
   onSnapshot(userDocRef, (docSnap) => {
     if (!docSnap.exists() || isEditing) return;
     const data = docSnap.data();
@@ -68,7 +70,7 @@ function listenUserProfile(userId, userEmail) {
   });
 }
 
-// Save profile changes
+// Save profile changes to Firestore (write)
 async function saveProfile() {
   if (!currentUserId) return;
 

@@ -1,3 +1,10 @@
+// ----------------------
+// Function: showAlert
+// Display a popup alert message on the page
+// message: string to show
+// type: "success" | "error" | "warning" (default: "success")
+// ----------------------
+
 export function showAlert(message, type = "success") {
   const typeClasses = {
     success:
@@ -13,7 +20,7 @@ export function showAlert(message, type = "success") {
     flex justify-center items-center
   `;
 
-  // Popups
+  // Popup container
   const alertDiv = document.createElement("div");
   alertDiv.className = `
     bg-gradient-to-r ${typeClasses[type] || typeClasses.info} 
@@ -26,7 +33,7 @@ export function showAlert(message, type = "success") {
   messageP.textContent = message;
   messageP.className = "text-xl font-semibold";
 
-  // OK button
+  // OK button to close the popup
   const okBtn = document.createElement("button");
   okBtn.textContent = "OK";
   okBtn.className = `

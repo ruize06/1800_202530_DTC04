@@ -1,3 +1,8 @@
+// ----------------------
+// Custom Web Component: TopNav
+// Displays a fixed top navigation bar with a title
+// ----------------------
+
 class TopNav extends HTMLElement {
   static get observedAttributes() {
     return ["title"];
@@ -8,7 +13,7 @@ class TopNav extends HTMLElement {
     this.title = this.getAttribute("title") || "Title";
     this.render();
   }
-
+  // Render function: updates the innerHTML of the component
   render(title = this.title) {
     this.innerHTML = `
       <nav class="fixed top-0 left-0 z-50 w-full bg-white border-b border-gray-200">
