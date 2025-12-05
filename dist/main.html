@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Web Components -->
+
+
+    <title>Orbit - Home</title>
+    <script type="module" crossorigin src="/assets/main-B-METSNl.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/style-gcIZDgIN.js">
+    <link rel="modulepreload" crossorigin href="/assets/bottom-nav-3YuBZoxf.js">
+    <link rel="modulepreload" crossorigin href="/assets/top-nav-DYIFfsg9.js">
+    <link rel="modulepreload" crossorigin href="/assets/authentication-DKrwougs.js">
+    <link rel="stylesheet" crossorigin href="/assets/style-C-viovdf.css">
+  </head>
+
+  <body class="w-full h-full p-0 m-0 overflow-x-hidden pb-40">
+    <top-nav title="Home"></top-nav>
+
+    <!-- Dashboard Container -->
+    <div
+      class="flex-1 max-w-5xl mx-auto p-6 flex flex-col md:flex-row gap-6 pt-26 h-400px"
+    >
+      <!-- Left Dashboard -->
+      <div
+        class="bg-linear-to-tr from-[var(--secondary-bg-color)] to-[var(--gradient-bg-color)] flex flex-col justify-between rounded-xl p-6 w-full md:w-[60%]"
+      >
+        <h2 class="text-lg font-semibold mb-4">Your Week</h2>
+        <canvas id="weeklyTasksChart" class=""></canvas>
+      </div>
+
+      <!-- Right Dashboards -->
+      <div class="flex w-full md:w-[40%] flex-col gap-6 justify-between">
+        <div
+          class="md:w-full bg-[var(--secondary-bg-color)] rounded-xl p-6 md:h-[50%]"
+        >
+          <h2 class="text-lg font-semibold mb-4">Today's Goals</h2>
+          <p id="todays-goal-tasks-count" class="text-base text-black mb-2">
+            0 task from your list
+          </p>
+
+          <p id="todays-goal-group-count" class="text-base text-black">
+            0 tasks from your groups
+          </p>
+        </div>
+
+        <div
+          class="md:w-full bg-[var(--gradient-bg-color)] rounded-xl p-6 md:h-[50%]"
+        >
+          <h2 class="text-lg font-semibold mb-3">Today's Shared Tasks</h2>
+          <div
+            id="new-tasks-container"
+            class="px-1 py-1 flex flex-col gap-1 text-black max-h-24 overflow-y-scroll"
+          ></div>
+        </div>
+      </div>
+    </div>
+    <bottom-nav active="0"></bottom-nav>
+
+  </body>
+</html>

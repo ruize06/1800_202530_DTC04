@@ -78,10 +78,10 @@ export function addPopupEventListeners(
   if (popupElement?.getAttribute("listener") !== "true") {
     popupElement?.setAttribute("listener", "true");
     popupElement?.addEventListener("focusout", () => {
-      if (document.hasFocus()) popupElement.timer = setTimeout(closeFunc, 0);
+      // if (document.hasFocus()) popupElement.timer = setTimeout(closeFunc, 0);
     });
     popupElement?.addEventListener("focusin", () => {
-      clearTimeout(popupElement.timer);
+      // clearTimeout(popupElement.timer);
     });
   }
 }

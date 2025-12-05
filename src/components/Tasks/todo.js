@@ -155,6 +155,7 @@ function setup() {
         const searchParams = new URLSearchParams(window.location.search)
         var todoListOwnerID = null;
         console.log(searchParams.get("type"))
+        // Set the todo list and the header based on the ownerID
         switch (searchParams.get("type")) {
             case 'user':
                 todoListOwnerID = user.uid;
@@ -245,11 +246,12 @@ function setup() {
         // #todo Example JSON for a task
         // {
         //     title: "Example task",
-        //     icon: null,
         //     color: "#a0eeaf",
         //     description: "Longer description goes here",
+        //     completed: "false",
         //     date: "2025-02-01",
         //     time: "23:21"
+        //     ownerID: "exampleid12345"
         // };
         // #end-todo
 
